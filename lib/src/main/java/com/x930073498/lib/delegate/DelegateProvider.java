@@ -11,10 +11,10 @@ public interface DelegateProvider<T extends Delegate> {
     }
 
 //    default void initActivityDelegateProvider(T delegate) {
-//        seComponentDelegate(delegate);
+//        setComponentDelegate(delegate);
 //    }
 
-    default void seComponentDelegate(T delegate) {
+    default void setComponentDelegate(T delegate) {
         ACTIVITY_DELEGATE_ARRAY_MAP.put(this, delegate);
     }
 

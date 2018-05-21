@@ -65,7 +65,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.xjst.skysweety.util.delegate.DelegateProvider;
+import com.x930073498.lib.delegate.DelegateProvider;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -94,7 +94,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @Nullable
     @Override
     public ActionBar getSupportActionBar() {
-        ActionBar actionBar = delegate==null?null:delegate.getSupportActionBar(this);
+        ActionBar actionBar = delegate == null ? null : delegate.getSupportActionBar(this);
         return actionBar == null ? super.getSupportActionBar() : actionBar;
     }
 
@@ -107,7 +107,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @NonNull
     @Override
     public MenuInflater getMenuInflater() {
-        MenuInflater inflater = delegate==null?null:delegate.getMenuInflater(this);
+        MenuInflater inflater = delegate == null ? null : delegate.getMenuInflater(this);
         return inflater == null ? super.getMenuInflater() : inflater;
     }
 
@@ -143,13 +143,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public <T extends View> T findViewById(int id) {
-        T t = delegate==null?null:delegate.findViewById(this, id);
+        T t = delegate == null ? null : delegate.findViewById(this, id);
         return t == null ? super.findViewById(id) : t;
     }
 
     @Override
     public boolean supportRequestWindowFeature(int featureId) {
-        Boolean aBoolean = delegate==null?null:delegate.supportRequestWindowFeature(this, featureId);
+        Boolean aBoolean = delegate == null ? null : delegate.supportRequestWindowFeature(this, featureId);
         return aBoolean == null ? super.supportRequestWindowFeature(featureId) : aBoolean;
     }
 
@@ -187,7 +187,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @Nullable
     @Override
     public ActionMode startSupportActionMode(@NonNull ActionMode.Callback callback) {
-        ActionMode actionMode = delegate==null?null:delegate.startSupportActionMode(this, callback);
+        ActionMode actionMode = delegate == null ? null : delegate.startSupportActionMode(this, callback);
         return actionMode == null ? super.startSupportActionMode(callback) : actionMode;
     }
 
@@ -206,20 +206,20 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean onSupportNavigateUp() {
-        Boolean aBoolean = delegate==null?null:delegate.onSupportNavigateUp(this);
+        Boolean aBoolean = delegate == null ? null : delegate.onSupportNavigateUp(this);
         return aBoolean == null ? super.onSupportNavigateUp() : aBoolean;
     }
 
     @Nullable
     @Override
     public Intent getSupportParentActivityIntent() {
-        Intent intent = delegate==null?null:delegate.getSupportParentActivityIntent(this);
+        Intent intent = delegate == null ? null : delegate.getSupportParentActivityIntent(this);
         return intent == null ? super.getSupportParentActivityIntent() : intent;
     }
 
     @Override
     public boolean supportShouldUpRecreateTask(@NonNull Intent targetIntent) {
-        Boolean aBoolean = delegate==null?null:delegate.supportShouldUpRecreateTask(this, targetIntent);
+        Boolean aBoolean = delegate == null ? null : delegate.supportShouldUpRecreateTask(this, targetIntent);
         return aBoolean == null ? super.supportShouldUpRecreateTask(targetIntent) : aBoolean;
     }
 
@@ -239,13 +239,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @Nullable
     @Override
     public ActionBarDrawerToggle.Delegate getDrawerToggleDelegate() {
-        ActionBarDrawerToggle.Delegate drawerToggleDelegate = delegate==null?null:delegate.getDrawerToggleDelegate(this);
+        ActionBarDrawerToggle.Delegate drawerToggleDelegate = delegate == null ? null : delegate.getDrawerToggleDelegate(this);
         return drawerToggleDelegate == null ? super.getDrawerToggleDelegate() : drawerToggleDelegate;
     }
 
     @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
-        Boolean aBoolean = delegate==null?null:delegate.onMenuOpened(this, featureId, menu);
+        Boolean aBoolean = delegate == null ? null : delegate.onMenuOpened(this, featureId, menu);
         return aBoolean == null ? super.onMenuOpened(featureId, menu) : aBoolean;
     }
 
@@ -258,25 +258,25 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @NonNull
     @Override
     public AppCompatDelegate getDelegate() {
-        AppCompatDelegate appCompatDelegate = delegate==null?null:delegate.getDelegate(this);
+        AppCompatDelegate appCompatDelegate = delegate == null ? null : delegate.getDelegate(this);
         return appCompatDelegate == null ? super.getDelegate() : appCompatDelegate;
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.dispatchKeyEvent(this, event);
+        Boolean aBoolean = delegate == null ? null : delegate.dispatchKeyEvent(this, event);
         return aBoolean == null ? super.dispatchKeyEvent(event) : aBoolean;
     }
 
     @Override
     public Resources getResources() {
-        Resources resources = delegate==null?null:delegate.getResources(this);
+        Resources resources = delegate == null ? null : delegate.getResources(this);
         return resources == null ? super.getResources() : resources;
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.onKeyDown(this, keyCode, event);
+        Boolean aBoolean = delegate == null ? null : delegate.onKeyDown(this, keyCode, event);
         return aBoolean == null ? super.onKeyDown(keyCode, event) : aBoolean;
     }
 
@@ -294,7 +294,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onBackPressed() {
-        if (delegate != null) delegate.onBackPressed(this);
+        Boolean onBackPressed = delegate == null ? null : delegate.onBackPressed(this);
+        if (onBackPressed == null || onBackPressed) {
+            onBackPressedSupport();
+        }
+    }
+    public void onBackPressedSupport(){
+        super.onBackPressed();
     }
 
     @Override
@@ -366,20 +372,20 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean onPreparePanel(int featureId, View view, Menu menu) {
-        Boolean aBoolean = delegate==null?null:delegate.onPreparePanel(this, featureId, view, menu);
+        Boolean aBoolean = delegate == null ? null : delegate.onPreparePanel(this, featureId, view, menu);
         return aBoolean == null ? super.onPreparePanel(featureId, view, menu) : aBoolean;
     }
 
 
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
-        Object o = delegate==null?null:delegate.onRetainCustomNonConfigurationInstance(this);
+        Object o = delegate == null ? null : delegate.onRetainCustomNonConfigurationInstance(this);
         return o == null ? super.onRetainCustomNonConfigurationInstance() : o;
     }
 
     @Override
     public Object getLastCustomNonConfigurationInstance() {
-        Object o = delegate==null?null:delegate.getLastCustomNonConfigurationInstance(this);
+        Object o = delegate == null ? null : delegate.getLastCustomNonConfigurationInstance(this);
         return o == null ? super.getLastCustomNonConfigurationInstance() : o;
     }
 
@@ -397,13 +403,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public FragmentManager getSupportFragmentManager() {
-        FragmentManager manager = delegate==null?null:delegate.getSupportFragmentManager(this);
+        FragmentManager manager = delegate == null ? null : delegate.getSupportFragmentManager(this);
         return manager == null ? super.getSupportFragmentManager() : manager;
     }
 
     @Override
     public LoaderManager getSupportLoaderManager() {
-        LoaderManager manager = delegate==null?null:delegate.getSupportLoaderManager(this);
+        LoaderManager manager = delegate == null ? null : delegate.getSupportLoaderManager(this);
         return manager == null ? super.getSupportLoaderManager() : manager;
     }
 
@@ -443,13 +449,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-        View view = delegate==null?null:delegate.onCreateView(this, parent, name, context, attrs);
+        View view = delegate == null ? null : delegate.onCreateView(this, parent, name, context, attrs);
         return view == null ? super.onCreateView(parent, name, context, attrs) : view;
     }
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
-        View view = delegate==null?null:delegate.onCreateView(this, name, context, attrs);
+        View view = delegate == null ? null : delegate.onCreateView(this, name, context, attrs);
         return view == null ? super.onCreateView(name, context, attrs) : view;
     }
 
@@ -463,7 +469,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public Intent getIntent() {
-        Intent intent = delegate==null?null:delegate.getIntent(this);
+        Intent intent = delegate == null ? null : delegate.getIntent(this);
         return intent == null ? super.getIntent() : intent;
     }
 
@@ -475,26 +481,26 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public WindowManager getWindowManager() {
-        WindowManager windowManager = delegate==null?null:delegate.getWindowManager(this);
+        WindowManager windowManager = delegate == null ? null : delegate.getWindowManager(this);
         return windowManager == null ? super.getWindowManager() : windowManager;
     }
 
     @Override
     public Window getWindow() {
-        Window window = delegate==null?null:delegate.getWindow(this);
+        Window window = delegate == null ? null : delegate.getWindow(this);
         return window == null ? super.getWindow() : window;
     }
 
     @Override
     public android.app.LoaderManager getLoaderManager() {
-        android.app.LoaderManager manager = delegate==null?null:delegate.getLoaderManager(this);
+        android.app.LoaderManager manager = delegate == null ? null : delegate.getLoaderManager(this);
         return manager == null ? super.getLoaderManager() : manager;
     }
 
     @Nullable
     @Override
     public View getCurrentFocus() {
-        View view = delegate==null?null:delegate.getCurrentFocus(this);
+        View view = delegate == null ? null : delegate.getCurrentFocus(this);
         return view == null ? super.getCurrentFocus() : view;
     }
 
@@ -519,25 +525,25 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean isVoiceInteraction() {
-        Boolean isVoiceInteraction = delegate==null?null:delegate.isVoiceInteraction(this);
+        Boolean isVoiceInteraction = delegate == null ? null : delegate.isVoiceInteraction(this);
         return isVoiceInteraction == null ? super.isVoiceInteraction() : isVoiceInteraction;
     }
 
     @Override
     public boolean isVoiceInteractionRoot() {
-        Boolean isVoiceInteractionRoot = delegate==null?null:delegate.isVoiceInteractionRoot(this);
+        Boolean isVoiceInteractionRoot = delegate == null ? null : delegate.isVoiceInteractionRoot(this);
         return isVoiceInteractionRoot == null ? super.isVoiceInteractionRoot() : isVoiceInteractionRoot;
     }
 
     @Override
     public VoiceInteractor getVoiceInteractor() {
-        VoiceInteractor voiceInteractor = delegate==null?null:delegate.getVoiceInteractor(this);
+        VoiceInteractor voiceInteractor = delegate == null ? null : delegate.getVoiceInteractor(this);
         return voiceInteractor == null ? super.getVoiceInteractor() : voiceInteractor;
     }
 
     @Override
     public boolean isLocalVoiceInteractionSupported() {
-        Boolean isLocalVoiceInteractionSupported = delegate==null?null:delegate.isLocalVoiceInteractionSupported(this);
+        Boolean isLocalVoiceInteractionSupported = delegate == null ? null : delegate.isLocalVoiceInteractionSupported(this);
         return isLocalVoiceInteractionSupported == null ? super.isLocalVoiceInteractionSupported() : isLocalVoiceInteractionSupported;
     }
 
@@ -573,14 +579,14 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean onCreateThumbnail(Bitmap outBitmap, Canvas canvas) {
-        Boolean onCreateThumbnail = delegate==null?null:delegate.onCreateThumbnail(this, outBitmap, canvas);
+        Boolean onCreateThumbnail = delegate == null ? null : delegate.onCreateThumbnail(this, outBitmap, canvas);
         return onCreateThumbnail == null ? super.onCreateThumbnail(outBitmap, canvas) : onCreateThumbnail;
     }
 
     @Nullable
     @Override
     public CharSequence onCreateDescription() {
-        CharSequence onCreateDescription = delegate==null?null:delegate.onCreateDescription(this);
+        CharSequence onCreateDescription = delegate == null ? null : delegate.onCreateDescription(this);
         return onCreateDescription == null ? super.onCreateDescription() : onCreateDescription;
     }
 
@@ -604,7 +610,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean showAssist(Bundle args) {
-        Boolean showAssist = delegate==null?null:delegate.showAssist(this, args);
+        Boolean showAssist = delegate == null ? null : delegate.showAssist(this, args);
         return showAssist == null ? super.showAssist(args) : showAssist;
     }
 
@@ -623,7 +629,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean isInMultiWindowMode() {
-        Boolean isInMultiWindowMode = delegate==null?null:delegate.isInMultiWindowMode(this);
+        Boolean isInMultiWindowMode = delegate == null ? null : delegate.isInMultiWindowMode(this);
         return isInMultiWindowMode == null ? super.isInMultiWindowMode() : isInMultiWindowMode;
     }
 
@@ -636,7 +642,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean isInPictureInPictureMode() {
-        Boolean isInPictureInPictureMode = delegate==null?null:delegate.isInPictureInPictureMode(this);
+        Boolean isInPictureInPictureMode = delegate == null ? null : delegate.isInPictureInPictureMode(this);
         return isInPictureInPictureMode == null ? super.isInPictureInPictureMode() : isInPictureInPictureMode;
     }
 
@@ -648,7 +654,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean enterPictureInPictureMode(@NonNull PictureInPictureParams params) {
-        Boolean enterPictureInPictureMode = delegate==null?null:delegate.enterPictureInPictureMode(this, params);
+        Boolean enterPictureInPictureMode = delegate == null ? null : delegate.enterPictureInPictureMode(this, params);
         return enterPictureInPictureMode == null ? super.enterPictureInPictureMode(params) : enterPictureInPictureMode;
     }
 
@@ -660,20 +666,20 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public int getMaxNumPictureInPictureActions() {
-        Integer integer = delegate==null?null:delegate.getMaxNumPictureInPictureActions(this);
+        Integer integer = delegate == null ? null : delegate.getMaxNumPictureInPictureActions(this);
         return integer == null ? super.getMaxNumPictureInPictureActions() : integer;
     }
 
     @Override
     public int getChangingConfigurations() {
-        Integer integer = delegate==null?null:delegate.getChangingConfigurations(this);
+        Integer integer = delegate == null ? null : delegate.getChangingConfigurations(this);
         return integer == null ? super.getChangingConfigurations() : integer;
     }
 
     @Nullable
     @Override
     public Object getLastNonConfigurationInstance() {
-        Object o = delegate==null?null:delegate.getLastNonConfigurationInstance(this);
+        Object o = delegate == null ? null : delegate.getLastNonConfigurationInstance(this);
         return o == null ? super.getLastNonConfigurationInstance() : o;
     }
 
@@ -685,7 +691,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public android.app.FragmentManager getFragmentManager() {
-        android.app.FragmentManager manager = delegate==null?null:delegate.getFragmentManager(this);
+        android.app.FragmentManager manager = delegate == null ? null : delegate.getFragmentManager(this);
         return manager == null ? super.getFragmentManager() : manager;
     }
 
@@ -699,7 +705,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @Nullable
     @Override
     public android.app.ActionBar getActionBar() {
-        android.app.ActionBar actionBar = delegate==null?null:delegate.getActionBar(this);
+        android.app.ActionBar actionBar = delegate == null ? null : delegate.getActionBar(this);
         return actionBar == null ? super.getActionBar() : actionBar;
     }
 
@@ -711,7 +717,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public TransitionManager getContentTransitionManager() {
-        TransitionManager manager = delegate==null?null:delegate.getContentTransitionManager(this);
+        TransitionManager manager = delegate == null ? null : delegate.getContentTransitionManager(this);
         return manager == null ? super.getContentTransitionManager() : manager;
     }
 
@@ -723,7 +729,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public Scene getContentScene() {
-        Scene scene = delegate==null?null:delegate.getContentScene(this);
+        Scene scene = delegate == null ? null : delegate.getContentScene(this);
         return scene == null ? super.getContentScene() : scene;
     }
 
@@ -735,43 +741,43 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.onKeyLongPress(this, keyCode, event);
+        Boolean aBoolean = delegate == null ? null : delegate.onKeyLongPress(this, keyCode, event);
         return aBoolean == null ? super.onKeyLongPress(keyCode, event) : aBoolean;
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.onKeyUp(this, keyCode, event);
+        Boolean aBoolean = delegate == null ? null : delegate.onKeyUp(this, keyCode, event);
         return aBoolean == null ? super.onKeyUp(keyCode, event) : aBoolean;
     }
 
     @Override
     public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.onKeyMultiple(this, keyCode, repeatCount, event);
+        Boolean aBoolean = delegate == null ? null : delegate.onKeyMultiple(this, keyCode, repeatCount, event);
         return aBoolean == null ? super.onKeyMultiple(keyCode, repeatCount, event) : aBoolean;
     }
 
     @Override
     public boolean onKeyShortcut(int keyCode, KeyEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.onKeyShortcut(this, keyCode, event);
+        Boolean aBoolean = delegate == null ? null : delegate.onKeyShortcut(this, keyCode, event);
         return aBoolean == null ? super.onKeyShortcut(keyCode, event) : aBoolean;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.onTouchEvent(this, event);
+        Boolean aBoolean = delegate == null ? null : delegate.onTouchEvent(this, event);
         return aBoolean == null ? super.onTouchEvent(event) : aBoolean;
     }
 
     @Override
     public boolean onTrackballEvent(MotionEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.onTrackballEvent(this, event);
+        Boolean aBoolean = delegate == null ? null : delegate.onTrackballEvent(this, event);
         return aBoolean == null ? super.onTrackballEvent(event) : aBoolean;
     }
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.onGenericMotionEvent(this, event);
+        Boolean aBoolean = delegate == null ? null : delegate.onGenericMotionEvent(this, event);
         return aBoolean == null ? super.onGenericMotionEvent(event) : aBoolean;
     }
 
@@ -807,74 +813,74 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean hasWindowFocus() {
-        Boolean aBoolean = delegate==null?null:delegate.hasWindowFocus(this);
+        Boolean aBoolean = delegate == null ? null : delegate.hasWindowFocus(this);
         return aBoolean == null ? super.hasWindowFocus() : aBoolean;
     }
 
     @Override
     public boolean dispatchKeyShortcutEvent(KeyEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.dispatchKeyShortcutEvent(this, event);
+        Boolean aBoolean = delegate == null ? null : delegate.dispatchKeyShortcutEvent(this, event);
         return aBoolean == null ? super.dispatchKeyShortcutEvent(event) : aBoolean;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Boolean aBoolean = delegate==null?null:delegate.dispatchTouchEvent(this, ev);
+        Boolean aBoolean = delegate == null ? null : delegate.dispatchTouchEvent(this, ev);
         return aBoolean == null ? super.dispatchTouchEvent(ev) : aBoolean;
     }
 
     @Override
     public boolean dispatchTrackballEvent(MotionEvent ev) {
-        Boolean aBoolean = delegate==null?null:delegate.dispatchTrackballEvent(this, ev);
+        Boolean aBoolean = delegate == null ? null : delegate.dispatchTrackballEvent(this, ev);
         return aBoolean == null ? super.dispatchTrackballEvent(ev) : aBoolean;
     }
 
     @Override
     public boolean dispatchGenericMotionEvent(MotionEvent ev) {
-        Boolean aBoolean = delegate==null?null:delegate.dispatchGenericMotionEvent(this, ev);
+        Boolean aBoolean = delegate == null ? null : delegate.dispatchGenericMotionEvent(this, ev);
         return aBoolean == null ? super.dispatchGenericMotionEvent(ev) : aBoolean;
     }
 
     @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
-        Boolean aBoolean = delegate==null?null:delegate.dispatchPopulateAccessibilityEvent(this, event);
+        Boolean aBoolean = delegate == null ? null : delegate.dispatchPopulateAccessibilityEvent(this, event);
         return aBoolean == null ? super.dispatchPopulateAccessibilityEvent(event) : aBoolean;
     }
 
     @Nullable
     @Override
     public View onCreatePanelView(int featureId) {
-        View view = delegate==null?null:delegate.onCreatePanelView(this, featureId);
+        View view = delegate == null ? null : delegate.onCreatePanelView(this, featureId);
         return view == null ? super.onCreatePanelView(featureId) : view;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Boolean aBoolean = delegate==null?null:delegate.onCreateOptionsMenu(this, menu);
+        Boolean aBoolean = delegate == null ? null : delegate.onCreateOptionsMenu(this, menu);
         return aBoolean == null ? super.onCreateOptionsMenu(menu) : aBoolean;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Boolean aBoolean = delegate==null?null:delegate.onPrepareOptionsMenu(this, menu);
+        Boolean aBoolean = delegate == null ? null : delegate.onPrepareOptionsMenu(this, menu);
         return aBoolean == null ? super.onPrepareOptionsMenu(menu) : aBoolean;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Boolean aBoolean = delegate==null?null:delegate.onOptionsItemSelected(this, item);
+        Boolean aBoolean = delegate == null ? null : delegate.onOptionsItemSelected(this, item);
         return aBoolean == null ? super.onOptionsItemSelected(item) : aBoolean;
     }
 
     @Override
     public boolean onNavigateUp() {
-        Boolean aBoolean = delegate==null?null:delegate.onNavigateUp(this);
+        Boolean aBoolean = delegate == null ? null : delegate.onNavigateUp(this);
         return aBoolean == null ? super.onNavigateUp() : aBoolean;
     }
 
     @Override
     public boolean onNavigateUpFromChild(Activity child) {
-        Boolean aBoolean = delegate==null?null:delegate.onNavigateUpFromChild(this, child);
+        Boolean aBoolean = delegate == null ? null : delegate.onNavigateUpFromChild(this, child);
         return aBoolean == null ? super.onNavigateUpFromChild(child) : aBoolean;
     }
 
@@ -928,7 +934,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        Boolean aBoolean = delegate==null?null:delegate.onContextItemSelected(this, item);
+        Boolean aBoolean = delegate == null ? null : delegate.onContextItemSelected(this, item);
         return aBoolean == null ? super.onContextItemSelected(item) : aBoolean;
     }
 
@@ -941,13 +947,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean onSearchRequested(@Nullable SearchEvent searchEvent) {
-        Boolean aBoolean = delegate==null?null:delegate.onSearchRequested(this, searchEvent);
+        Boolean aBoolean = delegate == null ? null : delegate.onSearchRequested(this, searchEvent);
         return aBoolean == null ? super.onSearchRequested(searchEvent) : aBoolean;
     }
 
     @Override
     public boolean onSearchRequested() {
-        Boolean aBoolean = delegate==null?null:delegate.onSearchRequested(this);
+        Boolean aBoolean = delegate == null ? null : delegate.onSearchRequested(this);
         return aBoolean == null ? super.onSearchRequested() : aBoolean;
     }
 
@@ -973,19 +979,19 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @NonNull
     @Override
     public LayoutInflater getLayoutInflater() {
-        LayoutInflater inflater = delegate==null?null:delegate.getLayoutInflater(this);
+        LayoutInflater inflater = delegate == null ? null : delegate.getLayoutInflater(this);
         return inflater == null ? super.getLayoutInflater() : inflater;
     }
 
     @Override
     public boolean shouldShowRequestPermissionRationale(@NonNull String permission) {
-        Boolean aBoolean = delegate==null?null:delegate.shouldShowRequestPermissionRationale(this, permission);
+        Boolean aBoolean = delegate == null ? null : delegate.shouldShowRequestPermissionRationale(this, permission);
         return aBoolean == null ? super.shouldShowRequestPermissionRationale(permission) : aBoolean;
     }
 
     @Override
     public boolean isActivityTransitionRunning() {
-        Boolean aBoolean = delegate==null?null:delegate.isActivityTransitionRunning(this);
+        Boolean aBoolean = delegate == null ? null : delegate.isActivityTransitionRunning(this);
         return aBoolean == null ? super.isActivityTransitionRunning() : aBoolean;
     }
 
@@ -1029,25 +1035,25 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean startActivityIfNeeded(@NonNull Intent intent, int requestCode) {
-        Boolean aBoolean = delegate==null?null:delegate.startActivityIfNeeded(this, intent, requestCode);
+        Boolean aBoolean = delegate == null ? null : delegate.startActivityIfNeeded(this, intent, requestCode);
         return aBoolean == null ? super.startActivityIfNeeded(intent, requestCode) : aBoolean;
     }
 
     @Override
     public boolean startActivityIfNeeded(@NonNull Intent intent, int requestCode, @Nullable Bundle options) {
-        Boolean aBoolean = delegate==null?null:delegate.startActivityIfNeeded(this, intent, requestCode, options);
+        Boolean aBoolean = delegate == null ? null : delegate.startActivityIfNeeded(this, intent, requestCode, options);
         return aBoolean == null ? super.startActivityIfNeeded(intent, requestCode, options) : aBoolean;
     }
 
     @Override
     public boolean startNextMatchingActivity(@NonNull Intent intent) {
-        Boolean aBoolean = delegate==null?null:delegate.startNextMatchingActivity(this, intent);
+        Boolean aBoolean = delegate == null ? null : delegate.startNextMatchingActivity(this, intent);
         return aBoolean == null ? super.startNextMatchingActivity(intent) : aBoolean;
     }
 
     @Override
     public boolean startNextMatchingActivity(@NonNull Intent intent, @Nullable Bundle options) {
-        Boolean aBoolean = delegate==null?null:delegate.startNextMatchingActivity(this, intent, options);
+        Boolean aBoolean = delegate == null ? null : delegate.startNextMatchingActivity(this, intent, options);
         return aBoolean == null ? super.startNextMatchingActivity(intent, options) : aBoolean;
     }
 
@@ -1101,27 +1107,27 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @Nullable
     @Override
     public Uri getReferrer() {
-        Uri uri = delegate==null?null:delegate.getReferrer(this);
+        Uri uri = delegate == null ? null : delegate.getReferrer(this);
         return uri == null ? super.getReferrer() : uri;
     }
 
     @Override
     public Uri onProvideReferrer() {
-        Uri uri = delegate==null?null:delegate.onProvideReferrer(this);
+        Uri uri = delegate == null ? null : delegate.onProvideReferrer(this);
         return uri == null ? super.onProvideReferrer() : uri;
     }
 
     @Nullable
     @Override
     public String getCallingPackage() {
-        String s = delegate==null?null:delegate.getCallingPackage(this);
+        String s = delegate == null ? null : delegate.getCallingPackage(this);
         return s == null ? super.getCallingPackage() : s;
     }
 
     @Nullable
     @Override
     public ComponentName getCallingActivity() {
-        ComponentName name = delegate==null?null:delegate.getCallingActivity(this);
+        ComponentName name = delegate == null ? null : delegate.getCallingActivity(this);
         return name == null ? super.getCallingActivity() : name;
     }
 
@@ -1133,19 +1139,19 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean isFinishing() {
-        Boolean aBoolean = delegate==null?null:delegate.isFinishing(this);
+        Boolean aBoolean = delegate == null ? null : delegate.isFinishing(this);
         return aBoolean == null ? super.isFinishing() : aBoolean;
     }
 
     @Override
     public boolean isDestroyed() {
-        Boolean aBoolean = delegate==null?null:delegate.isDestroyed(this);
+        Boolean aBoolean = delegate == null ? null : delegate.isDestroyed(this);
         return aBoolean == null ? super.isDestroyed() : aBoolean;
     }
 
     @Override
     public boolean isChangingConfigurations() {
-        Boolean aBoolean = delegate==null?null:delegate.isChangingConfigurations(this);
+        Boolean aBoolean = delegate == null ? null : delegate.isChangingConfigurations(this);
         return aBoolean == null ? super.isChangingConfigurations() : aBoolean;
     }
 
@@ -1199,7 +1205,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean releaseInstance() {
-        Boolean aBoolean = delegate==null?null:delegate.releaseInstance(this);
+        Boolean aBoolean = delegate == null ? null : delegate.releaseInstance(this);
         return aBoolean == null ? super.releaseInstance() : aBoolean;
     }
 
@@ -1211,7 +1217,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public PendingIntent createPendingResult(int requestCode, @NonNull Intent data, int flags) {
-        PendingIntent pendingIntent = delegate==null?null:delegate.createPendingResult(this, requestCode, data, flags);
+        PendingIntent pendingIntent = delegate == null ? null : delegate.createPendingResult(this, requestCode, data, flags);
         return pendingIntent == null ? super.createPendingResult(requestCode, data, flags) : pendingIntent;
     }
 
@@ -1223,50 +1229,50 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public int getRequestedOrientation() {
-        Integer integer = delegate==null?null:delegate.getRequestedOrientation(this);
+        Integer integer = delegate == null ? null : delegate.getRequestedOrientation(this);
         return integer == null ? super.getRequestedOrientation() : integer;
     }
 
     @Override
     public int getTaskId() {
-        Integer integer = delegate==null?null:delegate.getTaskId(this);
+        Integer integer = delegate == null ? null : delegate.getTaskId(this);
         return integer == null ? super.getTaskId() : integer;
     }
 
     @Override
     public boolean isTaskRoot() {
-        Boolean aBoolean = delegate==null?null:delegate.isTaskRoot(this);
+        Boolean aBoolean = delegate == null ? null : delegate.isTaskRoot(this);
         return aBoolean == null ? super.isTaskRoot() : aBoolean;
     }
 
     @Override
     public boolean moveTaskToBack(boolean nonRoot) {
-        Boolean aBoolean = delegate==null?null:delegate.moveTaskToBack(this, nonRoot);
+        Boolean aBoolean = delegate == null ? null : delegate.moveTaskToBack(this, nonRoot);
         return aBoolean == null ? super.moveTaskToBack(nonRoot) : aBoolean;
     }
 
     @NonNull
     @Override
     public String getLocalClassName() {
-        String s = delegate==null?null:delegate.getLocalClassName(this);
+        String s = delegate == null ? null : delegate.getLocalClassName(this);
         return s == null ? super.getLocalClassName() : s;
     }
 
     @Override
     public ComponentName getComponentName() {
-        ComponentName name = delegate==null?null:delegate.getComponentName(this);
+        ComponentName name = delegate == null ? null : delegate.getComponentName(this);
         return name == null ? super.getComponentName() : name;
     }
 
     @Override
     public SharedPreferences getPreferences(int mode) {
-        SharedPreferences preferences = delegate==null?null:delegate.getPreferences(this, mode);
+        SharedPreferences preferences = delegate == null ? null : delegate.getPreferences(this, mode);
         return preferences == null ? super.getPreferences(mode) : preferences;
     }
 
     @Override
     public Object getSystemService(@NonNull String name) {
-        Object o = delegate==null?null:delegate.getSystemService(this, name);
+        Object o = delegate == null ? null : delegate.getSystemService(this, name);
         return o == null ? super.getSystemService(name) : o;
     }
 
@@ -1296,13 +1302,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean isImmersive() {
-        Boolean aBoolean = delegate==null?null:delegate.isImmersive(this);
+        Boolean aBoolean = delegate == null ? null : delegate.isImmersive(this);
         return aBoolean == null ? super.isImmersive() : aBoolean;
     }
 
     @Override
     public boolean requestVisibleBehind(boolean visible) {
-        Boolean aBoolean = delegate==null?null:delegate.requestVisibleBehind(this, visible);
+        Boolean aBoolean = delegate == null ? null : delegate.requestVisibleBehind(this, visible);
         return aBoolean == null ? super.requestVisibleBehind(visible) : aBoolean;
     }
 
@@ -1333,28 +1339,28 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     @Nullable
     @Override
     public android.view.ActionMode startActionMode(android.view.ActionMode.Callback callback) {
-        android.view.ActionMode actionMode = delegate==null?null:delegate.startActionMode(this, callback);
+        android.view.ActionMode actionMode = delegate == null ? null : delegate.startActionMode(this, callback);
         return actionMode == null ? super.startActionMode(callback) : actionMode;
     }
 
     @Nullable
     @Override
     public android.view.ActionMode startActionMode(android.view.ActionMode.Callback callback, int type) {
-        android.view.ActionMode actionMode = delegate==null?null:delegate.startActionMode(this, callback, type);
+        android.view.ActionMode actionMode = delegate == null ? null : delegate.startActionMode(this, callback, type);
         return actionMode == null ? super.startActionMode(callback, type) : actionMode;
     }
 
     @Nullable
     @Override
     public android.view.ActionMode onWindowStartingActionMode(android.view.ActionMode.Callback callback) {
-        android.view.ActionMode actionMode = delegate==null?null:delegate.onWindowStartingActionMode(this, callback);
+        android.view.ActionMode actionMode = delegate == null ? null : delegate.onWindowStartingActionMode(this, callback);
         return actionMode == null ? super.onWindowStartingActionMode(callback) : actionMode;
     }
 
     @Nullable
     @Override
     public android.view.ActionMode onWindowStartingActionMode(android.view.ActionMode.Callback callback, int type) {
-        android.view.ActionMode actionMode = delegate==null?null:delegate.onWindowStartingActionMode(this, callback, type);
+        android.view.ActionMode actionMode = delegate == null ? null : delegate.onWindowStartingActionMode(this, callback, type);
         return actionMode == null ? super.onWindowStartingActionMode(callback, type) : actionMode;
     }
 
@@ -1372,26 +1378,26 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean shouldUpRecreateTask(Intent targetIntent) {
-        Boolean aBoolean = delegate==null?null:delegate.shouldUpRecreateTask(this, targetIntent);
+        Boolean aBoolean = delegate == null ? null : delegate.shouldUpRecreateTask(this, targetIntent);
         return aBoolean == null ? super.shouldUpRecreateTask(targetIntent) : aBoolean;
     }
 
     @Override
     public boolean navigateUpTo(Intent upIntent) {
-        Boolean aBoolean = delegate==null?null:delegate.navigateUpTo(this, upIntent);
+        Boolean aBoolean = delegate == null ? null : delegate.navigateUpTo(this, upIntent);
         return aBoolean == null ? super.navigateUpTo(upIntent) : aBoolean;
     }
 
     @Override
     public boolean navigateUpToFromChild(Activity child, Intent upIntent) {
-        Boolean aBoolean = delegate==null?null:delegate.navigateUpToFromChild(this, child, upIntent);
+        Boolean aBoolean = delegate == null ? null : delegate.navigateUpToFromChild(this, child, upIntent);
         return aBoolean == null ? super.navigateUpToFromChild(child, upIntent) : aBoolean;
     }
 
     @Nullable
     @Override
     public Intent getParentActivityIntent() {
-        Intent intent = delegate==null?null:delegate.getParentActivityIntent(this);
+        Intent intent = delegate == null ? null : delegate.getParentActivityIntent(this);
         return intent == null ? super.getParentActivityIntent() : intent;
     }
 
@@ -1421,7 +1427,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public DragAndDropPermissions requestDragAndDropPermissions(DragEvent event) {
-        DragAndDropPermissions dragAndDropPermission = delegate==null?null:delegate.requestDragAndDropPermissions(this, event);
+        DragAndDropPermissions dragAndDropPermission = delegate == null ? null : delegate.requestDragAndDropPermissions(this, event);
         return dragAndDropPermission == null ? super.requestDragAndDropPermissions(event) : dragAndDropPermission;
     }
 
@@ -1451,235 +1457,235 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public AssetManager getAssets() {
-        AssetManager assetManager = delegate==null?null:delegate.getAssets(this);
+        AssetManager assetManager = delegate == null ? null : delegate.getAssets(this);
         return assetManager == null ? super.getAssets() : assetManager;
     }
 
     @Override
     public Resources.Theme getTheme() {
-        Resources.Theme theme = delegate==null?null:delegate.getTheme(this);
+        Resources.Theme theme = delegate == null ? null : delegate.getTheme(this);
         return theme == null ? super.getTheme() : theme;
     }
 
     @Override
     public Context getBaseContext() {
-        Context context = delegate==null?null:delegate.getBaseContext(this);
+        Context context = delegate == null ? null : delegate.getBaseContext(this);
         return context == null ? super.getBaseContext() : context;
     }
 
     @Override
     public PackageManager getPackageManager() {
-        PackageManager packageManager = delegate==null?null:delegate.getPackageManager(this);
+        PackageManager packageManager = delegate == null ? null : delegate.getPackageManager(this);
         return packageManager == null ? super.getPackageManager() : packageManager;
     }
 
     @Override
     public ContentResolver getContentResolver() {
-        ContentResolver contentResolver = delegate==null?null:delegate.getContentResolver(this);
+        ContentResolver contentResolver = delegate == null ? null : delegate.getContentResolver(this);
         return contentResolver == null ? super.getContentResolver() : contentResolver;
     }
 
     @Override
     public Looper getMainLooper() {
-        Looper looper = delegate==null?null:delegate.getMainLooper(this);
+        Looper looper = delegate == null ? null : delegate.getMainLooper(this);
         return looper == null ? super.getMainLooper() : looper;
     }
 
     @Override
     public Context getApplicationContext() {
-        Context context = delegate==null?null:delegate.getApplicationContext(this);
+        Context context = delegate == null ? null : delegate.getApplicationContext(this);
         return context == null ? super.getApplicationContext() : context;
     }
 
     @Override
     public ClassLoader getClassLoader() {
-        ClassLoader classLoader = delegate==null?null:delegate.getClassLoader(this);
+        ClassLoader classLoader = delegate == null ? null : delegate.getClassLoader(this);
         return classLoader == null ? super.getClassLoader() : classLoader;
     }
 
     @Override
     public String getPackageName() {
-        String s = delegate==null?null:delegate.getPackageName(this);
+        String s = delegate == null ? null : delegate.getPackageName(this);
         return s == null ? super.getPackageName() : s;
     }
 
     @Override
     public ApplicationInfo getApplicationInfo() {
-        ApplicationInfo applicationInfo = delegate==null?null:delegate.getApplicationInfo(this);
+        ApplicationInfo applicationInfo = delegate == null ? null : delegate.getApplicationInfo(this);
         return applicationInfo == null ? super.getApplicationInfo() : applicationInfo;
     }
 
     @Override
     public String getPackageResourcePath() {
-        String s = delegate==null?null:delegate.getPackageResourcePath(this);
+        String s = delegate == null ? null : delegate.getPackageResourcePath(this);
         return s == null ? super.getPackageResourcePath() : s;
     }
 
     @Override
     public String getPackageCodePath() {
-        String s = delegate==null?null:delegate.getPackageCodePath(this);
+        String s = delegate == null ? null : delegate.getPackageCodePath(this);
         return s == null ? super.getPackageCodePath() : s;
     }
 
     @Override
     public SharedPreferences getSharedPreferences(String name, int mode) {
-        SharedPreferences preferences = delegate==null?null:delegate.getSharedPreferences(this, name, mode);
+        SharedPreferences preferences = delegate == null ? null : delegate.getSharedPreferences(this, name, mode);
         return preferences == null ? super.getSharedPreferences(name, mode) : preferences;
     }
 
     @Override
     public boolean moveSharedPreferencesFrom(Context sourceContext, String name) {
-        Boolean aBoolean = delegate==null?null:delegate.moveSharedPreferencesFrom(this, sourceContext, name);
+        Boolean aBoolean = delegate == null ? null : delegate.moveSharedPreferencesFrom(this, sourceContext, name);
         return aBoolean == null ? super.moveSharedPreferencesFrom(sourceContext, name) : aBoolean;
     }
 
     @Override
     public boolean deleteSharedPreferences(String name) {
-        Boolean aBoolean = delegate==null?null:delegate.deleteSharedPreferences(this, name);
+        Boolean aBoolean = delegate == null ? null : delegate.deleteSharedPreferences(this, name);
         return aBoolean == null ? super.deleteSharedPreferences(name) : aBoolean;
     }
 
     @Override
     public FileInputStream openFileInput(String name) throws FileNotFoundException {
-        FileInputStream stream = delegate==null?null:delegate.openFileInput(this, name);
+        FileInputStream stream = delegate == null ? null : delegate.openFileInput(this, name);
         return stream == null ? super.openFileInput(name) : stream;
     }
 
     @Override
     public FileOutputStream openFileOutput(String name, int mode) throws FileNotFoundException {
-        FileOutputStream stream = delegate==null?null:delegate.openFileOutput(this, name, mode);
+        FileOutputStream stream = delegate == null ? null : delegate.openFileOutput(this, name, mode);
         return stream == null ? super.openFileOutput(name, mode) : stream;
     }
 
     @Override
     public boolean deleteFile(String name) {
-        Boolean aBoolean = delegate==null?null:delegate.deleteFile(this, name);
+        Boolean aBoolean = delegate == null ? null : delegate.deleteFile(this, name);
         return aBoolean == null ? super.deleteFile(name) : aBoolean;
     }
 
     @Override
     public File getFileStreamPath(String name) {
-        File file = delegate==null?null:delegate.getFileStreamPath(this, name);
+        File file = delegate == null ? null : delegate.getFileStreamPath(this, name);
         return file == null ? super.getFileStreamPath(name) : file;
     }
 
     @Override
     public String[] fileList() {
-        String[] strings = delegate==null?null:delegate.fileList(this);
+        String[] strings = delegate == null ? null : delegate.fileList(this);
         return strings == null ? super.fileList() : strings;
     }
 
     @Override
     public File getDataDir() {
-        File file = delegate==null?null:delegate.getDataDir(this);
+        File file = delegate == null ? null : delegate.getDataDir(this);
         return file == null ? super.getDataDir() : file;
     }
 
     @Override
     public File getFilesDir() {
-        File file = delegate==null?null:delegate.getFilesDir(this);
+        File file = delegate == null ? null : delegate.getFilesDir(this);
         return file == null ? super.getFilesDir() : file;
     }
 
     @Override
     public File getNoBackupFilesDir() {
-        File file = delegate==null?null:delegate.getNoBackupFilesDir(this);
+        File file = delegate == null ? null : delegate.getNoBackupFilesDir(this);
         return file == null ? super.getNoBackupFilesDir() : file;
     }
 
     @Override
     public File getExternalFilesDir(String type) {
-        File file = delegate==null?null:delegate.getExternalFilesDir(this, type);
+        File file = delegate == null ? null : delegate.getExternalFilesDir(this, type);
         return file == null ? super.getExternalFilesDir(type) : file;
     }
 
     @Override
     public File[] getExternalFilesDirs(String type) {
-        File[] files = delegate==null?null:delegate.getExternalFilesDirs(this, type);
+        File[] files = delegate == null ? null : delegate.getExternalFilesDirs(this, type);
         return files == null ? super.getExternalFilesDirs(type) : files;
     }
 
     @Override
     public File getObbDir() {
-        File file = delegate==null?null:delegate.getObbDir(this);
+        File file = delegate == null ? null : delegate.getObbDir(this);
         return file == null ? super.getObbDir() : file;
     }
 
     @Override
     public File[] getObbDirs() {
-        File[] files = delegate==null?null:delegate.getObbDirs(this);
+        File[] files = delegate == null ? null : delegate.getObbDirs(this);
         return files == null ? super.getObbDirs() : files;
     }
 
     @Override
     public File getCacheDir() {
-        File file = delegate==null?null:delegate.getCacheDir(this);
+        File file = delegate == null ? null : delegate.getCacheDir(this);
         return file == null ? super.getCacheDir() : file;
     }
 
     @Override
     public File getCodeCacheDir() {
-        File file = delegate==null?null:delegate.getCodeCacheDir(this);
+        File file = delegate == null ? null : delegate.getCodeCacheDir(this);
         return file == null ? super.getCodeCacheDir() : file;
     }
 
     @Override
     public File getExternalCacheDir() {
-        File file = delegate==null?null:delegate.getExternalCacheDir(this);
+        File file = delegate == null ? null : delegate.getExternalCacheDir(this);
         return file == null ? super.getExternalCacheDir() : file;
     }
 
     @Override
     public File[] getExternalCacheDirs() {
-        File[] files = delegate==null?null:delegate.getExternalCacheDirs(this);
+        File[] files = delegate == null ? null : delegate.getExternalCacheDirs(this);
         return files == null ? super.getExternalCacheDirs() : files;
     }
 
     @Override
     public File[] getExternalMediaDirs() {
-        File[] files = delegate==null?null:delegate.getExternalMediaDirs(this);
+        File[] files = delegate == null ? null : delegate.getExternalMediaDirs(this);
         return files == null ? super.getExternalMediaDirs() : files;
     }
 
     @Override
     public File getDir(String name, int mode) {
-        File file = delegate==null?null:delegate.getDir(this, name, mode);
+        File file = delegate == null ? null : delegate.getDir(this, name, mode);
         return file == null ? super.getDir(name, mode) : file;
     }
 
     @Override
     public SQLiteDatabase openOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory) {
-        SQLiteDatabase database = delegate==null?null:delegate.openOrCreateDatabase(this, name, mode, factory);
+        SQLiteDatabase database = delegate == null ? null : delegate.openOrCreateDatabase(this, name, mode, factory);
         return database == null ? super.openOrCreateDatabase(name, mode, factory) : database;
     }
 
     @Override
     public SQLiteDatabase openOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory, DatabaseErrorHandler errorHandler) {
-        SQLiteDatabase database = delegate==null?null:delegate.openOrCreateDatabase(this, name, mode, factory, errorHandler);
+        SQLiteDatabase database = delegate == null ? null : delegate.openOrCreateDatabase(this, name, mode, factory, errorHandler);
         return database == null ? super.openOrCreateDatabase(name, mode, factory, errorHandler) : database;
     }
 
     @Override
     public boolean moveDatabaseFrom(Context sourceContext, String name) {
-        Boolean aBoolean = delegate==null?null:delegate.moveDatabaseFrom(this, sourceContext, name);
+        Boolean aBoolean = delegate == null ? null : delegate.moveDatabaseFrom(this, sourceContext, name);
         return aBoolean == null ? super.moveDatabaseFrom(sourceContext, name) : aBoolean;
     }
 
     @Override
     public boolean deleteDatabase(String name) {
-        Boolean aBoolean = delegate==null?null:delegate.deleteDatabase(this, name);
+        Boolean aBoolean = delegate == null ? null : delegate.deleteDatabase(this, name);
         return aBoolean == null ? super.deleteDatabase(name) : aBoolean;
     }
 
     @Override
     public File getDatabasePath(String name) {
-        File file = delegate==null?null:delegate.getDatabasePath(this, name);
+        File file = delegate == null ? null : delegate.getDatabasePath(this, name);
         return file == null ? super.getDatabasePath(name) : file;
     }
 
     @Override
     public String[] databaseList() {
-        String[] strings = delegate==null?null:delegate.databaseList(this);
+        String[] strings = delegate == null ? null : delegate.databaseList(this);
         return strings == null ? super.databaseList() : strings;
     }
 
@@ -1712,25 +1718,25 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
-        Intent intent = delegate==null?null:delegate.registerReceiver(this, receiver, filter);
+        Intent intent = delegate == null ? null : delegate.registerReceiver(this, receiver, filter);
         return intent == null ? super.registerReceiver(receiver, filter) : intent;
     }
 
     @Override
     public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter, int flags) {
-        Intent intent = delegate==null?null:delegate.registerReceiver(this, receiver, filter, flags);
+        Intent intent = delegate == null ? null : delegate.registerReceiver(this, receiver, filter, flags);
         return intent == null ? super.registerReceiver(receiver, filter, flags) : intent;
     }
 
     @Override
     public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler) {
-        Intent intent = delegate==null?null:delegate.registerReceiver(this, receiver, filter, broadcastPermission, scheduler);
+        Intent intent = delegate == null ? null : delegate.registerReceiver(this, receiver, filter, broadcastPermission, scheduler);
         return intent == null ? super.registerReceiver(receiver, filter, broadcastPermission, scheduler) : intent;
     }
 
     @Override
     public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler, int flags) {
-        Intent intent = delegate==null?null:delegate.registerReceiver(this, receiver, filter, broadcastPermission, scheduler, flags);
+        Intent intent = delegate == null ? null : delegate.registerReceiver(this, receiver, filter, broadcastPermission, scheduler, flags);
         return intent == null ? super.registerReceiver(receiver, filter, broadcastPermission, scheduler, flags) : intent;
     }
 
@@ -1742,25 +1748,25 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public ComponentName startService(Intent service) {
-        ComponentName name = delegate==null?null:delegate.startService(this, service);
+        ComponentName name = delegate == null ? null : delegate.startService(this, service);
         return name == null ? super.startService(service) : name;
     }
 
     @Override
     public ComponentName startForegroundService(Intent service) {
-        ComponentName name = delegate==null?null:delegate.startForegroundService(this, service);
+        ComponentName name = delegate == null ? null : delegate.startForegroundService(this, service);
         return name == null ? super.startForegroundService(service) : name;
     }
 
     @Override
     public boolean stopService(Intent name) {
-        Boolean aBoolean = delegate==null?null:delegate.stopService(this, name);
+        Boolean aBoolean = delegate == null ? null : delegate.stopService(this, name);
         return aBoolean == null ? super.stopService(name) : aBoolean;
     }
 
     @Override
     public boolean bindService(Intent service, ServiceConnection conn, int flags) {
-        Boolean aBoolean = delegate==null?null:delegate.bindService(this, service, conn, flags);
+        Boolean aBoolean = delegate == null ? null : delegate.bindService(this, service, conn, flags);
         return aBoolean == null ? super.bindService(service, conn, flags) : aBoolean;
     }
 
@@ -1772,37 +1778,37 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public boolean startInstrumentation(ComponentName className, String profileFile, Bundle arguments) {
-        Boolean aBoolean = delegate==null?null:delegate.startInstrumentation(this, className, profileFile, arguments);
+        Boolean aBoolean = delegate == null ? null : delegate.startInstrumentation(this, className, profileFile, arguments);
         return aBoolean == null ? super.startInstrumentation(className, profileFile, arguments) : aBoolean;
     }
 
     @Override
     public String getSystemServiceName(Class<?> serviceClass) {
-        String s = delegate==null?null:delegate.getSystemServiceName(this, serviceClass);
+        String s = delegate == null ? null : delegate.getSystemServiceName(this, serviceClass);
         return s == null ? super.getSystemServiceName(serviceClass) : s;
     }
 
     @Override
     public int checkPermission(String permission, int pid, int uid) {
-        Integer integer = delegate==null?null:delegate.checkPermission(this, permission, pid, uid);
+        Integer integer = delegate == null ? null : delegate.checkPermission(this, permission, pid, uid);
         return integer == null ? super.checkPermission(permission, pid, uid) : integer;
     }
 
     @Override
     public int checkCallingPermission(String permission) {
-        Integer integer = delegate==null?null:delegate.checkCallingPermission(this, permission);
+        Integer integer = delegate == null ? null : delegate.checkCallingPermission(this, permission);
         return integer == null ? super.checkCallingPermission(permission) : integer;
     }
 
     @Override
     public int checkCallingOrSelfPermission(String permission) {
-        Integer integer = delegate==null?null:delegate.checkCallingOrSelfPermission(this, permission);
+        Integer integer = delegate == null ? null : delegate.checkCallingOrSelfPermission(this, permission);
         return integer == null ? super.checkCallingOrSelfPermission(permission) : integer;
     }
 
     @Override
     public int checkSelfPermission(String permission) {
-        Integer integer = delegate==null?null:delegate.checkSelfPermission(this, permission);
+        Integer integer = delegate == null ? null : delegate.checkSelfPermission(this, permission);
         return integer == null ? super.checkSelfPermission(permission) : integer;
     }
 
@@ -1844,25 +1850,25 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public int checkUriPermission(Uri uri, int pid, int uid, int modeFlags) {
-        Integer integer = delegate==null?null:delegate.checkUriPermission(this, uri, pid, uid, modeFlags);
+        Integer integer = delegate == null ? null : delegate.checkUriPermission(this, uri, pid, uid, modeFlags);
         return integer == null ? super.checkUriPermission(uri, pid, uid, modeFlags) : integer;
     }
 
     @Override
     public int checkCallingUriPermission(Uri uri, int modeFlags) {
-        Integer integer = delegate==null?null:delegate.checkCallingUriPermission(this, uri, modeFlags);
+        Integer integer = delegate == null ? null : delegate.checkCallingUriPermission(this, uri, modeFlags);
         return integer == null ? super.checkCallingUriPermission(uri, modeFlags) : integer;
     }
 
     @Override
     public int checkCallingOrSelfUriPermission(Uri uri, int modeFlags) {
-        Integer integer = delegate==null?null:delegate.checkCallingOrSelfUriPermission(this, uri, modeFlags);
+        Integer integer = delegate == null ? null : delegate.checkCallingOrSelfUriPermission(this, uri, modeFlags);
         return integer == null ? super.checkCallingOrSelfUriPermission(uri, modeFlags) : integer;
     }
 
     @Override
     public int checkUriPermission(Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags) {
-        Integer integer = delegate==null?null:delegate.checkUriPermission(this, uri, readPermission, writePermission, pid, uid, modeFlags);
+        Integer integer = delegate == null ? null : delegate.checkUriPermission(this, uri, readPermission, writePermission, pid, uid, modeFlags);
         return integer == null ? super.checkUriPermission(uri, readPermission, writePermission, pid, uid, modeFlags) : integer;
     }
 
@@ -1895,43 +1901,43 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public Context createPackageContext(String packageName, int flags) throws PackageManager.NameNotFoundException {
-        Context context = delegate==null?null:delegate.createPackageContext(this, packageName, flags);
+        Context context = delegate == null ? null : delegate.createPackageContext(this, packageName, flags);
         return context == null ? super.createPackageContext(packageName, flags) : context;
     }
 
     @Override
     public Context createConfigurationContext(Configuration overrideConfiguration) {
-        Context context = delegate==null?null:delegate.createConfigurationContext(this, overrideConfiguration);
+        Context context = delegate == null ? null : delegate.createConfigurationContext(this, overrideConfiguration);
         return context == null ? super.createConfigurationContext(overrideConfiguration) : context;
     }
 
     @Override
     public Context createDisplayContext(Display display) {
-        Context context = delegate==null?null:delegate.createDisplayContext(this, display);
+        Context context = delegate == null ? null : delegate.createDisplayContext(this, display);
         return context == null ? super.createDisplayContext(display) : context;
     }
 
     @Override
     public boolean isRestricted() {
-        Boolean aBoolean = delegate==null?null:delegate.isRestricted(this);
+        Boolean aBoolean = delegate == null ? null : delegate.isRestricted(this);
         return aBoolean == null ? super.isRestricted() : aBoolean;
     }
 
     @Override
     public Context createDeviceProtectedStorageContext() {
-        Context context = delegate==null?null:delegate.createDeviceProtectedStorageContext(this);
+        Context context = delegate == null ? null : delegate.createDeviceProtectedStorageContext(this);
         return context == null ? super.createDeviceProtectedStorageContext() : context;
     }
 
     @Override
     public boolean isDeviceProtectedStorage() {
-        Boolean aBoolean = delegate==null?null:delegate.isDeviceProtectedStorage(this);
+        Boolean aBoolean = delegate == null ? null : delegate.isDeviceProtectedStorage(this);
         return aBoolean == null ? super.isDeviceProtectedStorage() : aBoolean;
     }
 
     @Override
     public Context createContextForSplit(String splitName) throws PackageManager.NameNotFoundException {
-        Context context = delegate==null?null:delegate.createContextForSplit(this, splitName);
+        Context context = delegate == null ? null : delegate.createContextForSplit(this, splitName);
         return context == null ? super.createContextForSplit(splitName) : context;
     }
 
@@ -2070,11 +2076,11 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
     public ActivityDelegate getComponentDelegate() {
-        return new DefaultActivityDelegate();
+        return delegate == null ? new DefaultActivityDelegate() : delegate;
     }
 
     @Override
-    public void seComponentDelegate(ActivityDelegate delegate) {
+    public void setComponentDelegate(ActivityDelegate delegate) {
         this.delegate = delegate;
     }
 

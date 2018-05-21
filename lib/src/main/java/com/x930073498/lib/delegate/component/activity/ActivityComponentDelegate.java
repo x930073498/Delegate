@@ -307,11 +307,6 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onBackPressed(DelegateActivity delegateActivity) {
-
-    }
-
-    @Override
     public void supportFinishAfterTransition(DelegateActivity delegateActivity) {
 
     }

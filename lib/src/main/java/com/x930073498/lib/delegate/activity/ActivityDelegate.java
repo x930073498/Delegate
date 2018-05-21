@@ -77,9 +77,10 @@ import java.util.List;
 public interface ActivityDelegate extends Delegate {
 
 
-    default void initialized(DelegateActivity delegateActivity){
+    default void initialized(DelegateActivity delegateActivity) {
 
     }
+
     default void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
     }
 
@@ -290,8 +291,8 @@ public interface ActivityDelegate extends Delegate {
     }
 
 
-    default void onBackPressed(DelegateActivity delegateActivity) {
-
+    default Boolean onBackPressed(DelegateActivity delegateActivity) {
+        return null;
     }
 
 
@@ -478,7 +479,7 @@ public interface ActivityDelegate extends Delegate {
     }
 
 
-    default void onCreate(@Nullable DelegateActivity delegateActivity, @Nullable Bundle persistentState) {
+    default void onCreate(DelegateActivity delegateActivity, @Nullable Bundle persistentState) {
 
     }
 
