@@ -1,2 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.x930073498.lib" />
+    package="com.x930073498.lib">
+
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+
+    <application>
+        <activity
+            android:name=".delegate.activity.DefaultDelegateActivity"
+            android:launchMode="standard" />
+    </application>
+</manifest>

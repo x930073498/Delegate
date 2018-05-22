@@ -81,7 +81,12 @@ import java.util.List;
 
 public class ActivityComponentDelegate implements ActivityDelegate, DelegateComponent {
     private DelegateEmitter emitter = new DelegateEmitter();
+    private DelegateActivity activity;
 
+    @Override
+    public void initialized(DelegateActivity delegateActivity) {
+        this.activity = delegateActivity;
+    }
 
     @Override
     public <P> void addListener(Event<P> event, Listener<P> listener) {
@@ -95,6 +100,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
 
     @Override
     public void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
+        if (activity==null)activity=delegateActivity;
         emitter.emitEvent(Event.ON_CREATE, savedInstanceState);
     }
 
@@ -132,12 +138,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setContentView(DelegateActivity activity,View view) {
+    public void setContentView(DelegateActivity activity, View view) {
 
     }
 
     @Override
-    public void setContentView(DelegateActivity activity,View view, ViewGroup.LayoutParams params) {
+    public void setContentView(DelegateActivity activity, View view, ViewGroup.LayoutParams params) {
 
     }
 
@@ -312,12 +318,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setEnterSharedElementCallback(DelegateActivity activity,SharedElementCallback callback) {
+    public void setEnterSharedElementCallback(DelegateActivity activity, SharedElementCallback callback) {
 
     }
 
     @Override
-    public void setExitSharedElementCallback(DelegateActivity activity,SharedElementCallback listener) {
+    public void setExitSharedElementCallback(DelegateActivity activity, SharedElementCallback listener) {
 
     }
 
@@ -332,12 +338,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onMultiWindowModeChanged(DelegateActivity activity,boolean isInMultiWindowMode) {
+    public void onMultiWindowModeChanged(DelegateActivity activity, boolean isInMultiWindowMode) {
 
     }
 
     @Override
-    public void onPictureInPictureModeChanged(DelegateActivity activity,boolean isInPictureInPictureMode) {
+    public void onPictureInPictureModeChanged(DelegateActivity activity, boolean isInPictureInPictureMode) {
 
     }
 
@@ -402,7 +408,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onAttachFragment(DelegateActivity activity,Fragment fragment) {
+    public void onAttachFragment(DelegateActivity activity, Fragment fragment) {
 
     }
 
@@ -427,12 +433,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startActivityFromFragment(DelegateActivity activity,Fragment fragment, Intent intent, int requestCode) {
+    public void startActivityFromFragment(DelegateActivity activity, Fragment fragment, Intent intent, int requestCode) {
 
     }
 
     @Override
-    public void startActivityFromFragment(DelegateActivity activity,Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+    public void startActivityFromFragment(DelegateActivity activity, Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
 
     }
 
@@ -607,7 +613,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onMultiWindowModeChanged(DelegateActivity activity,boolean isInMultiWindowMode, Configuration newConfig) {
+    public void onMultiWindowModeChanged(DelegateActivity activity, boolean isInMultiWindowMode, Configuration newConfig) {
 
     }
 
@@ -618,7 +624,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onPictureInPictureModeChanged(DelegateActivity activity,boolean isInPictureInPictureMode, Configuration newConfig) {
+    public void onPictureInPictureModeChanged(DelegateActivity activity, boolean isInPictureInPictureMode, Configuration newConfig) {
 
     }
 
@@ -634,7 +640,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public Boolean enterPictureInPictureMode(DelegateActivity activity,@NonNull PictureInPictureParams params) {
+    public Boolean enterPictureInPictureMode(DelegateActivity activity, @NonNull PictureInPictureParams params) {
 
         return null;
     }
@@ -670,7 +676,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onAttachFragment(DelegateActivity activity,android.app.Fragment fragment) {
+    public void onAttachFragment(DelegateActivity activity, android.app.Fragment fragment) {
 
     }
 
@@ -820,7 +826,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public Boolean onNavigateUpFromChild(DelegateActivity delegateActivity,Activity child) {
+    public Boolean onNavigateUpFromChild(DelegateActivity delegateActivity, Activity child) {
         return null;
     }
 
@@ -920,82 +926,82 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startActivity(DelegateActivity activity,Intent intent) {
+    public void startActivity(DelegateActivity activity, Intent intent) {
 
     }
 
     @Override
-    public void startActivity(DelegateActivity activity,Intent intent, @Nullable Bundle options) {
+    public void startActivity(DelegateActivity activity, Intent intent, @Nullable Bundle options) {
 
     }
 
     @Override
-    public void startActivities(DelegateActivity activity,Intent[] intents) {
+    public void startActivities(DelegateActivity activity, Intent[] intents) {
 
     }
 
     @Override
-    public void startActivities(DelegateActivity activity,Intent[] intents, @Nullable Bundle options) {
+    public void startActivities(DelegateActivity activity, Intent[] intents, @Nullable Bundle options) {
 
     }
 
     @Override
-    public void startIntentSender(DelegateActivity activity,IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+    public void startIntentSender(DelegateActivity activity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
 
     }
 
     @Override
-    public void startIntentSender(DelegateActivity activity,IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+    public void startIntentSender(DelegateActivity activity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
 
     }
 
     @Override
-    public Boolean startActivityIfNeeded(DelegateActivity activity,@NonNull Intent intent, int requestCode) {
+    public Boolean startActivityIfNeeded(DelegateActivity activity, @NonNull Intent intent, int requestCode) {
         return null;
     }
 
     @Override
-    public Boolean startActivityIfNeeded(DelegateActivity activity,@NonNull Intent intent, int requestCode, @Nullable Bundle options) {
+    public Boolean startActivityIfNeeded(DelegateActivity activity, @NonNull Intent intent, int requestCode, @Nullable Bundle options) {
         return null;
     }
 
     @Override
-    public Boolean startNextMatchingActivity(DelegateActivity activity,@NonNull Intent intent) {
+    public Boolean startNextMatchingActivity(DelegateActivity activity, @NonNull Intent intent) {
         return null;
     }
 
     @Override
-    public Boolean startNextMatchingActivity(DelegateActivity activity,@NonNull Intent intent, @Nullable Bundle options) {
+    public Boolean startNextMatchingActivity(DelegateActivity activity, @NonNull Intent intent, @Nullable Bundle options) {
         return null;
     }
 
     @Override
-    public void startActivityFromChild(DelegateActivity activity,@NonNull Activity child, Intent intent, int requestCode) {
+    public void startActivityFromChild(DelegateActivity activity, @NonNull Activity child, Intent intent, int requestCode) {
 
     }
 
     @Override
-    public void startActivityFromChild(DelegateActivity activity,@NonNull Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
+    public void startActivityFromChild(DelegateActivity activity, @NonNull Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
 
     }
 
     @Override
-    public void startActivityFromFragment(DelegateActivity activity,@NonNull android.app.Fragment fragment, Intent intent, int requestCode) {
+    public void startActivityFromFragment(DelegateActivity activity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode) {
 
     }
 
     @Override
-    public void startActivityFromFragment(DelegateActivity activity,@NonNull android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+    public void startActivityFromFragment(DelegateActivity activity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
 
     }
 
     @Override
-    public void startIntentSenderFromChild(DelegateActivity activity,Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+    public void startIntentSenderFromChild(DelegateActivity activity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
 
     }
 
     @Override
-    public void startIntentSenderFromChild(DelegateActivity activity,Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) throws IntentSender.SendIntentException {
+    public void startIntentSenderFromChild(DelegateActivity activity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) throws IntentSender.SendIntentException {
 
     }
 
@@ -1063,7 +1069,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void finishFromChild(DelegateActivity delegateActivity,Activity child) {
+    public void finishFromChild(DelegateActivity delegateActivity, Activity child) {
 
     }
 
@@ -1078,7 +1084,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void finishActivityFromChild(DelegateActivity delegateActivity,@NonNull Activity child, int requestCode) {
+    public void finishActivityFromChild(DelegateActivity delegateActivity, @NonNull Activity child, int requestCode) {
 
     }
 
@@ -1148,12 +1154,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setTitle(DelegateActivity activity,CharSequence title) {
+    public void setTitle(DelegateActivity activity, CharSequence title) {
 
     }
 
     @Override
-    public void setTitle(DelegateActivity activity,int titleId) {
+    public void setTitle(DelegateActivity activity, int titleId) {
 
     }
 
@@ -1204,25 +1210,25 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
 
     @Nullable
     @Override
-    public android.view.ActionMode startActionMode(DelegateActivity activity,android.view.ActionMode.Callback callback) {
+    public android.view.ActionMode startActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback) {
         return null;
     }
 
     @Nullable
     @Override
-    public android.view.ActionMode startActionMode(DelegateActivity activity,android.view.ActionMode.Callback callback, int type) {
+    public android.view.ActionMode startActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback, int type) {
         return null;
     }
 
     @Nullable
     @Override
-    public android.view.ActionMode onWindowStartingActionMode(DelegateActivity activity,android.view.ActionMode.Callback callback) {
+    public android.view.ActionMode onWindowStartingActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback) {
         return null;
     }
 
     @Nullable
     @Override
-    public android.view.ActionMode onWindowStartingActionMode(DelegateActivity activity,android.view.ActionMode.Callback callback, int type) {
+    public android.view.ActionMode onWindowStartingActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback, int type) {
         return null;
     }
 
@@ -1247,7 +1253,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public Boolean navigateUpToFromChild(DelegateActivity activity,Activity child,Intent upIntent) {
+    public Boolean navigateUpToFromChild(DelegateActivity activity, Activity child, Intent upIntent) {
         return null;
     }
 
@@ -1258,12 +1264,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setEnterSharedElementCallback(DelegateActivity activity,android.app.SharedElementCallback callback) {
+    public void setEnterSharedElementCallback(DelegateActivity activity, android.app.SharedElementCallback callback) {
 
     }
 
     @Override
-    public void setExitSharedElementCallback(DelegateActivity activity,android.app.SharedElementCallback callback) {
+    public void setExitSharedElementCallback(DelegateActivity activity, android.app.SharedElementCallback callback) {
 
     }
 
@@ -1473,12 +1479,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public SQLiteDatabase openOrCreateDatabase(DelegateActivity activity,String name, int mode, SQLiteDatabase.CursorFactory factory) {
+    public SQLiteDatabase openOrCreateDatabase(DelegateActivity activity, String name, int mode, SQLiteDatabase.CursorFactory factory) {
         return null;
     }
 
     @Override
-    public SQLiteDatabase openOrCreateDatabase(DelegateActivity activity,String name, int mode, SQLiteDatabase.CursorFactory factory, DatabaseErrorHandler errorHandler) {
+    public SQLiteDatabase openOrCreateDatabase(DelegateActivity activity, String name, int mode, SQLiteDatabase.CursorFactory factory, DatabaseErrorHandler errorHandler) {
         return null;
     }
 
@@ -1503,42 +1509,42 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void sendBroadcast(DelegateActivity activity,Intent intent) {
+    public void sendBroadcast(DelegateActivity activity, Intent intent) {
 
     }
 
     @Override
-    public void sendBroadcast(DelegateActivity activity,Intent intent, String receiverPermission) {
+    public void sendBroadcast(DelegateActivity activity, Intent intent, String receiverPermission) {
 
     }
 
     @Override
-    public void sendOrderedBroadcast(DelegateActivity activity,Intent intent, String receiverPermission) {
+    public void sendOrderedBroadcast(DelegateActivity activity, Intent intent, String receiverPermission) {
 
     }
 
     @Override
-    public void sendOrderedBroadcast(DelegateActivity activity,Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+    public void sendOrderedBroadcast(DelegateActivity activity, Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
 
     }
 
     @Override
-    public Intent registerReceiver(DelegateActivity activity,BroadcastReceiver receiver, IntentFilter filter) {
+    public Intent registerReceiver(DelegateActivity activity, BroadcastReceiver receiver, IntentFilter filter) {
         return null;
     }
 
     @Override
-    public Intent registerReceiver(DelegateActivity activity,BroadcastReceiver receiver, IntentFilter filter, int flags) {
+    public Intent registerReceiver(DelegateActivity activity, BroadcastReceiver receiver, IntentFilter filter, int flags) {
         return null;
     }
 
     @Override
-    public Intent registerReceiver(DelegateActivity activity,BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler) {
+    public Intent registerReceiver(DelegateActivity activity, BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler) {
         return null;
     }
 
     @Override
-    public Intent registerReceiver(DelegateActivity activity,BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler, int flags) {
+    public Intent registerReceiver(DelegateActivity activity, BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler, int flags) {
         return null;
     }
 
@@ -1623,17 +1629,17 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void revokeUriPermission(DelegateActivity activity,Uri uri, int modeFlags) {
+    public void revokeUriPermission(DelegateActivity activity, Uri uri, int modeFlags) {
 
     }
 
     @Override
-    public void revokeUriPermission(DelegateActivity activity,String targetPackage, Uri uri, int modeFlags) {
+    public void revokeUriPermission(DelegateActivity activity, String targetPackage, Uri uri, int modeFlags) {
 
     }
 
     @Override
-    public Integer checkUriPermission(DelegateActivity activity,Uri uri, int pid, int uid, int modeFlags) {
+    public Integer checkUriPermission(DelegateActivity activity, Uri uri, int pid, int uid, int modeFlags) {
         return null;
     }
 
@@ -1648,12 +1654,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public Integer checkUriPermission(DelegateActivity activity,Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags) {
+    public Integer checkUriPermission(DelegateActivity activity, Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags) {
         return null;
     }
 
     @Override
-    public void enforceUriPermission(DelegateActivity activity,Uri uri, int pid, int uid, int modeFlags, String message) {
+    public void enforceUriPermission(DelegateActivity activity, Uri uri, int pid, int uid, int modeFlags, String message) {
 
     }
 
@@ -1668,7 +1674,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void enforceUriPermission(DelegateActivity activity,Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
+    public void enforceUriPermission(DelegateActivity activity, Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
 
     }
 
@@ -1720,5 +1726,10 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     @Override
     public void onPointerCaptureChanged(DelegateActivity delegateActivity, boolean hasCapture) {
 
+    }
+
+    @Override
+    public DelegateActivity getActivity() {
+        return activity;
     }
 }

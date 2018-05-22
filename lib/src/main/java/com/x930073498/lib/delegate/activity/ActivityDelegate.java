@@ -74,7 +74,7 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
-public interface ActivityDelegate extends Delegate {
+public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
 
 
     default void initialized(DelegateActivity delegateActivity) {
@@ -86,15 +86,12 @@ public interface ActivityDelegate extends Delegate {
 
 
     default void setTheme(DelegateActivity delegateActivity, int resid) {
-
     }
 
 
     default void onPostCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
-
     }
 
-    @Nullable
 
     default ActionBar getSupportActionBar(DelegateActivity delegateActivity) {
         return null;
@@ -102,7 +99,6 @@ public interface ActivityDelegate extends Delegate {
 
 
     default void setSupportActionBar(DelegateActivity delegateActivity, @Nullable Toolbar toolbar) {
-
     }
 
 
@@ -112,42 +108,35 @@ public interface ActivityDelegate extends Delegate {
 
 
     default void setContentView(DelegateActivity delegateActivity, int layoutResID) {
-
     }
 
 
     default void setContentView(DelegateActivity delegateActivity, View view) {
-
     }
 
 
     default void setContentView(DelegateActivity delegateActivity, View view, ViewGroup.LayoutParams params) {
-
     }
 
 
     default void addContentView(DelegateActivity delegateActivity, View view, ViewGroup.LayoutParams params) {
-
     }
 
 
     default void onConfigurationChanged(DelegateActivity delegateActivity, Configuration newConfig) {
-
+        onConfigurationChanged(newConfig);
     }
 
 
     default void onPostResume(DelegateActivity delegateActivity) {
-
     }
 
 
     default void onStart(DelegateActivity delegateActivity) {
-
     }
 
 
     default void onStop(DelegateActivity delegateActivity) {
-
     }
 
 
@@ -157,12 +146,10 @@ public interface ActivityDelegate extends Delegate {
 
 
     default void onDestroy(DelegateActivity delegateActivity) {
-
     }
 
 
     default void onTitleChanged(DelegateActivity delegateActivity, CharSequence title, int color) {
-
     }
 
 
@@ -172,42 +159,35 @@ public interface ActivityDelegate extends Delegate {
 
 
     default void supportInvalidateOptionsMenu(DelegateActivity delegateActivity) {
-
     }
 
 
     default void invalidateOptionsMenu(DelegateActivity delegateActivity) {
-
     }
 
 
     default void onSupportActionModeStarted(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
-
     }
 
 
     default void onSupportActionModeFinished(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
-
     }
 
 
     default void onWindowStartingSupportActionMode(DelegateActivity delegateActivity, @NonNull ActionMode.Callback callback) {
-
     }
 
 
     default ActionMode startSupportActionMode(DelegateActivity delegateActivity, @NonNull ActionMode.Callback callback) {
-        return null;
+        return startSupportActionMode(callback);
     }
 
 
     default void onCreateSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
-
     }
 
 
     default void onPrepareSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
-
     }
 
 
@@ -227,12 +207,10 @@ public interface ActivityDelegate extends Delegate {
 
 
     default void supportNavigateUpTo(DelegateActivity delegateActivity, @NonNull Intent upIntent) {
-
     }
 
 
     default void onContentChanged(DelegateActivity delegateActivity) {
-
     }
 
 
@@ -247,12 +225,10 @@ public interface ActivityDelegate extends Delegate {
 
 
     default void onPanelClosed(DelegateActivity delegateActivity, int featureId, Menu menu) {
-
     }
 
 
     default void onSaveInstanceState(DelegateActivity delegateActivity, Bundle outState, PersistableBundle outPersistentState) {
-
     }
 
 
@@ -277,17 +253,14 @@ public interface ActivityDelegate extends Delegate {
 
 
     default void openOptionsMenu(DelegateActivity delegateActivity) {
-
     }
 
 
     default void closeOptionsMenu(DelegateActivity delegateActivity) {
-
     }
 
 
     default void onActivityResult(DelegateActivity delegateActivity, int requestCode, int resultCode, Intent data) {
-
     }
 
 
@@ -474,12 +447,11 @@ public interface ActivityDelegate extends Delegate {
 
 
     default View getCurrentFocus(DelegateActivity delegateActivity) {
-
         return null;
     }
 
 
-    default void onCreate(DelegateActivity delegateActivity, @Nullable Bundle persistentState) {
+    default void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
 
     }
 

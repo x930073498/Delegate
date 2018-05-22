@@ -28,380 +28,378 @@ import com.x930073498.lib.delegate.Delegate;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 
-public interface FragmentDelegate  extends Delegate {
+public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
 
-    default void initialized(){
+    default void initialized() {
 
     }
-    
-    default Lifecycle getLifecycle() {
+
+    default Lifecycle getLifecycle(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void setArguments(Bundle args) {
+
+    default void setArguments(DelegateFragment delegateFragment, Bundle args) {
 
     }
 
-    
-    default void setInitialSavedState(Fragment.SavedState state) {
+
+    default void setInitialSavedState(DelegateFragment delegateFragment, Fragment.SavedState state) {
 
     }
 
-    
-    default void setTargetFragment(Fragment fragment, int requestCode) {
+
+    default void setTargetFragment(DelegateFragment delegateFragment, Fragment fragment, int requestCode) {
 
     }
 
-    
-    default Context getContext() {
+
+    default Context getContext(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void onHiddenChanged(boolean hidden) {
+
+    default void onHiddenChanged(DelegateFragment delegateFragment, boolean hidden) {
 
     }
 
-    
-    default void setRetainInstance(boolean retain) {
+
+    default void setRetainInstance(DelegateFragment delegateFragment, boolean retain) {
 
     }
 
-    
-    default void setHasOptionsMenu(boolean hasMenu) {
+
+    default void setHasOptionsMenu(DelegateFragment delegateFragment, boolean hasMenu) {
 
     }
 
-    
-    default void setMenuVisibility(boolean menuVisible) {
+
+    default void setMenuVisibility(DelegateFragment delegateFragment, boolean menuVisible) {
 
     }
 
-    
-    default void setUserVisibleHint(boolean isVisibleToUser) {
+
+    default void setUserVisibleHint(DelegateFragment delegateFragment, boolean isVisibleToUser) {
 
     }
 
-    
-    default Boolean getUserVisibleHint() {
+
+    default Boolean getUserVisibleHint(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default LoaderManager getLoaderManager() {
+
+    default LoaderManager getLoaderManager(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void startActivity(Intent intent) {
+
+    default void startActivity(DelegateFragment delegateFragment, Intent intent) {
 
     }
 
-    
-    default void startActivity(Intent intent, @Nullable Bundle options) {
+
+    default void startActivity(DelegateFragment delegateFragment, Intent intent, @Nullable Bundle options) {
 
     }
 
-    
-    default void startActivityForResult(Intent intent, int requestCode) {
+
+    default void startActivityForResult(DelegateFragment delegateFragment, Intent intent, int requestCode) {
 
     }
 
-    
-    default void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+
+    default void startActivityForResult(DelegateFragment delegateFragment, Intent intent, int requestCode, @Nullable Bundle options) {
 
     }
 
-    
-    default void startIntentSenderForResult(IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+
+    default void startIntentSenderForResult(DelegateFragment delegateFragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
 
     }
 
-    
-    default void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    default void onActivityResult(DelegateFragment delegateFragment, int requestCode, int resultCode, Intent data) {
 
     }
 
-    
-    default void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+    default void onRequestPermissionsResult(DelegateFragment delegateFragment, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
     }
 
-    
-    default Boolean shouldShowRequestPermissionRationale(@NonNull String permission) {
+
+    default Boolean shouldShowRequestPermissionRationale(DelegateFragment delegateFragment, @NonNull String permission) {
         return null;
     }
 
-    
-    default LayoutInflater onGetLayoutInflater(Bundle savedInstanceState) {
+
+    default LayoutInflater onGetLayoutInflater(DelegateFragment delegateFragment, Bundle savedInstanceState) {
         return null;
     }
 
-    
-    default void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+
+    default void onInflate(DelegateFragment delegateFragment, Context context, AttributeSet attrs, Bundle savedInstanceState) {
 
     }
 
-    
-    default void onAttachFragment(Fragment childFragment) {
+
+    default void onAttachFragment(DelegateFragment fragment, Fragment childFragment) {
 
     }
 
-    
-    default void onAttach(Context context) {
+
+    default void onAttach(DelegateFragment delegateFragment, Context context) {
 
     }
 
-    
-    default Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+
+    default Animation onCreateAnimation(DelegateFragment delegateFragment, int transit, boolean enter, int nextAnim) {
         return null;
     }
 
-    
-    default Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
+
+    default Animator onCreateAnimator(DelegateFragment delegateFragment, int transit, boolean enter, int nextAnim) {
         return null;
     }
 
-    
-    default void onCreate(@Nullable Bundle savedInstanceState) {
+
+    default void onCreate(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
 
     }
 
-    @Nullable
-    
-    default View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+    default View onCreateView(DelegateFragment delegateFragment, LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return null;
     }
 
-    
-    default void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+    default void onViewCreated(DelegateFragment delegateFragment, View view, @Nullable Bundle savedInstanceState) {
 
     }
 
-    @Nullable
-    
-    default View getView() {
+
+    default View getView(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+    default void onActivityCreated(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
 
     }
 
-    
-    default void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+
+    default void onViewStateRestored(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
 
     }
 
-    
-    default void onStart() {
+
+    default void onStart(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void onResume() {
+
+    default void onResume(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void onSaveInstanceState(Bundle outState) {
+
+    default void onSaveInstanceState(DelegateFragment delegateFragment, Bundle outState) {
 
     }
 
-    
-    default void onMultiWindowModeChanged(boolean isInMultiWindowMode) {
+
+    default void onMultiWindowModeChanged(DelegateFragment delegateFragment, boolean isInMultiWindowMode) {
 
     }
 
-    
-    default void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+
+    default void onPictureInPictureModeChanged(DelegateFragment delegateFragment, boolean isInPictureInPictureMode) {
 
     }
 
-    
-    default void onConfigurationChanged(Configuration newConfig) {
+
+    default void onConfigurationChanged(DelegateFragment delegateFragment, Configuration newConfig) {
 
     }
 
-    
-    default void onPause() {
+
+    default void onPause(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void onStop() {
+
+    default void onStop(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void onLowMemory() {
+
+    default void onLowMemory(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void onDestroyView() {
+
+    default void onDestroyView(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void onDestroy() {
+
+    default void onDestroy(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void onDetach() {
+
+    default void onDetach(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+    default void onCreateOptionsMenu(DelegateFragment delegateFragment, Menu menu, MenuInflater inflater) {
 
     }
 
-    
-    default void onPrepareOptionsMenu(Menu menu) {
+
+    default void onPrepareOptionsMenu(DelegateFragment delegateFragment, Menu menu) {
 
     }
 
-    
-    default void onDestroyOptionsMenu() {
+
+    default void onDestroyOptionsMenu(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default Boolean onOptionsItemSelected(MenuItem item) {
+
+    default Boolean onOptionsItemSelected(DelegateFragment delegateFragment, MenuItem item) {
         return null;
     }
 
-    
-    default void onOptionsMenuClosed(Menu menu) {
+
+    default void onOptionsMenuClosed(DelegateFragment delegateFragment, Menu menu) {
 
     }
 
-    
-    default void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+    default void onCreateContextMenu(DelegateFragment delegateFragment, ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 
     }
 
-    
-    default void registerForContextMenu(View view) {
+
+    default void registerForContextMenu(DelegateFragment delegateFragment, View view) {
 
     }
 
-    
-    default void unregisterForContextMenu(View view) {
+
+    default void unregisterForContextMenu(DelegateFragment delegateFragment, View view) {
 
     }
 
-    
-    default Boolean onContextItemSelected(MenuItem item) {
+
+    default Boolean onContextItemSelected(DelegateFragment delegateFragment, MenuItem item) {
         return null;
     }
 
-    
-    default void setEnterSharedElementCallback(SharedElementCallback callback) {
+
+    default void setEnterSharedElementCallback(DelegateFragment delegateFragment, SharedElementCallback callback) {
 
     }
 
-    
-    default void setExitSharedElementCallback(SharedElementCallback callback) {
+
+    default void setExitSharedElementCallback(DelegateFragment delegateFragment, SharedElementCallback callback) {
 
     }
 
-    
-    default void setEnterTransition(Object transition) {
+
+    default void setEnterTransition(DelegateFragment delegateFragment, Object transition) {
 
     }
 
-    
-    default Object getEnterTransition() {
+
+    default Object getEnterTransition(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void setReturnTransition(Object transition) {
+
+    default void setReturnTransition(DelegateFragment delegateFragment, Object transition) {
 
     }
 
-    
-    default Object getReturnTransition() {
+
+    default Object getReturnTransition(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void setExitTransition(Object transition) {
+
+    default void setExitTransition(DelegateFragment delegateFragment, Object transition) {
 
     }
 
-    
-    default Object getExitTransition() {
+
+    default Object getExitTransition(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void setReenterTransition(Object transition) {
+
+    default void setReenterTransition(DelegateFragment delegateFragment, Object transition) {
 
     }
 
-    
-    default Object getReenterTransition() {
+
+    default Object getReenterTransition(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void setSharedElementEnterTransition(Object transition) {
+
+    default void setSharedElementEnterTransition(DelegateFragment delegateFragment, Object transition) {
 
     }
 
-    
-    default Object getSharedElementEnterTransition() {
+
+    default Object getSharedElementEnterTransition(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void setSharedElementReturnTransition(Object transition) {
+
+    default void setSharedElementReturnTransition(DelegateFragment delegateFragment, Object transition) {
 
     }
 
-    
-    default Object getSharedElementReturnTransition() {
+
+    default Object getSharedElementReturnTransition(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void setAllowEnterTransitionOverlap(boolean allow) {
+
+    default void setAllowEnterTransitionOverlap(DelegateFragment delegateFragment, boolean allow) {
 
     }
 
-    
-    default Boolean getAllowEnterTransitionOverlap() {
+
+    default Boolean getAllowEnterTransitionOverlap(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void setAllowReturnTransitionOverlap(boolean allow) {
+
+    default void setAllowReturnTransitionOverlap(DelegateFragment delegateFragment, boolean allow) {
 
     }
 
-    
-    default Boolean getAllowReturnTransitionOverlap() {
+
+    default Boolean getAllowReturnTransitionOverlap(DelegateFragment delegateFragment) {
         return null;
     }
 
-    
-    default void postponeEnterTransition() {
+
+    default void postponeEnterTransition(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void startPostponedEnterTransition() {
+
+    default void startPostponedEnterTransition(DelegateFragment delegateFragment) {
 
     }
 
-    
-    default void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+
+    default void dump(DelegateFragment delegateFragment, String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
 
     }
 

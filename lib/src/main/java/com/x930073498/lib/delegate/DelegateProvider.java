@@ -10,10 +10,6 @@ public interface DelegateProvider<T extends Delegate> {
         return (T) ACTIVITY_DELEGATE_ARRAY_MAP.get(this);
     }
 
-//    default void initActivityDelegateProvider(T delegate) {
-//        setComponentDelegate(delegate);
-//    }
-
     default void setComponentDelegate(T delegate) {
         ACTIVITY_DELEGATE_ARRAY_MAP.put(this, delegate);
     }
