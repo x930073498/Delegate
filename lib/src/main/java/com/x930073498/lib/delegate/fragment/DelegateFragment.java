@@ -42,7 +42,7 @@ public class DelegateFragment extends Fragment implements DelegateProvider<Fragm
         super();
         delegate = getComponentDelegate();
         if (delegate == null) delegate = new DefaultFragmentDelegate();
-        delegate.initialized();
+        delegate.initialized(this);
     }
 
 

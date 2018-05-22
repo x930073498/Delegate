@@ -30,7 +30,7 @@ import java.io.PrintWriter;
 
 public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
 
-    default void initialized() {
+    default void initialized(DelegateFragment delegateFragment) {
 
     }
 
