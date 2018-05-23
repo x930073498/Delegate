@@ -20,9 +20,10 @@ public class Test1Delegate implements ActivityDelegate {
     }
 
     @Override
-    public void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
+    public boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
         if (activity == null) activity = delegateActivity;
        onCreate(savedInstanceState);
+       return false;
     }
 
     @Override

@@ -11,9 +11,10 @@ public class Test2Delegate implements ActivityDelegate {
 
 
     @Override
-    public void onCreate(DelegateActivity delegateActivity, @Nullable Bundle persistentState) {
+    public boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle persistentState) {
         this.delegateActivity = delegateActivity;
         onCreate(persistentState);
+        return false;
     }
 
     @Override
