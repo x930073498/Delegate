@@ -43,90 +43,118 @@ interface FragmentAnchorDelegate {
     default Integer getId() {
         return getFragment() == null ? null : getFragment().getId();
     }
+
     default String getTag() {
         return getFragment() == null ? null : getFragment().getTag();
     }
+
     default Bundle getArguments() {
         return getFragment() == null ? null : getFragment().getArguments();
     }
+
     default Boolean isStateSaved() {
         return getFragment() == null ? null : getFragment().isStateSaved();
     }
+
     default Fragment getTargetFragment() {
         return getFragment() == null ? null : getFragment().getTargetFragment();
     }
+
     default Integer getTargetRequestCode() {
         return getFragment() == null ? null : getFragment().getTargetRequestCode();
     }
+
     default Context requireContext() {
         return getFragment() == null ? null : getFragment().requireContext();
     }
+
     default FragmentActivity getActivity() {
         return getFragment() == null ? null : getFragment().getActivity();
     }
+
     default FragmentActivity requireActivity() {
         return getFragment() == null ? null : getFragment().requireActivity();
     }
+
     default Object getHost() {
         return getFragment() == null ? null : getFragment().getHost();
     }
+
     default Object requireHost() {
         return getFragment() == null ? null : getFragment().requireHost();
     }
+
     default Resources getResources() {
         return getFragment() == null ? null : getFragment().getResources();
     }
+
     default CharSequence getText(@StringRes int resId) {
         return getFragment() == null ? null : getFragment().getText(resId);
     }
+
     default String getString(@StringRes int resId) {
         return getFragment() == null ? null : getFragment().getString(resId);
     }
+
     default String getString(@StringRes int resId, Object... formatArgs) {
-        return getFragment() == null ? null : getFragment().getString(resId,formatArgs);
+        return getFragment() == null ? null : getFragment().getString(resId, formatArgs);
     }
+
     default FragmentManager getFragmentManager() {
         return getFragment() == null ? null : getFragment().getFragmentManager();
     }
+
     default FragmentManager requireFragmentManager() {
         return getFragment() == null ? null : getFragment().requireFragmentManager();
     }
+
     default FragmentManager getChildFragmentManager() {
         return getFragment() == null ? null : getFragment().getChildFragmentManager();
     }
+
     default Fragment getParentFragment() {
         return getFragment() == null ? null : getFragment().getParentFragment();
     }
+
     default Boolean isAdded() {
         return getFragment() == null ? null : getFragment().isAdded();
     }
-    default Boolean isDetached(){
+
+    default Boolean isDetached() {
         return getFragment() == null ? null : getFragment().isDetached();
     }
-    default Boolean isRemoving(){
+
+    default Boolean isRemoving() {
         return getFragment() == null ? null : getFragment().isRemoving();
     }
-    default Boolean isInLayout(){
+
+    default Boolean isInLayout() {
         return getFragment() == null ? null : getFragment().isInLayout();
     }
-    default Boolean isResumed(){
+
+    default Boolean isResumed() {
         return getFragment() == null ? null : getFragment().isResumed();
     }
-    default Boolean isVisible(){
+
+    default Boolean isVisible() {
         return getFragment() == null ? null : getFragment().isVisible();
     }
-    default Boolean isHidden(){
+
+    default Boolean isHidden() {
         return getFragment() == null ? null : getFragment().isHidden();
     }
-    default Boolean getRetainInstance(){
+
+    default Boolean getRetainInstance() {
         return getFragment() == null ? null : getFragment().getRetainInstance();
     }
-    default LayoutInflater getLayoutInflater(){
+
+    default LayoutInflater getLayoutInflater() {
         return getFragment() == null ? null : getFragment().getLayoutInflater();
     }
-   default void requestPermissions(@NonNull String[] permissions, int requestCode){
-        if (getFragment()!=null)getFragment().requestPermissions(permissions, requestCode);
-   }
+
+    default void requestPermissions(@NonNull String[] permissions, int requestCode) {
+        if (getFragment() != null) getFragment().requestPermissions(permissions, requestCode);
+    }
 
     default ViewModelStore getViewModelStore() {
         return getFragment() == null ? null : getFragment().getViewModelStore();

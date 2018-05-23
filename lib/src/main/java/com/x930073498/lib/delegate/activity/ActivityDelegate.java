@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.PictureInPictureParams;
 import android.app.VoiceInteractor;
 import android.app.assist.AssistContent;
+import android.arch.lifecycle.Lifecycle;
 import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks;
 import android.content.ComponentName;
@@ -78,18 +79,20 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
 
 
     default void initialized(DelegateActivity delegateActivity) {
-
     }
 
-    default void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
-    }
-
-
-    default void setTheme(DelegateActivity delegateActivity, int resid) {
+    default boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
+        return false;
     }
 
 
-    default void onPostCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
+    default boolean setTheme(DelegateActivity delegateActivity, int resid) {
+        return false;
+    }
+
+
+    default boolean onPostCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
+        return false;
     }
 
 
@@ -98,7 +101,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setSupportActionBar(DelegateActivity delegateActivity, @Nullable Toolbar toolbar) {
+    default boolean setSupportActionBar(DelegateActivity delegateActivity, @Nullable Toolbar toolbar) {
+        return false;
     }
 
 
@@ -107,36 +111,43 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setContentView(DelegateActivity delegateActivity, int layoutResID) {
+    default boolean setContentView(DelegateActivity delegateActivity, int layoutResID) {
+        return false;
     }
 
 
-    default void setContentView(DelegateActivity delegateActivity, View view) {
+    default boolean setContentView(DelegateActivity delegateActivity, View view) {
+        return false;
     }
 
 
-    default void setContentView(DelegateActivity delegateActivity, View view, ViewGroup.LayoutParams params) {
+    default boolean setContentView(DelegateActivity delegateActivity, View view, ViewGroup.LayoutParams params) {
+        return false;
     }
 
 
-    default void addContentView(DelegateActivity delegateActivity, View view, ViewGroup.LayoutParams params) {
+    default boolean addContentView(DelegateActivity delegateActivity, View view, ViewGroup.LayoutParams params) {
+        return false;
     }
 
 
-    default void onConfigurationChanged(DelegateActivity delegateActivity, Configuration newConfig) {
-        onConfigurationChanged(newConfig);
+    default boolean onConfigurationChanged(DelegateActivity delegateActivity, Configuration newConfig) {
+        return false;
     }
 
 
-    default void onPostResume(DelegateActivity delegateActivity) {
+    default boolean onPostResume(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onStart(DelegateActivity delegateActivity) {
+    default boolean onStart(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onStop(DelegateActivity delegateActivity) {
+    default boolean onStop(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -145,11 +156,13 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onDestroy(DelegateActivity delegateActivity) {
+    default boolean onDestroy(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onTitleChanged(DelegateActivity delegateActivity, CharSequence title, int color) {
+    default boolean onTitleChanged(DelegateActivity delegateActivity, CharSequence title, int color) {
+        return false;
     }
 
 
@@ -158,36 +171,43 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void supportInvalidateOptionsMenu(DelegateActivity delegateActivity) {
+    default boolean supportInvalidateOptionsMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void invalidateOptionsMenu(DelegateActivity delegateActivity) {
+    default boolean invalidateOptionsMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onSupportActionModeStarted(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
+    default boolean onSupportActionModeStarted(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
+        return false;
     }
 
 
-    default void onSupportActionModeFinished(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
+    default boolean onSupportActionModeFinished(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
+        return false;
     }
 
 
-    default void onWindowStartingSupportActionMode(DelegateActivity delegateActivity, @NonNull ActionMode.Callback callback) {
+    default ActionMode onWindowStartingSupportActionMode(DelegateActivity delegateActivity, @NonNull ActionMode.Callback callback) {
+        return null;
     }
 
 
     default ActionMode startSupportActionMode(DelegateActivity delegateActivity, @NonNull ActionMode.Callback callback) {
-        return startSupportActionMode(callback);
+        return null;
     }
 
 
-    default void onCreateSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
+    default boolean onCreateSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
+        return false;
     }
 
 
-    default void onPrepareSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
+    default boolean onPrepareSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
+        return false;
     }
 
 
@@ -206,11 +226,13 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void supportNavigateUpTo(DelegateActivity delegateActivity, @NonNull Intent upIntent) {
+    default boolean supportNavigateUpTo(DelegateActivity delegateActivity, @NonNull Intent upIntent) {
+        return false;
     }
 
 
-    default void onContentChanged(DelegateActivity delegateActivity) {
+    default boolean onContentChanged(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -224,11 +246,13 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onPanelClosed(DelegateActivity delegateActivity, int featureId, Menu menu) {
+    default boolean onPanelClosed(DelegateActivity delegateActivity, int featureId, Menu menu) {
+        return false;
     }
 
 
-    default void onSaveInstanceState(DelegateActivity delegateActivity, Bundle outState, PersistableBundle outPersistentState) {
+    default boolean onSaveInstanceState(DelegateActivity delegateActivity, Bundle outState, PersistableBundle outPersistentState) {
+        return false;
     }
 
 
@@ -252,15 +276,18 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void openOptionsMenu(DelegateActivity delegateActivity) {
+    default boolean openOptionsMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void closeOptionsMenu(DelegateActivity delegateActivity) {
+    default boolean closeOptionsMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onActivityResult(DelegateActivity delegateActivity, int requestCode, int resultCode, Intent data) {
+    default boolean onActivityResult(DelegateActivity delegateActivity, int requestCode, int resultCode, Intent data) {
+        return false;
     }
 
 
@@ -269,78 +296,78 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void supportFinishAfterTransition(DelegateActivity delegateActivity) {
-
+    default boolean supportFinishAfterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void setEnterSharedElementCallback(DelegateActivity delegateActivity, SharedElementCallback callback) {
-
+    default boolean setEnterSharedElementCallback(DelegateActivity delegateActivity, SharedElementCallback callback) {
+        return false;
     }
 
 
-    default void setExitSharedElementCallback(DelegateActivity delegateActivity, SharedElementCallback listener) {
-
+    default boolean setExitSharedElementCallback(DelegateActivity delegateActivity, SharedElementCallback listener) {
+        return false;
     }
 
 
-    default void supportPostponeEnterTransition(DelegateActivity delegateActivity) {
-
+    default boolean supportPostponeEnterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void supportStartPostponedEnterTransition(DelegateActivity delegateActivity) {
-
+    default boolean supportStartPostponedEnterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onMultiWindowModeChanged(DelegateActivity delegateActivity, boolean isInMultiWindowMode) {
-
+    default boolean onMultiWindowModeChanged(DelegateActivity delegateActivity, boolean isInMultiWindowMode) {
+        return false;
     }
 
 
-    default void onPictureInPictureModeChanged(DelegateActivity delegateActivity, boolean isInPictureInPictureMode) {
-
+    default boolean onPictureInPictureModeChanged(DelegateActivity delegateActivity, boolean isInPictureInPictureMode) {
+        return false;
     }
 
 
-    default void getLifecycle(DelegateActivity delegateActivity) {
-
+    default Lifecycle getLifecycle(DelegateActivity delegateActivity) {
+        return null;
     }
 
 
-    default void onCreatePanelMenu(DelegateActivity delegateActivity, int featureId, Menu menu) {
-
+    default boolean onCreatePanelMenu(DelegateActivity delegateActivity, int featureId, Menu menu) {
+        return false;
     }
 
 
-    default void onLowMemory(DelegateActivity delegateActivity) {
-
+    default boolean onLowMemory(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onPause(DelegateActivity delegateActivity) {
-
+    default boolean onPause(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onNewIntent(DelegateActivity delegateActivity, Intent intent) {
-
+    default boolean onNewIntent(DelegateActivity delegateActivity, Intent intent) {
+        return false;
     }
 
 
-    default void onStateNotSaved(DelegateActivity delegateActivity) {
-
+    default boolean onStateNotSaved(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onResume(DelegateActivity delegateActivity) {
-
+    default boolean onResume(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onResumeFragments(DelegateActivity delegateActivity) {
-
+    default boolean onResumeFragments(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -359,13 +386,13 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void dump(DelegateActivity delegateActivity, String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
-
+    default boolean dump(DelegateActivity delegateActivity, String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+        return false;
     }
 
 
-    default void onAttachFragment(DelegateActivity delegateActivity, Fragment fragment) {
-
+    default boolean onAttachFragment(DelegateActivity delegateActivity, Fragment fragment) {
+        return false;
     }
 
 
@@ -379,28 +406,28 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void startActivityForResult(DelegateActivity delegateActivity, Intent intent, int requestCode) {
-
+    default boolean startActivityForResult(DelegateActivity delegateActivity, Intent intent, int requestCode) {
+        return false;
     }
 
 
-    default void onRequestPermissionsResult(DelegateActivity delegateActivity, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
+    default boolean onRequestPermissionsResult(DelegateActivity delegateActivity, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        return false;
     }
 
 
-    default void startActivityFromFragment(DelegateActivity delegateActivity, Fragment fragment, Intent intent, int requestCode) {
-
+    default boolean startActivityFromFragment(DelegateActivity delegateActivity, Fragment fragment, Intent intent, int requestCode) {
+        return false;
     }
 
 
-    default void startActivityFromFragment(DelegateActivity delegateActivity, Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
-
+    default boolean startActivityFromFragment(DelegateActivity delegateActivity, Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+        return false;
     }
 
 
-    default void startIntentSenderFromFragment(DelegateActivity delegateActivity, Fragment fragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-
+    default boolean startIntentSenderFromFragment(DelegateActivity delegateActivity, Fragment fragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+        return false;
     }
 
 
@@ -414,8 +441,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void startIntentSenderForResult(DelegateActivity delegateActivity, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-
+    default boolean startIntentSenderForResult(DelegateActivity delegateActivity, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+        return false;
     }
 
 
@@ -424,8 +451,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setIntent(DelegateActivity delegateActivity, Intent newIntent) {
-
+    default boolean setIntent(DelegateActivity delegateActivity, Intent newIntent) {
+        return false;
     }
 
 
@@ -451,28 +478,28 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
-
+    default boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
+        return false;
     }
 
 
-    default void onRestoreInstanceState(DelegateActivity delegateActivity, Bundle savedInstanceState, PersistableBundle persistentState) {
-
+    default boolean onRestoreInstanceState(DelegateActivity delegateActivity, Bundle savedInstanceState, PersistableBundle persistentState) {
+        return false;
     }
 
 
-    default void onRestoreInstanceState(DelegateActivity savedInstanceState, Bundle persistentState) {
-
+    default boolean onRestoreInstanceState(DelegateActivity savedInstanceState, Bundle persistentState) {
+        return false;
     }
 
 
-    default void onPostCreate(@Nullable DelegateActivity delegateActivity, @Nullable Bundle persistentState) {
-
+    default boolean onPostCreate(@Nullable DelegateActivity delegateActivity, @Nullable Bundle persistentState) {
+        return false;
     }
 
 
-    default void onRestart(DelegateActivity delegateActivity) {
-
+    default boolean onRestart(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -500,33 +527,33 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void startLocalVoiceInteraction(DelegateActivity delegateActivity, Bundle privateOptions) {
-
+    default boolean startLocalVoiceInteraction(DelegateActivity delegateActivity, Bundle privateOptions) {
+        return false;
     }
 
 
-    default void onLocalVoiceInteractionStarted(DelegateActivity delegateActivity) {
-
+    default boolean onLocalVoiceInteractionStarted(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onLocalVoiceInteractionStopped(DelegateActivity delegateActivity) {
-
+    default boolean onLocalVoiceInteractionStopped(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void stopLocalVoiceInteraction(DelegateActivity delegateActivity) {
-
+    default boolean stopLocalVoiceInteraction(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onSaveInstanceState(DelegateActivity delegateActivity, Bundle outPersistentState) {
-
+    default boolean onSaveInstanceState(DelegateActivity delegateActivity, Bundle outPersistentState) {
+        return false;
     }
 
 
-    default void onUserLeaveHint(DelegateActivity delegateActivity) {
-
+    default boolean onUserLeaveHint(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -542,18 +569,18 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onProvideAssistData(DelegateActivity delegateActivity, Bundle data) {
-
+    default boolean onProvideAssistData(DelegateActivity delegateActivity, Bundle data) {
+        return false;
     }
 
 
-    default void onProvideAssistContent(DelegateActivity delegateActivity, AssistContent outContent) {
-
+    default boolean onProvideAssistContent(DelegateActivity delegateActivity, AssistContent outContent) {
+        return false;
     }
 
 
-    default void onProvideKeyboardShortcuts(DelegateActivity delegateActivity, List<KeyboardShortcutGroup> data, Menu menu, int deviceId) {
-
+    default boolean onProvideKeyboardShortcuts(DelegateActivity delegateActivity, List<KeyboardShortcutGroup> data, Menu menu, int deviceId) {
+        return false;
     }
 
 
@@ -563,13 +590,13 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void reportFullyDrawn(DelegateActivity delegateActivity) {
-
+    default boolean reportFullyDrawn(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onMultiWindowModeChanged(DelegateActivity delegateActivity, boolean isInMultiWindowMode, Configuration newConfig) {
-
+    default boolean onMultiWindowModeChanged(DelegateActivity delegateActivity, boolean isInMultiWindowMode, Configuration newConfig) {
+        return false;
     }
 
 
@@ -579,8 +606,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onPictureInPictureModeChanged(DelegateActivity delegateActivity, boolean isInPictureInPictureMode, Configuration newConfig) {
-
+    default boolean onPictureInPictureModeChanged(DelegateActivity delegateActivity, boolean isInPictureInPictureMode, Configuration newConfig) {
+        return false;
     }
 
 
@@ -590,8 +617,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void enterPictureInPictureMode(DelegateActivity delegateActivity) {
-
+    default boolean enterPictureInPictureMode(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -601,7 +628,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setPictureInPictureParams(DelegateActivity delegateActivity, @NonNull PictureInPictureParams params) {
+    default boolean setPictureInPictureParams(DelegateActivity delegateActivity, @NonNull PictureInPictureParams params) {
+        return false;
 
     }
 
@@ -621,8 +649,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onTrimMemory(DelegateActivity delegateActivity, int level) {
-
+    default boolean onTrimMemory(DelegateActivity delegateActivity, int level) {
+        return false;
     }
 
 
@@ -631,8 +659,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onAttachFragment(DelegateActivity delegateActivity, android.app.Fragment fragment) {
-
+    default boolean onAttachFragment(DelegateActivity delegateActivity, android.app.Fragment fragment) {
+        return false;
     }
 
 
@@ -641,8 +669,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setActionBar(DelegateActivity delegateActivity, @Nullable android.widget.Toolbar toolbar) {
-
+    default boolean setActionBar(DelegateActivity delegateActivity, @Nullable android.widget.Toolbar toolbar) {
+        return false;
     }
 
 
@@ -651,8 +679,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setContentTransitionManager(DelegateActivity delegateActivity, TransitionManager tm) {
-
+    default boolean setContentTransitionManager(DelegateActivity delegateActivity, TransitionManager tm) {
+        return false;
     }
 
 
@@ -661,8 +689,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setFinishOnTouchOutside(DelegateActivity delegateActivity, boolean finish) {
-
+    default boolean setFinishOnTouchOutside(DelegateActivity delegateActivity, boolean finish) {
+        return false;
     }
 
 
@@ -701,28 +729,28 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onUserInteraction(DelegateActivity delegateActivity) {
-
+    default boolean onUserInteraction(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onWindowAttributesChanged(DelegateActivity delegateActivity, WindowManager.LayoutParams params) {
-
+    default boolean onWindowAttributesChanged(DelegateActivity delegateActivity, WindowManager.LayoutParams params) {
+        return false;
     }
 
 
-    default void onWindowFocusChanged(DelegateActivity delegateActivity, boolean hasFocus) {
-
+    default boolean onWindowFocusChanged(DelegateActivity delegateActivity, boolean hasFocus) {
+        return false;
     }
 
 
-    default void onAttachedToWindow(DelegateActivity delegateActivity) {
-
+    default boolean onAttachedToWindow(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onDetachedFromWindow(DelegateActivity delegateActivity) {
-
+    default boolean onDetachedFromWindow(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -786,43 +814,43 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onCreateNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
-
+    default boolean onCreateNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
+        return false;
     }
 
 
-    default void onPrepareNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
-
+    default boolean onPrepareNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
+        return false;
     }
 
 
-    default void onOptionsMenuClosed(DelegateActivity delegateActivity, Menu menu) {
-
+    default boolean onOptionsMenuClosed(DelegateActivity delegateActivity, Menu menu) {
+        return false;
     }
 
 
-    default void onCreateContextMenu(DelegateActivity delegateActivity, ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
+    default boolean onCreateContextMenu(DelegateActivity delegateActivity, ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        return false;
     }
 
 
-    default void registerForContextMenu(DelegateActivity delegateActivity, View view) {
-
+    default boolean registerForContextMenu(DelegateActivity delegateActivity, View view) {
+        return false;
     }
 
 
-    default void unregisterForContextMenu(DelegateActivity delegateActivity, View view) {
-
+    default boolean unregisterForContextMenu(DelegateActivity delegateActivity, View view) {
+        return false;
     }
 
 
-    default void openContextMenu(DelegateActivity delegateActivity, View view) {
-
+    default boolean openContextMenu(DelegateActivity delegateActivity, View view) {
+        return false;
     }
 
 
-    default void closeContextMenu(DelegateActivity delegateActivity) {
-
+    default boolean closeContextMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -831,8 +859,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onContextMenuClosed(DelegateActivity delegateActivity, Menu menu) {
-
+    default boolean onContextMenuClosed(DelegateActivity delegateActivity, Menu menu) {
+        return false;
     }
 
 
@@ -846,18 +874,18 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void startSearch(DelegateActivity delegateActivity, @Nullable String initialQuery, boolean selectInitialQuery, @Nullable Bundle appSearchData, boolean globalSearch) {
-
+    default boolean startSearch(DelegateActivity delegateActivity, @Nullable String initialQuery, boolean selectInitialQuery, @Nullable Bundle appSearchData, boolean globalSearch) {
+        return false;
     }
 
 
-    default void triggerSearch(DelegateActivity delegateActivity, String query, @Nullable Bundle appSearchData) {
-
+    default boolean triggerSearch(DelegateActivity delegateActivity, String query, @Nullable Bundle appSearchData) {
+        return false;
     }
 
 
-    default void takeKeyEvents(DelegateActivity delegateActivity, boolean get) {
-
+    default boolean takeKeyEvents(DelegateActivity delegateActivity, boolean get) {
+        return false;
     }
 
 
@@ -866,8 +894,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onApplyThemeResource(DelegateActivity delegateActivity, Resources.Theme theme, int resid, boolean first) {
-
+    default boolean onApplyThemeResource(DelegateActivity delegateActivity, Resources.Theme theme, int resid, boolean first) {
+        return false;
     }
 
 
@@ -881,33 +909,33 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void startActivity(DelegateActivity delegateActivity, Intent intent) {
-
+    default boolean startActivity(DelegateActivity delegateActivity, Intent intent) {
+        return false;
     }
 
 
-    default void startActivity(DelegateActivity delegateActivity, Intent intent, @Nullable Bundle options) {
-
+    default boolean startActivity(DelegateActivity delegateActivity, Intent intent, @Nullable Bundle options) {
+        return false;
     }
 
 
-    default void startActivities(DelegateActivity delegateActivity, Intent[] intents) {
-
+    default boolean startActivities(DelegateActivity delegateActivity, Intent[] intents) {
+        return false;
     }
 
 
-    default void startActivities(DelegateActivity delegateActivity, Intent[] intents, @Nullable Bundle options) {
-
+    default boolean startActivities(DelegateActivity delegateActivity, Intent[] intents, @Nullable Bundle options) {
+        return false;
     }
 
 
-    default void startIntentSender(DelegateActivity delegateActivity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-
+    default boolean startIntentSender(DelegateActivity delegateActivity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+        return false;
     }
 
 
-    default void startIntentSender(DelegateActivity delegateActivity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-
+    default boolean startIntentSender(DelegateActivity delegateActivity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+        return false;
     }
 
 
@@ -931,38 +959,38 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void startActivityFromChild(DelegateActivity delegateActivity, @NonNull Activity child, Intent intent, int requestCode) {
-
+    default boolean startActivityFromChild(DelegateActivity delegateActivity, @NonNull Activity child, Intent intent, int requestCode) {
+        return false;
     }
 
 
-    default void startActivityFromChild(DelegateActivity delegateActivity, @NonNull Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
-
+    default boolean startActivityFromChild(DelegateActivity delegateActivity, @NonNull Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
+        return false;
     }
 
 
-    default void startActivityFromFragment(DelegateActivity delegateActivity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode) {
-
+    default boolean startActivityFromFragment(DelegateActivity delegateActivity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode) {
+        return false;
     }
 
 
-    default void startActivityFromFragment(DelegateActivity delegateActivity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
-
+    default boolean startActivityFromFragment(DelegateActivity delegateActivity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+        return false;
     }
 
 
-    default void startIntentSenderFromChild(DelegateActivity delegateActivity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-
+    default boolean startIntentSenderFromChild(DelegateActivity delegateActivity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+        return false;
     }
 
 
-    default void startIntentSenderFromChild(DelegateActivity delegateActivity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) throws IntentSender.SendIntentException {
-
+    default boolean startIntentSenderFromChild(DelegateActivity delegateActivity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) throws IntentSender.SendIntentException {
+        return false;
     }
 
 
-    default void overridePendingTransition(DelegateActivity delegateActivity, int enterAnim, int exitAnim) {
-
+    default boolean overridePendingTransition(DelegateActivity delegateActivity, int enterAnim, int exitAnim) {
+        return false;
     }
 
     @Nullable
@@ -989,8 +1017,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setVisible(DelegateActivity delegateActivity, boolean visible) {
-
+    default boolean setVisible(DelegateActivity delegateActivity, boolean visible) {
+        return false;
     }
 
 
@@ -1009,43 +1037,43 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void recreate(DelegateActivity delegateActivity) {
-
+    default boolean recreate(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void finish(DelegateActivity delegateActivity) {
-
+    default boolean finish(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void finishAffinity(DelegateActivity delegateActivity) {
-
+    default boolean finishAffinity(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void finishFromChild(DelegateActivity delegateActivity, Activity childActivity) {
-
+    default boolean finishFromChild(DelegateActivity delegateActivity, Activity childActivity) {
+        return false;
     }
 
 
-    default void finishAfterTransition(DelegateActivity delegateActivity) {
-
+    default boolean finishAfterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void finishActivity(DelegateActivity delegateActivity, int requestCode) {
-
+    default boolean finishActivity(DelegateActivity delegateActivity, int requestCode) {
+        return false;
     }
 
 
-    default void finishActivityFromChild(@NonNull DelegateActivity delegateActivity, Activity childActivity, int requestCode) {
-
+    default boolean finishActivityFromChild(DelegateActivity delegateActivity, Activity childActivity, int requestCode) {
+        return false;
     }
 
 
-    default void finishAndRemoveTask(DelegateActivity delegateActivity) {
-
+    default boolean finishAndRemoveTask(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -1054,8 +1082,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onActivityReenter(DelegateActivity delegateActivity, int resultCode, Intent data) {
-
+    default boolean onActivityReenter(DelegateActivity delegateActivity, int resultCode, Intent data) {
+        return false;
     }
 
 
@@ -1064,8 +1092,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setRequestedOrientation(DelegateActivity delegateActivity, int requestedOrientation) {
-
+    default boolean setRequestedOrientation(DelegateActivity delegateActivity, int requestedOrientation) {
+        return false;
     }
 
 
@@ -1109,28 +1137,28 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setTitle(DelegateActivity delegateActivity, CharSequence title) {
-
+    default boolean setTitle(DelegateActivity delegateActivity, CharSequence title) {
+        return false;
     }
 
 
-    default void setTitle(DelegateActivity delegateActivity, int titleId) {
-
+    default boolean setTitle(DelegateActivity delegateActivity, int titleId) {
+        return false;
     }
 
 
-    default void setTitleColor(DelegateActivity delegateActivity, int textColor) {
-
+    default boolean setTitleColor(DelegateActivity delegateActivity, int textColor) {
+        return false;
     }
 
 
-    default void onChildTitleChanged(DelegateActivity delegateActivity, Activity childActivity, CharSequence title) {
-
+    default boolean onChildTitleChanged(DelegateActivity delegateActivity, Activity childActivity, CharSequence title) {
+        return false;
     }
 
 
-    default void setTaskDescription(DelegateActivity delegateActivity, ActivityManager.TaskDescription taskDescription) {
-
+    default boolean setTaskDescription(DelegateActivity delegateActivity, ActivityManager.TaskDescription taskDescription) {
+        return false;
     }
 
 
@@ -1144,23 +1172,23 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onVisibleBehindCanceled(DelegateActivity delegateActivity) {
-
+    default boolean onVisibleBehindCanceled(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void onEnterAnimationComplete(DelegateActivity delegateActivity) {
-
+    default boolean onEnterAnimationComplete(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void setImmersive(DelegateActivity delegateActivity, boolean i) {
-
+    default boolean setImmersive(DelegateActivity delegateActivity, boolean i) {
+        return false;
     }
 
 
-    default void setVrModeEnabled(DelegateActivity delegateActivity, boolean enabled, @NonNull ComponentName requestedComponent) throws PackageManager.NameNotFoundException {
-
+    default boolean setVrModeEnabled(DelegateActivity delegateActivity, boolean enabled, @NonNull ComponentName requestedComponent) throws PackageManager.NameNotFoundException {
+        return false;
     }
 
     @Nullable
@@ -1188,13 +1216,13 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void onActionModeStarted(DelegateActivity delegateActivity, android.view.ActionMode mode) {
-
+    default boolean onActionModeStarted(DelegateActivity delegateActivity, android.view.ActionMode mode) {
+        return false;
     }
 
 
-    default void onActionModeFinished(DelegateActivity delegateActivity, android.view.ActionMode mode) {
-
+    default boolean onActionModeFinished(DelegateActivity delegateActivity, android.view.ActionMode mode) {
+        return false;
     }
 
 
@@ -1219,23 +1247,23 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void setEnterSharedElementCallback(DelegateActivity delegateActivity, android.app.SharedElementCallback callback) {
-
+    default boolean setEnterSharedElementCallback(DelegateActivity delegateActivity, android.app.SharedElementCallback callback) {
+        return false;
     }
 
 
-    default void setExitSharedElementCallback(DelegateActivity delegateActivity, android.app.SharedElementCallback callback) {
-
+    default boolean setExitSharedElementCallback(DelegateActivity delegateActivity, android.app.SharedElementCallback callback) {
+        return false;
     }
 
 
-    default void postponeEnterTransition(DelegateActivity delegateActivity) {
-
+    default boolean postponeEnterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void startPostponedEnterTransition(DelegateActivity delegateActivity) {
-
+    default boolean startPostponedEnterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
@@ -1244,28 +1272,28 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void startLockTask(DelegateActivity delegateActivity) {
-
+    default boolean startLockTask(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void stopLockTask(DelegateActivity delegateActivity) {
-
+    default boolean stopLockTask(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void showLockTaskEscapeMessage(DelegateActivity delegateActivity) {
-
+    default boolean showLockTaskEscapeMessage(DelegateActivity delegateActivity) {
+        return false;
     }
 
 
-    default void attachBaseContext(DelegateActivity delegateActivity, Context baseContext) {
-
+    default boolean attachBaseContext(DelegateActivity delegateActivity, Context baseContext) {
+        return false;
     }
 
 
-    default void applyOverrideConfiguration(DelegateActivity delegateActivity, Configuration overrideConfiguration) {
-
+    default boolean applyOverrideConfiguration(DelegateActivity delegateActivity, Configuration overrideConfiguration) {
+        return false;
     }
 
 
@@ -1464,23 +1492,23 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void sendBroadcast(DelegateActivity delegateActivity, Intent intent) {
-
+    default boolean sendBroadcast(DelegateActivity delegateActivity, Intent intent) {
+        return false;
     }
 
 
-    default void sendBroadcast(DelegateActivity delegateActivity, Intent intent, String receiverPermission) {
-
+    default boolean sendBroadcast(DelegateActivity delegateActivity, Intent intent, String receiverPermission) {
+        return false;
     }
 
 
-    default void sendOrderedBroadcast(DelegateActivity delegateActivity, Intent intent, String receiverPermission) {
-
+    default boolean sendOrderedBroadcast(DelegateActivity delegateActivity, Intent intent, String receiverPermission) {
+        return false;
     }
 
 
-    default void sendOrderedBroadcast(DelegateActivity delegateActivity, Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
-
+    default boolean sendOrderedBroadcast(DelegateActivity delegateActivity, Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+        return false;
     }
 
 
@@ -1504,8 +1532,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void unregisterReceiver(DelegateActivity delegateActivity, BroadcastReceiver receiver) {
-
+    default boolean unregisterReceiver(DelegateActivity delegateActivity, BroadcastReceiver receiver) {
+        return false;
     }
 
 
@@ -1529,8 +1557,8 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void unbindService(DelegateActivity delegateActivity, ServiceConnection conn) {
-
+    default boolean unbindService(DelegateActivity delegateActivity, ServiceConnection conn) {
+        return false;
     }
 
 
@@ -1564,33 +1592,33 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void enforcePermission(DelegateActivity delegateActivity, String permission, int pid, int uid, String message) {
-
+    default boolean enforcePermission(DelegateActivity delegateActivity, String permission, int pid, int uid, String message) {
+        return false;
     }
 
 
-    default void enforceCallingPermission(DelegateActivity delegateActivity, String permission, String message) {
-
+    default boolean enforceCallingPermission(DelegateActivity delegateActivity, String permission, String message) {
+        return false;
     }
 
 
-    default void enforceCallingOrSelfPermission(DelegateActivity delegateActivity, String permission, String message) {
-
+    default boolean enforceCallingOrSelfPermission(DelegateActivity delegateActivity, String permission, String message) {
+        return false;
     }
 
 
-    default void grantUriPermission(DelegateActivity delegateActivity, String toPackage, Uri uri, int modeFlags) {
-
+    default boolean grantUriPermission(DelegateActivity delegateActivity, String toPackage, Uri uri, int modeFlags) {
+        return false;
     }
 
 
-    default void revokeUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags) {
-
+    default boolean revokeUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags) {
+        return false;
     }
 
 
-    default void revokeUriPermission(DelegateActivity delegateActivity, String targetPackage, Uri uri, int modeFlags) {
-
+    default boolean revokeUriPermission(DelegateActivity delegateActivity, String targetPackage, Uri uri, int modeFlags) {
+        return false;
     }
 
 
@@ -1614,23 +1642,23 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void enforceUriPermission(DelegateActivity delegateActivity, Uri uri, int pid, int uid, int modeFlags, String message) {
-
+    default boolean enforceUriPermission(DelegateActivity delegateActivity, Uri uri, int pid, int uid, int modeFlags, String message) {
+        return false;
     }
 
 
-    default void enforceCallingUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags, String message) {
-
+    default boolean enforceCallingUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags, String message) {
+        return false;
     }
 
 
-    default void enforceCallingOrSelfUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags, String message) {
-
+    default boolean enforceCallingOrSelfUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags, String message) {
+        return false;
     }
 
 
-    default void enforceUriPermission(DelegateActivity delegateActivity, Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
-
+    default boolean enforceUriPermission(DelegateActivity delegateActivity, Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
+        return false;
     }
 
 
@@ -1669,18 +1697,18 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
     }
 
 
-    default void registerComponentCallbacks(DelegateActivity delegateActivity, ComponentCallbacks callback) {
-
+    default boolean registerComponentCallbacks(DelegateActivity delegateActivity, ComponentCallbacks callback) {
+        return false;
     }
 
 
-    default void unregisterComponentCallbacks(DelegateActivity delegateActivity, ComponentCallbacks callback) {
-
+    default boolean unregisterComponentCallbacks(DelegateActivity delegateActivity, ComponentCallbacks callback) {
+        return false;
     }
 
 
-    default void onPointerCaptureChanged(DelegateActivity delegateActivity, boolean hasCapture) {
-
+    default boolean onPointerCaptureChanged(DelegateActivity delegateActivity, boolean hasCapture) {
+        return false;
     }
 }
         

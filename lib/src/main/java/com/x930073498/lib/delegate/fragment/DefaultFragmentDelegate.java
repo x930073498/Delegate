@@ -7,7 +7,7 @@ final class DefaultFragmentDelegate implements FragmentDelegate {
     private static final String TAG = "DefaultActivityDelegate";
 
     @Override
-    public void onCreate(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
+    public boolean onCreate(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
         try {
             FragmentDelegate delegate = (FragmentDelegate) getDelegateClass().newInstance();
             delegate.initialized(delegateFragment);
@@ -16,6 +16,7 @@ final class DefaultFragmentDelegate implements FragmentDelegate {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 

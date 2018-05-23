@@ -85,8 +85,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setTheme(int resid) {
+        if (getComponentDelegate() != null && getComponentDelegate().setTheme(this, resid)) return;
         super.setTheme(resid);
-        if (getComponentDelegate() != null) getComponentDelegate().setTheme(this, resid);
     }
 
     @Nullable
@@ -98,8 +98,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setSupportActionBar(@Nullable Toolbar toolbar) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setSupportActionBar(this, toolbar);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setSupportActionBar(this, toolbar)) return;
         super.setSupportActionBar(toolbar);
     }
 
@@ -112,35 +112,36 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setContentView(int layoutResID) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setContentView(this, layoutResID);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setContentView(this, layoutResID)) return;
         super.setContentView(layoutResID);
     }
 
     @Override
     public final void setContentView(View view) {
-        if (getComponentDelegate() != null) getComponentDelegate().setContentView(this, view);
+        if (getComponentDelegate() != null && getComponentDelegate().setContentView(this, view))
+            return;
         super.setContentView(view);
     }
 
     @Override
     public final void setContentView(View view, ViewGroup.LayoutParams params) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setContentView(this, view, params);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setContentView(this, view, params)) return;
         super.setContentView(view, params);
     }
 
     @Override
     public final void addContentView(View view, ViewGroup.LayoutParams params) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().addContentView(this, view, params);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().addContentView(this, view, params)) return;
         super.addContentView(view, params);
     }
 
     @Override
     public final void onConfigurationChanged(Configuration newConfig) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onConfigurationChanged(this, newConfig);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onConfigurationChanged(this, newConfig)) return;
         super.onConfigurationChanged(newConfig);
     }
 
@@ -158,37 +159,37 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void supportInvalidateOptionsMenu() {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().supportInvalidateOptionsMenu(this);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().supportInvalidateOptionsMenu(this)) return;
         super.supportInvalidateOptionsMenu();
     }
 
     @Override
     public final void invalidateOptionsMenu() {
-        if (getComponentDelegate() != null) getComponentDelegate().invalidateOptionsMenu(this);
+        if (getComponentDelegate() != null && getComponentDelegate().invalidateOptionsMenu(this))
+            return;
         super.invalidateOptionsMenu();
     }
 
     @Override
     public final void onSupportActionModeStarted(@NonNull ActionMode mode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onSupportActionModeStarted(this, mode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onSupportActionModeStarted(this, mode)) return;
         super.onSupportActionModeStarted(mode);
     }
 
     @Override
     public final void onSupportActionModeFinished(@NonNull ActionMode mode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onSupportActionModeFinished(this, mode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onSupportActionModeFinished(this, mode)) return;
         super.onSupportActionModeFinished(mode);
     }
 
     @Nullable
     @Override
     public final ActionMode onWindowStartingSupportActionMode(@NonNull ActionMode.Callback callback) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onWindowStartingSupportActionMode(this, callback);
-        return super.onWindowStartingSupportActionMode(callback);
+        ActionMode mode = getComponentDelegate() == null ? null : getComponentDelegate().onWindowStartingSupportActionMode(this, callback);
+        return mode == null ? super.onWindowStartingSupportActionMode(callback) : mode;
     }
 
     @Nullable
@@ -201,15 +202,15 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onCreateSupportNavigateUpTaskStack(@NonNull TaskStackBuilder builder) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onCreateSupportNavigateUpTaskStack(this, builder);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onCreateSupportNavigateUpTaskStack(this, builder)) return;
         super.onCreateSupportNavigateUpTaskStack(builder);
     }
 
     @Override
     public final void onPrepareSupportNavigateUpTaskStack(@NonNull TaskStackBuilder builder) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onPrepareSupportNavigateUpTaskStack(this, builder);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onPrepareSupportNavigateUpTaskStack(this, builder)) return;
         super.onPrepareSupportNavigateUpTaskStack(builder);
     }
 
@@ -234,14 +235,14 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void supportNavigateUpTo(@NonNull Intent upIntent) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().supportNavigateUpTo(this, upIntent);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().supportNavigateUpTo(this, upIntent)) return;
         super.supportNavigateUpTo(upIntent);
     }
 
     @Override
     public final void onContentChanged() {
-        if (getComponentDelegate() != null) getComponentDelegate().onContentChanged(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onContentChanged(this)) return;
         super.onContentChanged();
     }
 
@@ -261,8 +262,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onPanelClosed(int featureId, Menu menu) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onPanelClosed(this, featureId, menu);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onPanelClosed(this, featureId, menu)) return;
         super.onPanelClosed(featureId, menu);
     }
 
@@ -293,13 +294,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void openOptionsMenu() {
-        if (getComponentDelegate() != null) getComponentDelegate().openOptionsMenu(this);
+        if (getComponentDelegate() != null && getComponentDelegate().openOptionsMenu(this)) return;
         super.openOptionsMenu();
     }
 
     @Override
     public final void closeOptionsMenu() {
-        if (getComponentDelegate() != null) getComponentDelegate().closeOptionsMenu(this);
+        if (getComponentDelegate() != null && getComponentDelegate().closeOptionsMenu(this)) return;
         super.closeOptionsMenu();
     }
 
@@ -317,76 +318,76 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void supportFinishAfterTransition() {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().supportFinishAfterTransition(this);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().supportFinishAfterTransition(this)) return;
         super.supportFinishAfterTransition();
     }
 
     @Override
     public final void setEnterSharedElementCallback(SharedElementCallback callback) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setEnterSharedElementCallback(this, callback);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setEnterSharedElementCallback(this, callback)) return;
         super.setEnterSharedElementCallback(callback);
     }
 
     @Override
     public final void setExitSharedElementCallback(SharedElementCallback listener) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setExitSharedElementCallback(this, listener);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setExitSharedElementCallback(this, listener)) return;
         super.setExitSharedElementCallback(listener);
     }
 
     @Override
     public final void supportPostponeEnterTransition() {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().supportPostponeEnterTransition(this);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().supportPostponeEnterTransition(this)) return;
         super.supportPostponeEnterTransition();
     }
 
     @Override
     public final void supportStartPostponedEnterTransition() {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().supportStartPostponedEnterTransition(this);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().supportStartPostponedEnterTransition(this)) return;
         super.supportStartPostponedEnterTransition();
     }
 
     @Override
     public final void onMultiWindowModeChanged(boolean isInMultiWindowMode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onMultiWindowModeChanged(this, isInMultiWindowMode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onMultiWindowModeChanged(this, isInMultiWindowMode)) return;
         super.onMultiWindowModeChanged(isInMultiWindowMode);
     }
 
     @Override
     public final void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onPictureInPictureModeChanged(this, isInPictureInPictureMode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onPictureInPictureModeChanged(this, isInPictureInPictureMode))
+            return;
         super.onPictureInPictureModeChanged(isInPictureInPictureMode);
     }
 
     @NonNull
     @Override
     public final Lifecycle getLifecycle() {
-        if (getComponentDelegate() != null) getComponentDelegate().getLifecycle(this);
-        return super.getLifecycle();
+        Lifecycle lifecycle = getComponentDelegate() == null ? null : getComponentDelegate().getLifecycle(this);
+        return lifecycle == null ? super.getLifecycle() : lifecycle;
     }
 
     @Override
     public final boolean onCreatePanelMenu(int featureId, Menu menu) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onCreatePanelMenu(this, featureId, menu);
-        return super.onCreatePanelMenu(featureId, menu);
+        Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().onCreatePanelMenu(this, featureId, menu);
+        return aBoolean == null ? super.onCreatePanelMenu(featureId, menu) : aBoolean;
     }
 
     @Override
     public final void onLowMemory() {
-        if (getComponentDelegate() != null) getComponentDelegate().onLowMemory(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onLowMemory(this)) return;
         super.onLowMemory();
     }
 
     @Override
     public final void onStateNotSaved() {
-        if (getComponentDelegate() != null) getComponentDelegate().onStateNotSaved(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onStateNotSaved(this)) return;
         super.onStateNotSaved();
     }
 
@@ -411,14 +412,16 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().dump(this, prefix, fd, writer, args);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().dump(this, prefix, fd, writer, args)) return;
         super.dump(prefix, fd, writer, args);
     }
 
     @Override
     public final void onAttachFragment(Fragment fragment) {
-        if (getComponentDelegate() != null) getComponentDelegate().onAttachFragment(this, fragment);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().onAttachFragment(this, fragment))
+            return;
         super.onAttachFragment(fragment);
     }
 
@@ -436,36 +439,40 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void startActivityForResult(Intent intent, int requestCode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivityForResult(this, intent, requestCode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivityForResult(this, intent, requestCode)) return;
         super.startActivityForResult(intent, requestCode);
     }
 
     @Override
     public final void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onRequestPermissionsResult(this, requestCode, permissions, grantResults))
+            return;
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
     public final void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivityFromFragment(this, fragment, intent, requestCode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivityFromFragment(this, fragment, intent, requestCode))
+            return;
         super.startActivityFromFragment(fragment, intent, requestCode);
     }
 
     @Override
     public final void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivityFromFragment(this, fragment, intent, requestCode, options);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivityFromFragment(this, fragment, intent, requestCode, options))
+            return;
         super.startActivityFromFragment(fragment, intent, requestCode, options);
     }
 
     @Override
     public final void startIntentSenderFromFragment(Fragment fragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startIntentSenderFromFragment(this, fragment, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startIntentSenderFromFragment(this, fragment, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options))
+            return;
         super.startIntentSenderFromFragment(fragment, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
     }
 
@@ -483,8 +490,9 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void startIntentSenderForResult(IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startIntentSenderForResult(this, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startIntentSenderForResult(this, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags))
+            return;
         super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
     }
 
@@ -497,7 +505,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setIntent(Intent newIntent) {
-        if (getComponentDelegate() != null) getComponentDelegate().setIntent(this, newIntent);
+        if (getComponentDelegate() != null && getComponentDelegate().setIntent(this, newIntent))
+            return;
         super.setIntent(newIntent);
     }
 
@@ -528,22 +537,24 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onCreate(this, savedInstanceState, persistentState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onCreate(this, savedInstanceState, persistentState)) return;
         super.onCreate(savedInstanceState, persistentState);
     }
 
     @Override
     public final void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onRestoreInstanceState(this, savedInstanceState, persistentState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onRestoreInstanceState(this, savedInstanceState, persistentState))
+            return;
         super.onRestoreInstanceState(savedInstanceState, persistentState);
     }
 
     @Override
     public final void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onPostCreate(this, savedInstanceState, persistentState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onPostCreate(this, savedInstanceState, persistentState))
+            return;
         super.onPostCreate(savedInstanceState, persistentState);
     }
 
@@ -573,35 +584,38 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void startLocalVoiceInteraction(Bundle privateOptions) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startLocalVoiceInteraction(this, privateOptions);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startLocalVoiceInteraction(this, privateOptions)) return;
         super.startLocalVoiceInteraction(privateOptions);
     }
 
     @Override
     public final void onLocalVoiceInteractionStarted() {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onLocalVoiceInteractionStarted(this);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onLocalVoiceInteractionStarted(this)) return;
         super.onLocalVoiceInteractionStarted();
     }
 
     @Override
     public final void onLocalVoiceInteractionStopped() {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onLocalVoiceInteractionStopped(this);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onLocalVoiceInteractionStopped(this)) return;
         super.onLocalVoiceInteractionStopped();
     }
 
     @Override
     public final void stopLocalVoiceInteraction() {
-        if (getComponentDelegate() != null) getComponentDelegate().stopLocalVoiceInteraction(this);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().stopLocalVoiceInteraction(this))
+            return;
         super.stopLocalVoiceInteraction();
     }
 
     @Override
     public final void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onSaveInstanceState(this, outState, outPersistentState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onSaveInstanceState(this, outState, outPersistentState))
+            return;
         super.onSaveInstanceState(outState, outPersistentState);
     }
 
@@ -620,21 +634,24 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onProvideAssistData(Bundle data) {
-        if (getComponentDelegate() != null) getComponentDelegate().onProvideAssistData(this, data);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().onProvideAssistData(this, data))
+            return;
         super.onProvideAssistData(data);
     }
 
     @Override
     public final void onProvideAssistContent(AssistContent outContent) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onProvideAssistContent(this, outContent);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onProvideAssistContent(this, outContent)) return;
         super.onProvideAssistContent(outContent);
     }
 
     @Override
     public final void onProvideKeyboardShortcuts(List<KeyboardShortcutGroup> data, Menu menu, int deviceId) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onProvideKeyboardShortcuts(this, data, menu, deviceId);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onProvideKeyboardShortcuts(this, data, menu, deviceId))
+            return;
         super.onProvideKeyboardShortcuts(data, menu, deviceId);
     }
 
@@ -646,14 +663,15 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void reportFullyDrawn() {
-        if (getComponentDelegate() != null) getComponentDelegate().reportFullyDrawn(this);
+        if (getComponentDelegate() != null && getComponentDelegate().reportFullyDrawn(this)) return;
         super.reportFullyDrawn();
     }
 
     @Override
     public final void onMultiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onMultiWindowModeChanged(this, isInMultiWindowMode, newConfig);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onMultiWindowModeChanged(this, isInMultiWindowMode, newConfig))
+            return;
         super.onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
     }
 
@@ -665,8 +683,9 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onPictureInPictureModeChanged(this, isInPictureInPictureMode, newConfig);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onPictureInPictureModeChanged(this, isInPictureInPictureMode, newConfig))
+            return;
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
     }
 
@@ -678,7 +697,9 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void enterPictureInPictureMode() {
-        if (getComponentDelegate() != null) getComponentDelegate().enterPictureInPictureMode(this);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().enterPictureInPictureMode(this))
+            return;
         super.enterPictureInPictureMode();
     }
 
@@ -690,8 +711,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setPictureInPictureParams(@NonNull PictureInPictureParams params) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setPictureInPictureParams(this, params);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setPictureInPictureParams(this, params)) return;
         super.setPictureInPictureParams(params);
     }
 
@@ -716,7 +737,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onTrimMemory(int level) {
-        if (getComponentDelegate() != null) getComponentDelegate().onTrimMemory(this, level);
+        if (getComponentDelegate() != null && getComponentDelegate().onTrimMemory(this, level))
+            return;
         super.onTrimMemory(level);
     }
 
@@ -728,7 +750,9 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onAttachFragment(android.app.Fragment fragment) {
-        if (getComponentDelegate() != null) getComponentDelegate().onAttachFragment(this, fragment);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().onAttachFragment(this, fragment))
+            return;
         super.onAttachFragment(fragment);
     }
 
@@ -742,7 +766,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setActionBar(@Nullable android.widget.Toolbar toolbar) {
-        if (getComponentDelegate() != null) getComponentDelegate().setActionBar(this, toolbar);
+        if (getComponentDelegate() != null && getComponentDelegate().setActionBar(this, toolbar))
+            return;
         super.setActionBar(toolbar);
     }
 
@@ -754,8 +779,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setContentTransitionManager(TransitionManager tm) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setContentTransitionManager(this, tm);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setContentTransitionManager(this, tm)) return;
         super.setContentTransitionManager(tm);
     }
 
@@ -767,8 +792,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setFinishOnTouchOutside(boolean finish) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setFinishOnTouchOutside(this, finish);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setFinishOnTouchOutside(this, finish)) return;
         super.setFinishOnTouchOutside(finish);
     }
 
@@ -816,33 +841,36 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onUserInteraction() {
-        if (getComponentDelegate() != null) getComponentDelegate().onUserInteraction(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onUserInteraction(this))
+            return;
         super.onUserInteraction();
     }
 
     @Override
     public final void onWindowAttributesChanged(WindowManager.LayoutParams params) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onWindowAttributesChanged(this, params);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onWindowAttributesChanged(this, params)) return;
         super.onWindowAttributesChanged(params);
     }
 
     @Override
     public final void onWindowFocusChanged(boolean hasFocus) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onWindowFocusChanged(this, hasFocus);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onWindowFocusChanged(this, hasFocus)) return;
         super.onWindowFocusChanged(hasFocus);
     }
 
     @Override
     public final void onAttachedToWindow() {
-        if (getComponentDelegate() != null) getComponentDelegate().onAttachedToWindow(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onAttachedToWindow(this))
+            return;
         super.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        if (getComponentDelegate() != null) getComponentDelegate().onDetachedFromWindow(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onDetachedFromWindow(this))
+            return;
         super.onDetachedFromWindow();
     }
 
@@ -921,54 +949,57 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onCreateNavigateUpTaskStack(android.app.TaskStackBuilder builder) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onCreateNavigateUpTaskStack(this, builder);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onCreateNavigateUpTaskStack(this, builder)) return;
         super.onCreateNavigateUpTaskStack(builder);
     }
 
     @Override
     public final void onPrepareNavigateUpTaskStack(android.app.TaskStackBuilder builder) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onPrepareNavigateUpTaskStack(this, builder);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onPrepareNavigateUpTaskStack(this, builder)) return;
         super.onPrepareNavigateUpTaskStack(builder);
     }
 
     @Override
     public final void onOptionsMenuClosed(Menu menu) {
-        if (getComponentDelegate() != null) getComponentDelegate().onOptionsMenuClosed(this, menu);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().onOptionsMenuClosed(this, menu))
+            return;
         super.onOptionsMenuClosed(menu);
     }
 
     @Override
     public final void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onCreateContextMenu(this, menu, v, menuInfo);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onCreateContextMenu(this, menu, v, menuInfo)) return;
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     @Override
     public final void registerForContextMenu(View view) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().registerForContextMenu(this, view);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().registerForContextMenu(this, view)) return;
         super.registerForContextMenu(view);
     }
 
     @Override
     public final void unregisterForContextMenu(View view) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().unregisterForContextMenu(this, view);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().unregisterForContextMenu(this, view)) return;
         super.unregisterForContextMenu(view);
     }
 
     @Override
     public final void openContextMenu(View view) {
-        if (getComponentDelegate() != null) getComponentDelegate().openContextMenu(this, view);
+        if (getComponentDelegate() != null && getComponentDelegate().openContextMenu(this, view))
+            return;
         super.openContextMenu(view);
     }
 
     @Override
     public final void closeContextMenu() {
-        if (getComponentDelegate() != null) getComponentDelegate().closeContextMenu(this);
+        if (getComponentDelegate() != null && getComponentDelegate().closeContextMenu(this)) return;
         super.closeContextMenu();
     }
 
@@ -980,7 +1011,9 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onContextMenuClosed(Menu menu) {
-        if (getComponentDelegate() != null) getComponentDelegate().onContextMenuClosed(this, menu);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().onContextMenuClosed(this, menu))
+            return;
         super.onContextMenuClosed(menu);
     }
 
@@ -999,21 +1032,23 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void startSearch(@Nullable String initialQuery, boolean selectInitialQuery, @Nullable Bundle appSearchData, boolean globalSearch) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startSearch(this, initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startSearch(this, initialQuery, selectInitialQuery, appSearchData, globalSearch))
+            return;
         super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
     }
 
     @Override
     public final void triggerSearch(String query, @Nullable Bundle appSearchData) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().triggerSearch(this, query, appSearchData);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().triggerSearch(this, query, appSearchData)) return;
         super.triggerSearch(query, appSearchData);
     }
 
     @Override
     public final void takeKeyEvents(boolean get) {
-        if (getComponentDelegate() != null) getComponentDelegate().takeKeyEvents(this, get);
+        if (getComponentDelegate() != null && getComponentDelegate().takeKeyEvents(this, get))
+            return;
         super.takeKeyEvents(get);
     }
 
@@ -1038,41 +1073,46 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void startActivity(Intent intent) {
-        if (getComponentDelegate() != null) getComponentDelegate().startActivity(this, intent);
+        if (getComponentDelegate() != null && getComponentDelegate().startActivity(this, intent))
+            return;
         super.startActivity(intent);
     }
 
     @Override
     public final void startActivity(Intent intent, @Nullable Bundle options) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivity(this, intent, options);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivity(this, intent, options)) return;
         super.startActivity(intent, options);
     }
 
     @Override
     public final void startActivities(Intent[] intents) {
-        if (getComponentDelegate() != null) getComponentDelegate().startActivities(this, intents);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().startActivities(this, intents))
+            return;
         super.startActivities(intents);
     }
 
     @Override
     public final void startActivities(Intent[] intents, @Nullable Bundle options) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivities(this, intents, options);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivities(this, intents, options)) return;
         super.startActivities(intents, options);
     }
 
     @Override
     public final void startIntentSender(IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startIntentSender(this, intent, fillInIntent, flagsMask, flagsValues, extraFlags);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startIntentSender(this, intent, fillInIntent, flagsMask, flagsValues, extraFlags))
+            return;
         super.startIntentSender(intent, fillInIntent, flagsMask, flagsValues, extraFlags);
     }
 
     @Override
     public final void startIntentSender(IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startIntentSender(this, intent, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startIntentSender(this, intent, fillInIntent, flagsMask, flagsValues, extraFlags, options))
+            return;
         super.startIntentSender(intent, fillInIntent, flagsMask, flagsValues, extraFlags, options);
     }
 
@@ -1102,50 +1142,56 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void startActivityFromChild(@NonNull Activity child, Intent intent, int requestCode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivityFromChild(this, child, intent, requestCode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivityFromChild(this, child, intent, requestCode))
+            return;
         super.startActivityFromChild(child, intent, requestCode);
     }
 
     @Override
     public final void startActivityFromChild(@NonNull Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivityFromChild(this, child, intent, requestCode, options);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivityFromChild(this, child, intent, requestCode, options))
+            return;
         super.startActivityFromChild(child, intent, requestCode, options);
     }
 
     @Override
     public final void startActivityFromFragment(@NonNull android.app.Fragment fragment, Intent intent, int requestCode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivityFromFragment(this, fragment, intent, requestCode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivityFromFragment(this, fragment, intent, requestCode))
+            return;
         super.startActivityFromFragment(fragment, intent, requestCode);
     }
 
     @Override
     public final void startActivityFromFragment(@NonNull android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startActivityFromFragment(this, fragment, intent, requestCode, options);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startActivityFromFragment(this, fragment, intent, requestCode, options))
+            return;
         super.startActivityFromFragment(fragment, intent, requestCode, options);
     }
 
     @Override
     public final void startIntentSenderFromChild(Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startIntentSenderFromChild(this, child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startIntentSenderFromChild(this, child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags))
+            return;
         super.startIntentSenderFromChild(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
     }
 
     @Override
     public final void startIntentSenderFromChild(Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) throws IntentSender.SendIntentException {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startIntentSenderFromChild(this, child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startIntentSenderFromChild(this, child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options))
+            return;
         super.startIntentSenderFromChild(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
     }
 
     @Override
     public final void overridePendingTransition(int enterAnim, int exitAnim) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().overridePendingTransition(this, enterAnim, exitAnim);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().overridePendingTransition(this, enterAnim, exitAnim)) return;
         super.overridePendingTransition(enterAnim, exitAnim);
     }
 
@@ -1178,7 +1224,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setVisible(boolean visible) {
-        if (getComponentDelegate() != null) getComponentDelegate().setVisible(this, visible);
+        if (getComponentDelegate() != null && getComponentDelegate().setVisible(this, visible))
+            return;
         super.setVisible(visible);
     }
 
@@ -1202,51 +1249,54 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void recreate() {
-        if (getComponentDelegate() != null) getComponentDelegate().recreate(this);
+        if (getComponentDelegate() != null && getComponentDelegate().recreate(this)) return;
         super.recreate();
     }
 
     @Override
     public final void finish() {
-        if (getComponentDelegate() != null) getComponentDelegate().finish(this);
+        if (getComponentDelegate() != null && getComponentDelegate().finish(this)) return;
         super.finish();
     }
 
     @Override
     public final void finishAffinity() {
-        if (getComponentDelegate() != null) getComponentDelegate().finishAffinity(this);
+        if (getComponentDelegate() != null && getComponentDelegate().finishAffinity(this)) return;
         super.finishAffinity();
     }
 
     @Override
     public final void finishFromChild(Activity child) {
-        if (getComponentDelegate() != null) getComponentDelegate().finishFromChild(this, child);
+        if (getComponentDelegate() != null && getComponentDelegate().finishFromChild(this, child))
+            return;
         super.finishFromChild(child);
     }
 
     @Override
     public final void finishAfterTransition() {
-        if (getComponentDelegate() != null) getComponentDelegate().finishAfterTransition(this);
+        if (getComponentDelegate() != null && getComponentDelegate().finishAfterTransition(this))
+            return;
         super.finishAfterTransition();
     }
 
     @Override
     public final void finishActivity(int requestCode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().finishActivity(this, requestCode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().finishActivity(this, requestCode)) return;
         super.finishActivity(requestCode);
     }
 
     @Override
     public final void finishActivityFromChild(@NonNull Activity child, int requestCode) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().finishActivityFromChild(this, child, requestCode);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().finishActivityFromChild(this, child, requestCode)) return;
         super.finishActivityFromChild(child, requestCode);
     }
 
     @Override
     public final void finishAndRemoveTask() {
-        if (getComponentDelegate() != null) getComponentDelegate().finishAndRemoveTask(this);
+        if (getComponentDelegate() != null && getComponentDelegate().finishAndRemoveTask(this))
+            return;
         super.finishAndRemoveTask();
     }
 
@@ -1258,8 +1308,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onActivityReenter(int resultCode, Intent data) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onActivityReenter(this, resultCode, data);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onActivityReenter(this, resultCode, data)) return;
         super.onActivityReenter(resultCode, data);
     }
 
@@ -1271,8 +1321,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setRequestedOrientation(int requestedOrientation) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setRequestedOrientation(this, requestedOrientation);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setRequestedOrientation(this, requestedOrientation)) return;
         super.setRequestedOrientation(requestedOrientation);
     }
 
@@ -1327,26 +1377,29 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setTitle(CharSequence title) {
-        if (getComponentDelegate() != null) getComponentDelegate().setTitle(this, title);
+        if (getComponentDelegate() != null && getComponentDelegate().setTitle(this, title)) return;
         super.setTitle(title);
     }
 
     @Override
     public final void setTitle(int titleId) {
-        if (getComponentDelegate() != null) getComponentDelegate().setTitle(this, titleId);
+        if (getComponentDelegate() != null && getComponentDelegate().setTitle(this, titleId))
+            return;
         super.setTitle(titleId);
     }
 
     @Override
     public final void setTitleColor(int textColor) {
-        if (getComponentDelegate() != null) getComponentDelegate().setTitleColor(this, textColor);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().setTitleColor(this, textColor))
+            return;
         super.setTitleColor(textColor);
     }
 
     @Override
     public final void setTaskDescription(ActivityManager.TaskDescription taskDescription) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setTaskDescription(this, taskDescription);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setTaskDescription(this, taskDescription)) return;
         super.setTaskDescription(taskDescription);
     }
 
@@ -1364,26 +1417,29 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onVisibleBehindCanceled() {
-        if (getComponentDelegate() != null) getComponentDelegate().onVisibleBehindCanceled(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onVisibleBehindCanceled(this))
+            return;
         super.onVisibleBehindCanceled();
     }
 
     @Override
     public final void onEnterAnimationComplete() {
-        if (getComponentDelegate() != null) getComponentDelegate().onEnterAnimationComplete(this);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().onEnterAnimationComplete(this))
+            return;
         super.onEnterAnimationComplete();
     }
 
     @Override
     public final void setImmersive(boolean i) {
-        if (getComponentDelegate() != null) getComponentDelegate().setImmersive(this, i);
+        if (getComponentDelegate() != null && getComponentDelegate().setImmersive(this, i)) return;
         super.setImmersive(i);
     }
 
     @Override
     public final void setVrModeEnabled(boolean enabled, @NonNull ComponentName requestedComponent) throws PackageManager.NameNotFoundException {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setVrModeEnabled(this, enabled, requestedComponent);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setVrModeEnabled(this, enabled, requestedComponent)) return;
         super.setVrModeEnabled(enabled, requestedComponent);
     }
 
@@ -1417,13 +1473,17 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void onActionModeStarted(android.view.ActionMode mode) {
-        if (getComponentDelegate() != null) getComponentDelegate().onActionModeStarted(this, mode);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().onActionModeStarted(this, mode))
+            return;
         super.onActionModeStarted(mode);
     }
 
     @Override
     public final void onActionModeFinished(android.view.ActionMode mode) {
-        if (getComponentDelegate() != null) getComponentDelegate().onActionModeFinished(this, mode);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().onActionModeFinished(this, mode))
+            return;
         super.onActionModeFinished(mode);
     }
 
@@ -1454,28 +1514,29 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void setEnterSharedElementCallback(android.app.SharedElementCallback callback) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setEnterSharedElementCallback(this, callback);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setEnterSharedElementCallback(this, callback)) return;
         super.setEnterSharedElementCallback(callback);
     }
 
     @Override
     public final void setExitSharedElementCallback(android.app.SharedElementCallback callback) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().setExitSharedElementCallback(this, callback);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().setExitSharedElementCallback(this, callback)) return;
         super.setExitSharedElementCallback(callback);
     }
 
     @Override
     public final void postponeEnterTransition() {
-        if (getComponentDelegate() != null) getComponentDelegate().postponeEnterTransition(this);
+        if (getComponentDelegate() != null && getComponentDelegate().postponeEnterTransition(this))
+            return;
         super.postponeEnterTransition();
     }
 
     @Override
     public final void startPostponedEnterTransition() {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().startPostponedEnterTransition(this);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().startPostponedEnterTransition(this)) return;
         super.startPostponedEnterTransition();
     }
 
@@ -1487,26 +1548,29 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void startLockTask() {
-        if (getComponentDelegate() != null) getComponentDelegate().startLockTask(this);
+        if (getComponentDelegate() != null && getComponentDelegate().startLockTask(this)) return;
         super.startLockTask();
     }
 
     @Override
     public final void stopLockTask() {
-        if (getComponentDelegate() != null) getComponentDelegate().stopLockTask(this);
+        if (getComponentDelegate() != null && getComponentDelegate().stopLockTask(this)) return;
         super.stopLockTask();
     }
 
     @Override
     public final void showLockTaskEscapeMessage() {
-        if (getComponentDelegate() != null) getComponentDelegate().showLockTaskEscapeMessage(this);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().showLockTaskEscapeMessage(this))
+            return;
         super.showLockTaskEscapeMessage();
     }
 
     @Override
     public final void applyOverrideConfiguration(Configuration overrideConfiguration) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().applyOverrideConfiguration(this, overrideConfiguration);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().applyOverrideConfiguration(this, overrideConfiguration))
+            return;
         super.applyOverrideConfiguration(overrideConfiguration);
     }
 
@@ -1747,28 +1811,31 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void sendBroadcast(Intent intent) {
-        if (getComponentDelegate() != null) getComponentDelegate().sendBroadcast(this, intent);
+        if (getComponentDelegate() != null && getComponentDelegate().sendBroadcast(this, intent))
+            return;
         super.sendBroadcast(intent);
     }
 
     @Override
     public final void sendBroadcast(Intent intent, String receiverPermission) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().sendBroadcast(this, intent, receiverPermission);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().sendBroadcast(this, intent, receiverPermission)) return;
         super.sendBroadcast(intent, receiverPermission);
     }
 
     @Override
     public final void sendOrderedBroadcast(Intent intent, String receiverPermission) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().sendOrderedBroadcast(this, intent, receiverPermission);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().sendOrderedBroadcast(this, intent, receiverPermission))
+            return;
         super.sendOrderedBroadcast(intent, receiverPermission);
     }
 
     @Override
     public final void sendOrderedBroadcast(Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().sendOrderedBroadcast(this, intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().sendOrderedBroadcast(this, intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras))
+            return;
         super.sendOrderedBroadcast(intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras);
     }
 
@@ -1799,8 +1866,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void unregisterReceiver(BroadcastReceiver receiver) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().unregisterReceiver(this, receiver);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().unregisterReceiver(this, receiver)) return;
         super.unregisterReceiver(receiver);
     }
 
@@ -1830,7 +1897,8 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void unbindService(ServiceConnection conn) {
-        if (getComponentDelegate() != null) getComponentDelegate().unbindService(this, conn);
+        if (getComponentDelegate() != null && getComponentDelegate().unbindService(this, conn))
+            return;
         super.unbindService(conn);
     }
 
@@ -1872,43 +1940,46 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void enforcePermission(String permission, int pid, int uid, String message) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().enforcePermission(this, permission, pid, uid, message);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().enforcePermission(this, permission, pid, uid, message))
+            return;
         super.enforcePermission(permission, pid, uid, message);
     }
 
     @Override
     public final void enforceCallingPermission(String permission, String message) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().enforceCallingPermission(this, permission, message);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().enforceCallingPermission(this, permission, message)) return;
         super.enforceCallingPermission(permission, message);
     }
 
     @Override
     public final void enforceCallingOrSelfPermission(String permission, String message) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().enforceCallingOrSelfPermission(this, permission, message);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().enforceCallingOrSelfPermission(this, permission, message))
+            return;
         super.enforceCallingOrSelfPermission(permission, message);
     }
 
     @Override
     public final void grantUriPermission(String toPackage, Uri uri, int modeFlags) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().grantUriPermission(this, toPackage, uri, modeFlags);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().grantUriPermission(this, toPackage, uri, modeFlags)) return;
         super.grantUriPermission(toPackage, uri, modeFlags);
     }
 
     @Override
     public final void revokeUriPermission(Uri uri, int modeFlags) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().revokeUriPermission(this, uri, modeFlags);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().revokeUriPermission(this, uri, modeFlags)) return;
         super.revokeUriPermission(uri, modeFlags);
     }
 
     @Override
     public final void revokeUriPermission(String targetPackage, Uri uri, int modeFlags) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().revokeUriPermission(this, targetPackage, uri, modeFlags);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().revokeUriPermission(this, targetPackage, uri, modeFlags))
+            return;
         super.revokeUriPermission(targetPackage, uri, modeFlags);
     }
 
@@ -1938,29 +2009,33 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void enforceUriPermission(Uri uri, int pid, int uid, int modeFlags, String message) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().enforceUriPermission(this, uri, pid, uid, modeFlags, message);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().enforceUriPermission(this, uri, pid, uid, modeFlags, message))
+            return;
         super.enforceUriPermission(uri, pid, uid, modeFlags, message);
     }
 
     @Override
     public final void enforceCallingUriPermission(Uri uri, int modeFlags, String message) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().enforceCallingUriPermission(this, uri, modeFlags, message);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().enforceCallingUriPermission(this, uri, modeFlags, message))
+            return;
         super.enforceCallingUriPermission(uri, modeFlags, message);
     }
 
     @Override
     public final void enforceCallingOrSelfUriPermission(Uri uri, int modeFlags, String message) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().enforceCallingOrSelfUriPermission(this, uri, modeFlags, message);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().enforceCallingOrSelfUriPermission(this, uri, modeFlags, message))
+            return;
         super.enforceCallingOrSelfUriPermission(uri, modeFlags, message);
     }
 
     @Override
     public final void enforceUriPermission(Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().enforceUriPermission(this, uri, readPermission, writePermission, pid, uid, modeFlags, message);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().enforceUriPermission(this, uri, readPermission, writePermission, pid, uid, modeFlags, message))
+            return;
         super.enforceUriPermission(uri, readPermission, writePermission, pid, uid, modeFlags, message);
     }
 
@@ -2008,145 +2083,150 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     @Override
     public final void registerComponentCallbacks(ComponentCallbacks callback) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().registerComponentCallbacks(this, callback);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().registerComponentCallbacks(this, callback)) return;
         super.registerComponentCallbacks(callback);
     }
 
     @Override
     public final void unregisterComponentCallbacks(ComponentCallbacks callback) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().unregisterComponentCallbacks(this, callback);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().unregisterComponentCallbacks(this, callback)) return;
         super.unregisterComponentCallbacks(callback);
     }
 
     @Override
     public final void onPointerCaptureChanged(boolean hasCapture) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onPointerCaptureChanged(this, hasCapture);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onPointerCaptureChanged(this, hasCapture)) return;
         super.onPointerCaptureChanged(hasCapture);
     }
 
 
     @Override
     public final void onCreate(@Nullable Bundle savedInstanceState) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onCreate(this, savedInstanceState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onCreate(this, savedInstanceState)) return;
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public final void onPostCreate(@Nullable Bundle savedInstanceState) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onPostCreate(this, savedInstanceState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onPostCreate(this, savedInstanceState)) return;
         super.onPostCreate(savedInstanceState);
     }
 
     @Override
     public final void onPostResume() {
-        if (getComponentDelegate() != null) getComponentDelegate().onPostResume(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onPostResume(this)) return;
         super.onPostResume();
     }
 
     @Override
     public final void onStart() {
-        if (getComponentDelegate() != null) getComponentDelegate().onStart(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onStart(this)) return;
         super.onStart();
     }
 
     @Override
     public final void onStop() {
-        if (getComponentDelegate() != null) getComponentDelegate().onStop(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onStop(this)) return;
         super.onStop();
     }
 
     @Override
     public final void onDestroy() {
-        if (getComponentDelegate() != null) getComponentDelegate().onDestroy(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onDestroy(this)) return;
         super.onDestroy();
     }
 
     @Override
     public final void onTitleChanged(CharSequence title, int color) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onTitleChanged(this, title, color);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onTitleChanged(this, title, color)) return;
         super.onTitleChanged(title, color);
     }
 
     @Override
     public final void onSaveInstanceState(Bundle outState) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onSaveInstanceState(this, outState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onSaveInstanceState(this, outState)) return;
         super.onSaveInstanceState(outState);
     }
 
     @Override
     public final void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onActivityResult(this, requestCode, resultCode, data);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onActivityResult(this, requestCode, resultCode, data))
+            return;
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     public final void onPause() {
-        if (getComponentDelegate() != null) getComponentDelegate().onPause(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onPause(this)) return;
         super.onPause();
     }
 
     @Override
     public final void onNewIntent(Intent intent) {
-        if (getComponentDelegate() != null) getComponentDelegate().onNewIntent(this, intent);
+        if (getComponentDelegate() != null && getComponentDelegate().onNewIntent(this, intent))
+            return;
         super.onNewIntent(intent);
     }
 
     @Override
     public final void onResume() {
-        if (getComponentDelegate() != null) getComponentDelegate().onResume(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onResume(this)) return;
         super.onResume();
     }
 
     @Override
     public final void onResumeFragments() {
-        if (getComponentDelegate() != null) getComponentDelegate().onResumeFragments(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onResumeFragments(this))
+            return;
         super.onResumeFragments();
     }
 
     @Override
     public final void onRestoreInstanceState(Bundle savedInstanceState) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onRestoreInstanceState(this, savedInstanceState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onRestoreInstanceState(this, savedInstanceState)) return;
         super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
     public final void onRestart() {
-        if (getComponentDelegate() != null) getComponentDelegate().onRestart(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onRestart(this)) return;
         super.onRestart();
     }
 
     @Override
     public final void onUserLeaveHint() {
-        if (getComponentDelegate() != null) getComponentDelegate().onUserLeaveHint(this);
+        if (getComponentDelegate() != null && getComponentDelegate().onUserLeaveHint(this)) return;
         super.onUserLeaveHint();
     }
 
     @Override
     public final void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onApplyThemeResource(this, theme, resid, first);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onApplyThemeResource(this, theme, resid, first)) return;
         super.onApplyThemeResource(theme, resid, first);
     }
 
     @Override
     public final void onChildTitleChanged(Activity childActivity, CharSequence title) {
-        if (getComponentDelegate() != null)
-            getComponentDelegate().onChildTitleChanged(this, childActivity, title);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onChildTitleChanged(this, childActivity, title)) return;
         super.onChildTitleChanged(childActivity, title);
     }
 
     @Override
     public final void attachBaseContext(Context newBase) {
-        if (getComponentDelegate() != null) getComponentDelegate().attachBaseContext(this, newBase);
+        if (
+                getComponentDelegate() != null && getComponentDelegate().attachBaseContext(this, newBase))
+            return;
         super.attachBaseContext(newBase);
 
     }

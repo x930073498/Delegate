@@ -39,18 +39,18 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setArguments(DelegateFragment delegateFragment, Bundle args) {
-
+    default boolean setArguments(DelegateFragment delegateFragment, Bundle args) {
+        return false;
     }
 
 
-    default void setInitialSavedState(DelegateFragment delegateFragment, Fragment.SavedState state) {
-
+    default boolean setInitialSavedState(DelegateFragment delegateFragment, Fragment.SavedState state) {
+        return false;
     }
 
 
-    default void setTargetFragment(DelegateFragment delegateFragment, Fragment fragment, int requestCode) {
-
+    default boolean setTargetFragment(DelegateFragment delegateFragment, Fragment fragment, int requestCode) {
+        return false;
     }
 
 
@@ -59,28 +59,28 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void onHiddenChanged(DelegateFragment delegateFragment, boolean hidden) {
-
+    default boolean onHiddenChanged(DelegateFragment delegateFragment, boolean hidden) {
+        return false;
     }
 
 
-    default void setRetainInstance(DelegateFragment delegateFragment, boolean retain) {
-
+    default boolean setRetainInstance(DelegateFragment delegateFragment, boolean retain) {
+        return false;
     }
 
 
-    default void setHasOptionsMenu(DelegateFragment delegateFragment, boolean hasMenu) {
-
+    default boolean setHasOptionsMenu(DelegateFragment delegateFragment, boolean hasMenu) {
+        return false;
     }
 
 
-    default void setMenuVisibility(DelegateFragment delegateFragment, boolean menuVisible) {
-
+    default boolean setMenuVisibility(DelegateFragment delegateFragment, boolean menuVisible) {
+        return false;
     }
 
 
-    default void setUserVisibleHint(DelegateFragment delegateFragment, boolean isVisibleToUser) {
-
+    default boolean setUserVisibleHint(DelegateFragment delegateFragment, boolean isVisibleToUser) {
+        return false;
     }
 
 
@@ -94,38 +94,38 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void startActivity(DelegateFragment delegateFragment, Intent intent) {
-
+    default boolean startActivity(DelegateFragment delegateFragment, Intent intent) {
+        return false;
     }
 
 
-    default void startActivity(DelegateFragment delegateFragment, Intent intent, @Nullable Bundle options) {
-
+    default boolean startActivity(DelegateFragment delegateFragment, Intent intent, @Nullable Bundle options) {
+        return false;
     }
 
 
-    default void startActivityForResult(DelegateFragment delegateFragment, Intent intent, int requestCode) {
-
+    default boolean startActivityForResult(DelegateFragment delegateFragment, Intent intent, int requestCode) {
+        return false;
     }
 
 
-    default void startActivityForResult(DelegateFragment delegateFragment, Intent intent, int requestCode, @Nullable Bundle options) {
-
+    default boolean startActivityForResult(DelegateFragment delegateFragment, Intent intent, int requestCode, @Nullable Bundle options) {
+        return false;
     }
 
 
-    default void startIntentSenderForResult(DelegateFragment delegateFragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-
+    default boolean startIntentSenderForResult(DelegateFragment delegateFragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+        return false;
     }
 
 
-    default void onActivityResult(DelegateFragment delegateFragment, int requestCode, int resultCode, Intent data) {
-
+    default boolean onActivityResult(DelegateFragment delegateFragment, int requestCode, int resultCode, Intent data) {
+        return false;
     }
 
 
-    default void onRequestPermissionsResult(DelegateFragment delegateFragment, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
+    default boolean onRequestPermissionsResult(DelegateFragment delegateFragment, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        return false;
     }
 
 
@@ -139,18 +139,18 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void onInflate(DelegateFragment delegateFragment, Context context, AttributeSet attrs, Bundle savedInstanceState) {
-
+    default boolean onInflate(DelegateFragment delegateFragment, Context context, AttributeSet attrs, Bundle savedInstanceState) {
+        return false;
     }
 
 
-    default void onAttachFragment(DelegateFragment fragment, Fragment childFragment) {
-
+    default boolean onAttachFragment(DelegateFragment fragment, Fragment childFragment) {
+        return false;
     }
 
 
-    default void onAttach(DelegateFragment delegateFragment, Context context) {
-
+    default boolean onAttach(DelegateFragment delegateFragment, Context context) {
+        return false;
     }
 
 
@@ -164,8 +164,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void onCreate(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
-
+    default boolean onCreate(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
+        return false;
     }
 
 
@@ -174,8 +174,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void onViewCreated(DelegateFragment delegateFragment, View view, @Nullable Bundle savedInstanceState) {
-
+    default boolean onViewCreated(DelegateFragment delegateFragment, View view, @Nullable Bundle savedInstanceState) {
+        return false;
     }
 
 
@@ -184,88 +184,88 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void onActivityCreated(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
-
+    default boolean onActivityCreated(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
+        return false;
     }
 
 
-    default void onViewStateRestored(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
-
+    default boolean onViewStateRestored(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
+        return false;
     }
 
 
-    default void onStart(DelegateFragment delegateFragment) {
-
+    default boolean onStart(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void onResume(DelegateFragment delegateFragment) {
-
+    default boolean onResume(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void onSaveInstanceState(DelegateFragment delegateFragment, Bundle outState) {
-
+    default boolean onSaveInstanceState(DelegateFragment delegateFragment, Bundle outState) {
+        return false;
     }
 
 
-    default void onMultiWindowModeChanged(DelegateFragment delegateFragment, boolean isInMultiWindowMode) {
-
+    default boolean onMultiWindowModeChanged(DelegateFragment delegateFragment, boolean isInMultiWindowMode) {
+        return false;
     }
 
 
-    default void onPictureInPictureModeChanged(DelegateFragment delegateFragment, boolean isInPictureInPictureMode) {
-
+    default boolean onPictureInPictureModeChanged(DelegateFragment delegateFragment, boolean isInPictureInPictureMode) {
+        return false;
     }
 
 
-    default void onConfigurationChanged(DelegateFragment delegateFragment, Configuration newConfig) {
-
+    default boolean onConfigurationChanged(DelegateFragment delegateFragment, Configuration newConfig) {
+        return false;
     }
 
 
-    default void onPause(DelegateFragment delegateFragment) {
-
+    default boolean onPause(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void onStop(DelegateFragment delegateFragment) {
-
+    default boolean onStop(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void onLowMemory(DelegateFragment delegateFragment) {
-
+    default boolean onLowMemory(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void onDestroyView(DelegateFragment delegateFragment) {
-
+    default boolean onDestroyView(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void onDestroy(DelegateFragment delegateFragment) {
-
+    default boolean onDestroy(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void onDetach(DelegateFragment delegateFragment) {
-
+    default boolean onDetach(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void onCreateOptionsMenu(DelegateFragment delegateFragment, Menu menu, MenuInflater inflater) {
-
+    default boolean onCreateOptionsMenu(DelegateFragment delegateFragment, Menu menu, MenuInflater inflater) {
+        return false;
     }
 
 
-    default void onPrepareOptionsMenu(DelegateFragment delegateFragment, Menu menu) {
-
+    default boolean onPrepareOptionsMenu(DelegateFragment delegateFragment, Menu menu) {
+        return false;
     }
 
 
-    default void onDestroyOptionsMenu(DelegateFragment delegateFragment) {
-
+    default boolean onDestroyOptionsMenu(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
@@ -274,23 +274,23 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void onOptionsMenuClosed(DelegateFragment delegateFragment, Menu menu) {
-
+    default boolean onOptionsMenuClosed(DelegateFragment delegateFragment, Menu menu) {
+        return false;
     }
 
 
-    default void onCreateContextMenu(DelegateFragment delegateFragment, ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
+    default boolean onCreateContextMenu(DelegateFragment delegateFragment, ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        return false;
     }
 
 
-    default void registerForContextMenu(DelegateFragment delegateFragment, View view) {
-
+    default boolean registerForContextMenu(DelegateFragment delegateFragment, View view) {
+        return false;
     }
 
 
-    default void unregisterForContextMenu(DelegateFragment delegateFragment, View view) {
-
+    default boolean unregisterForContextMenu(DelegateFragment delegateFragment, View view) {
+        return false;
     }
 
 
@@ -299,18 +299,18 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setEnterSharedElementCallback(DelegateFragment delegateFragment, SharedElementCallback callback) {
-
+    default boolean setEnterSharedElementCallback(DelegateFragment delegateFragment, SharedElementCallback callback) {
+        return false;
     }
 
 
-    default void setExitSharedElementCallback(DelegateFragment delegateFragment, SharedElementCallback callback) {
-
+    default boolean setExitSharedElementCallback(DelegateFragment delegateFragment, SharedElementCallback callback) {
+        return false;
     }
 
 
-    default void setEnterTransition(DelegateFragment delegateFragment, Object transition) {
-
+    default boolean setEnterTransition(DelegateFragment delegateFragment, Object transition) {
+        return false;
     }
 
 
@@ -319,8 +319,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setReturnTransition(DelegateFragment delegateFragment, Object transition) {
-
+    default boolean setReturnTransition(DelegateFragment delegateFragment, Object transition) {
+        return false;
     }
 
 
@@ -329,8 +329,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setExitTransition(DelegateFragment delegateFragment, Object transition) {
-
+    default boolean setExitTransition(DelegateFragment delegateFragment, Object transition) {
+        return false;
     }
 
 
@@ -339,8 +339,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setReenterTransition(DelegateFragment delegateFragment, Object transition) {
-
+    default boolean setReenterTransition(DelegateFragment delegateFragment, Object transition) {
+        return false;
     }
 
 
@@ -349,8 +349,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setSharedElementEnterTransition(DelegateFragment delegateFragment, Object transition) {
-
+    default boolean setSharedElementEnterTransition(DelegateFragment delegateFragment, Object transition) {
+        return false;
     }
 
 
@@ -359,8 +359,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setSharedElementReturnTransition(DelegateFragment delegateFragment, Object transition) {
-
+    default boolean setSharedElementReturnTransition(DelegateFragment delegateFragment, Object transition) {
+        return false;
     }
 
 
@@ -369,8 +369,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setAllowEnterTransitionOverlap(DelegateFragment delegateFragment, boolean allow) {
-
+    default boolean setAllowEnterTransitionOverlap(DelegateFragment delegateFragment, boolean allow) {
+        return false;
     }
 
 
@@ -379,8 +379,8 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void setAllowReturnTransitionOverlap(DelegateFragment delegateFragment, boolean allow) {
-
+    default boolean setAllowReturnTransitionOverlap(DelegateFragment delegateFragment, boolean allow) {
+        return false;
     }
 
 
@@ -389,18 +389,18 @@ public interface FragmentDelegate extends Delegate, FragmentAnchorDelegate {
     }
 
 
-    default void postponeEnterTransition(DelegateFragment delegateFragment) {
-
+    default boolean postponeEnterTransition(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void startPostponedEnterTransition(DelegateFragment delegateFragment) {
-
+    default boolean startPostponedEnterTransition(DelegateFragment delegateFragment) {
+        return false;
     }
 
 
-    default void dump(DelegateFragment delegateFragment, String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
-
+    default boolean dump(DelegateFragment delegateFragment, String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+        return false;
     }
 
 }

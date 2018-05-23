@@ -8,22 +8,22 @@ final class DefaultActivityDelegate implements ActivityDelegate {
     private static final String TAG = "DefaultActivityDelegate";
 
     @Override
-    public void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
+    public final boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
         try {
-            ActivityDelegate delegate = (ActivityDelegate) getDelegateClass().newInstance();
+            ActivityDelegate delegate = getDelegateClass(getIntent()).newInstance();
             delegate.initialized(delegateActivity);
             delegateActivity.setComponentDelegate(delegate);
             delegate.onCreate(delegateActivity, savedInstanceState);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 
-    private Class<?> getDelegateClass() {
-        Intent intent = getIntent();
+    private Class<? extends ActivityDelegate> getDelegateClass(Intent intent) {
         if (intent != null) {
-            return (Class<?>) intent.getSerializableExtra("name");
+            return (Class<? extends ActivityDelegate>) intent.getSerializableExtra("name");
         }
         return null;
     }
