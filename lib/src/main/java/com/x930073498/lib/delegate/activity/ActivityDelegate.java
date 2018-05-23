@@ -73,18 +73,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.List;
 
-public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
+public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate ,Serializable{
 
 
     default void initialized(DelegateActivity delegateActivity) {
     }
 
+
     default boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
         return false;
     }
-
 
     default boolean setTheme(DelegateActivity delegateActivity, int resid) {
         return false;

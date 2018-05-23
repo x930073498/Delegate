@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.PictureInPictureParams;
 import android.app.VoiceInteractor;
 import android.app.assist.AssistContent;
+import android.arch.lifecycle.Lifecycle;
 import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks;
 import android.content.ComponentName;
@@ -63,7 +64,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
-
 import com.x930073498.lib.delegate.activity.ActivityDelegate;
 import com.x930073498.lib.delegate.activity.DelegateActivity;
 import com.x930073498.lib.delegate.component.DelegateComponent;
@@ -74,7 +74,6 @@ import com.x930073498.lib.delegate.component.Listener;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.List;
@@ -99,19 +98,22 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
+    public boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
         if (activity==null)activity=delegateActivity;
         emitter.emitEvent(Event.ON_CREATE, savedInstanceState);
+        return false;
     }
 
     @Override
-    public void setTheme(DelegateActivity delegateActivity, int resid) {
+    public boolean setTheme(DelegateActivity delegateActivity, int resid) {
         emitter.emitEvent(Event.SET_THEME, resid);
+        return false;
     }
 
     @Override
-    public void onPostCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
+    public boolean onPostCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
         emitter.emitEvent(Event.ON_POST_CREATE, savedInstanceState);
+        return false;
     }
 
     @Nullable
@@ -122,8 +124,9 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setSupportActionBar(DelegateActivity delegateActivity, @Nullable Toolbar toolbar) {
+    public boolean setSupportActionBar(DelegateActivity delegateActivity, @Nullable Toolbar toolbar) {
         emitter.emitEvent(Event.SET_SUPPORT_ACTION_BAR, toolbar);
+        return false;
     }
 
     @Override
@@ -133,43 +136,44 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setContentView(DelegateActivity delegateActivity, int layoutResID) {
+    public boolean setContentView(DelegateActivity delegateActivity, int layoutResID) {
         emitter.emitEvent(Event.SET_CONTENT_VIEW_ID, layoutResID);
+        return false;
     }
 
     @Override
-    public void setContentView(DelegateActivity activity, View view) {
-
+    public boolean setContentView(DelegateActivity activity, View view) {
+        return false;
     }
 
     @Override
-    public void setContentView(DelegateActivity activity, View view, ViewGroup.LayoutParams params) {
-
+    public boolean setContentView(DelegateActivity activity, View view, ViewGroup.LayoutParams params) {
+        return false;
     }
 
     @Override
-    public void addContentView(DelegateActivity delegateActivity, View view, ViewGroup.LayoutParams params) {
-
+    public boolean addContentView(DelegateActivity delegateActivity, View view, ViewGroup.LayoutParams params) {
+        return false;
     }
 
     @Override
-    public void onConfigurationChanged(DelegateActivity delegateActivity, Configuration newConfig) {
-
+    public boolean onConfigurationChanged(DelegateActivity delegateActivity, Configuration newConfig) {
+        return false;
     }
 
     @Override
-    public void onPostResume(DelegateActivity delegateActivity) {
-
+    public boolean onPostResume(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onStart(DelegateActivity delegateActivity) {
-
+    public boolean onStart(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onStop(DelegateActivity delegateActivity) {
-
+    public boolean onStop(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -178,13 +182,13 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onDestroy(DelegateActivity delegateActivity) {
-
+    public boolean onDestroy(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onTitleChanged(DelegateActivity delegateActivity, CharSequence title, int color) {
-
+    public boolean onTitleChanged(DelegateActivity delegateActivity, CharSequence title, int color) {
+        return false;
     }
 
     @Override
@@ -193,28 +197,28 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void supportInvalidateOptionsMenu(DelegateActivity delegateActivity) {
-
+    public boolean supportInvalidateOptionsMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void invalidateOptionsMenu(DelegateActivity delegateActivity) {
-
+    public boolean invalidateOptionsMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onSupportActionModeStarted(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
-
+    public boolean onSupportActionModeStarted(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
+        return false;
     }
 
     @Override
-    public void onSupportActionModeFinished(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
-
+    public boolean onSupportActionModeFinished(DelegateActivity delegateActivity, @NonNull ActionMode mode) {
+        return false;
     }
 
     @Override
-    public void onWindowStartingSupportActionMode(DelegateActivity delegateActivity, @NonNull ActionMode.Callback callback) {
-
+    public ActionMode onWindowStartingSupportActionMode(DelegateActivity delegateActivity, @NonNull ActionMode.Callback callback) {
+return null;
     }
 
     @Override
@@ -223,13 +227,13 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onCreateSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
-
+    public boolean onCreateSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
+        return false;
     }
 
     @Override
-    public void onPrepareSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
-
+    public boolean onPrepareSupportNavigateUpTaskStack(DelegateActivity delegateActivity, @NonNull TaskStackBuilder builder) {
+        return false;
     }
 
     @Override
@@ -248,13 +252,13 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void supportNavigateUpTo(DelegateActivity delegateActivity, @NonNull Intent upIntent) {
-
+    public boolean supportNavigateUpTo(DelegateActivity delegateActivity, @NonNull Intent upIntent) {
+        return false;
     }
 
     @Override
-    public void onContentChanged(DelegateActivity delegateActivity) {
-
+    public boolean onContentChanged(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -268,13 +272,13 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onPanelClosed(DelegateActivity delegateActivity, int featureId, Menu menu) {
-
+    public boolean onPanelClosed(DelegateActivity delegateActivity, int featureId, Menu menu) {
+        return false;
     }
 
     @Override
-    public void onSaveInstanceState(DelegateActivity delegateActivity, Bundle outState, PersistableBundle outPersistentState) {
-
+    public boolean onSaveInstanceState(DelegateActivity delegateActivity, Bundle outState, PersistableBundle outPersistentState) {
+        return false;
     }
 
     @Override
@@ -298,93 +302,93 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void openOptionsMenu(DelegateActivity delegateActivity) {
-
+    public boolean openOptionsMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void closeOptionsMenu(DelegateActivity delegateActivity) {
-
+    public boolean closeOptionsMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onActivityResult(DelegateActivity delegateActivity, int requestCode, int resultCode, Intent data) {
-
+    public boolean onActivityResult(DelegateActivity delegateActivity, int requestCode, int resultCode, Intent data) {
+        return false;
     }
 
     @Override
-    public void supportFinishAfterTransition(DelegateActivity delegateActivity) {
-
+    public boolean supportFinishAfterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void setEnterSharedElementCallback(DelegateActivity activity, SharedElementCallback callback) {
-
+    public boolean setEnterSharedElementCallback(DelegateActivity activity, SharedElementCallback callback) {
+        return false;
     }
 
     @Override
-    public void setExitSharedElementCallback(DelegateActivity activity, SharedElementCallback listener) {
-
+    public boolean setExitSharedElementCallback(DelegateActivity activity, SharedElementCallback listener) {
+        return false;
     }
 
     @Override
-    public void supportPostponeEnterTransition(DelegateActivity delegateActivity) {
-
+    public boolean supportPostponeEnterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void supportStartPostponedEnterTransition(DelegateActivity delegateActivity) {
-
+    public boolean supportStartPostponedEnterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onMultiWindowModeChanged(DelegateActivity activity, boolean isInMultiWindowMode) {
-
+    public boolean onMultiWindowModeChanged(DelegateActivity activity, boolean isInMultiWindowMode) {
+        return false;
     }
 
     @Override
-    public void onPictureInPictureModeChanged(DelegateActivity activity, boolean isInPictureInPictureMode) {
-
+    public boolean onPictureInPictureModeChanged(DelegateActivity activity, boolean isInPictureInPictureMode) {
+        return false;
     }
 
     @Override
-    public void getLifecycle(DelegateActivity delegateActivity) {
-
+    public Lifecycle getLifecycle(DelegateActivity delegateActivity) {
+return null;
     }
 
     @Override
-    public void onCreatePanelMenu(DelegateActivity delegateActivity, int featureId, Menu menu) {
-
+    public boolean onCreatePanelMenu(DelegateActivity delegateActivity, int featureId, Menu menu) {
+        return false;
     }
 
     @Override
-    public void onLowMemory(DelegateActivity delegateActivity) {
-
+    public boolean onLowMemory(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onPause(DelegateActivity delegateActivity) {
-
+    public boolean onPause(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onNewIntent(DelegateActivity delegateActivity, Intent intent) {
-
+    public boolean onNewIntent(DelegateActivity delegateActivity, Intent intent) {
+        return false;
     }
 
     @Override
-    public void onStateNotSaved(DelegateActivity delegateActivity) {
-
+    public boolean onStateNotSaved(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onResume(DelegateActivity delegateActivity) {
-
+    public boolean onResume(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onResumeFragments(DelegateActivity delegateActivity) {
-
+    public boolean onResumeFragments(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -403,13 +407,13 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void dump(DelegateActivity delegateActivity, String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
-
+    public boolean dump(DelegateActivity delegateActivity, String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+        return false;
     }
 
     @Override
-    public void onAttachFragment(DelegateActivity activity, Fragment fragment) {
-
+    public boolean onAttachFragment(DelegateActivity activity, Fragment fragment) {
+        return false;
     }
 
     @Override
@@ -423,28 +427,28 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startActivityForResult(DelegateActivity delegateActivity, Intent intent, int requestCode) {
-
+    public boolean startActivityForResult(DelegateActivity delegateActivity, Intent intent, int requestCode) {
+        return false;
     }
 
     @Override
-    public void onRequestPermissionsResult(DelegateActivity delegateActivity, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
+    public boolean onRequestPermissionsResult(DelegateActivity delegateActivity, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        return false;
     }
 
     @Override
-    public void startActivityFromFragment(DelegateActivity activity, Fragment fragment, Intent intent, int requestCode) {
-
+    public boolean startActivityFromFragment(DelegateActivity activity, Fragment fragment, Intent intent, int requestCode) {
+        return false;
     }
 
     @Override
-    public void startActivityFromFragment(DelegateActivity activity, Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
-
+    public boolean startActivityFromFragment(DelegateActivity activity, Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+        return false;
     }
 
     @Override
-    public void startIntentSenderFromFragment(DelegateActivity delegateActivity, Fragment fragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-
+    public boolean startIntentSenderFromFragment(DelegateActivity delegateActivity, Fragment fragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options)  {
+        return false;
     }
 
     @Override
@@ -458,8 +462,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startIntentSenderForResult(DelegateActivity delegateActivity, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-
+    public boolean startIntentSenderForResult(DelegateActivity delegateActivity, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) {
+        return false;
     }
 
     @Override
@@ -468,8 +472,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setIntent(DelegateActivity delegateActivity, Intent newIntent) {
-
+    public boolean setIntent(DelegateActivity delegateActivity, Intent newIntent) {
+        return false;
     }
 
     @Override
@@ -496,28 +500,28 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onCreate(@Nullable DelegateActivity savedInstanceState, @Nullable Bundle persistentState) {
-
+    public boolean onCreate(@Nullable DelegateActivity savedInstanceState, @Nullable Bundle persistentState) {
+        return false;
     }
 
     @Override
-    public void onRestoreInstanceState(DelegateActivity delegateActivity, Bundle savedInstanceState, PersistableBundle persistentState) {
-
+    public boolean onRestoreInstanceState(DelegateActivity delegateActivity, Bundle savedInstanceState, PersistableBundle persistentState) {
+        return false;
     }
 
     @Override
-    public void onRestoreInstanceState(DelegateActivity savedInstanceState, Bundle persistentState) {
-
+    public boolean onRestoreInstanceState(DelegateActivity savedInstanceState, Bundle persistentState) {
+        return false;
     }
 
     @Override
-    public void onPostCreate(@Nullable DelegateActivity savedInstanceState, @Nullable Bundle persistentState) {
-
+    public boolean onPostCreate(@Nullable DelegateActivity savedInstanceState, @Nullable Bundle persistentState) {
+        return false;
     }
 
     @Override
-    public void onRestart(DelegateActivity delegateActivity) {
-
+    public boolean onRestart(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -545,33 +549,33 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startLocalVoiceInteraction(DelegateActivity delegateActivity, Bundle privateOptions) {
-
+    public boolean startLocalVoiceInteraction(DelegateActivity delegateActivity, Bundle privateOptions) {
+        return false;
     }
 
     @Override
-    public void onLocalVoiceInteractionStarted(DelegateActivity delegateActivity) {
-
+    public boolean onLocalVoiceInteractionStarted(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onLocalVoiceInteractionStopped(DelegateActivity delegateActivity) {
-
+    public boolean onLocalVoiceInteractionStopped(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void stopLocalVoiceInteraction(DelegateActivity delegateActivity) {
-
+    public boolean stopLocalVoiceInteraction(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onSaveInstanceState(DelegateActivity outState, Bundle outPersistentState) {
-
+    public boolean onSaveInstanceState(DelegateActivity outState, Bundle outPersistentState) {
+        return false;
     }
 
     @Override
-    public void onUserLeaveHint(DelegateActivity delegateActivity) {
-
+    public boolean onUserLeaveHint(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -587,18 +591,18 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onProvideAssistData(DelegateActivity delegateActivity, Bundle data) {
-
+    public boolean onProvideAssistData(DelegateActivity delegateActivity, Bundle data) {
+        return false;
     }
 
     @Override
-    public void onProvideAssistContent(DelegateActivity delegateActivity, AssistContent outContent) {
-
+    public boolean onProvideAssistContent(DelegateActivity delegateActivity, AssistContent outContent) {
+        return false;
     }
 
     @Override
-    public void onProvideKeyboardShortcuts(DelegateActivity delegateActivity, List<KeyboardShortcutGroup> data, Menu menu, int deviceId) {
-
+    public boolean onProvideKeyboardShortcuts(DelegateActivity delegateActivity, List<KeyboardShortcutGroup> data, Menu menu, int deviceId) {
+        return false;
     }
 
     @Override
@@ -608,13 +612,13 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void reportFullyDrawn(DelegateActivity delegateActivity) {
-
+    public boolean reportFullyDrawn(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onMultiWindowModeChanged(DelegateActivity activity, boolean isInMultiWindowMode, Configuration newConfig) {
-
+    public boolean onMultiWindowModeChanged(DelegateActivity activity, boolean isInMultiWindowMode, Configuration newConfig) {
+        return false;
     }
 
     @Override
@@ -624,8 +628,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onPictureInPictureModeChanged(DelegateActivity activity, boolean isInPictureInPictureMode, Configuration newConfig) {
-
+    public boolean onPictureInPictureModeChanged(DelegateActivity activity, boolean isInPictureInPictureMode, Configuration newConfig) {
+        return false;
     }
 
     @Override
@@ -635,8 +639,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void enterPictureInPictureMode(DelegateActivity activity) {
-
+    public boolean enterPictureInPictureMode(DelegateActivity activity) {
+        return false;
     }
 
     @Override
@@ -646,8 +650,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setPictureInPictureParams(DelegateActivity delegateActivity, @NonNull PictureInPictureParams params) {
-
+    public boolean setPictureInPictureParams(DelegateActivity delegateActivity, @NonNull PictureInPictureParams params) {
+        return false;
     }
 
     @Override
@@ -666,8 +670,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onTrimMemory(DelegateActivity delegateActivity, int level) {
-
+    public boolean onTrimMemory(DelegateActivity delegateActivity, int level) {
+        return false;
     }
 
     @Override
@@ -676,8 +680,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onAttachFragment(DelegateActivity activity, android.app.Fragment fragment) {
-
+    public boolean onAttachFragment(DelegateActivity activity, android.app.Fragment fragment) {
+        return false;
     }
 
     @Override
@@ -686,8 +690,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setActionBar(DelegateActivity delegateActivity, @Nullable android.widget.Toolbar toolbar) {
-
+    public boolean setActionBar(DelegateActivity delegateActivity, @Nullable android.widget.Toolbar toolbar) {
+        return false;
     }
 
     @Override
@@ -696,8 +700,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setContentTransitionManager(DelegateActivity delegateActivity, TransitionManager tm) {
-
+    public boolean setContentTransitionManager(DelegateActivity delegateActivity, TransitionManager tm) {
+        return false;
     }
 
     @Override
@@ -706,8 +710,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setFinishOnTouchOutside(DelegateActivity delegateActivity, boolean finish) {
-
+    public boolean setFinishOnTouchOutside(DelegateActivity delegateActivity, boolean finish) {
+        return false;
     }
 
     @Override
@@ -746,28 +750,28 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onUserInteraction(DelegateActivity delegateActivity) {
-
+    public boolean onUserInteraction(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onWindowAttributesChanged(DelegateActivity delegateActivity, WindowManager.LayoutParams params) {
-
+    public boolean onWindowAttributesChanged(DelegateActivity delegateActivity, WindowManager.LayoutParams params) {
+        return false;
     }
 
     @Override
-    public void onWindowFocusChanged(DelegateActivity delegateActivity, boolean hasFocus) {
-
+    public boolean onWindowFocusChanged(DelegateActivity delegateActivity, boolean hasFocus) {
+        return false;
     }
 
     @Override
-    public void onAttachedToWindow(DelegateActivity delegateActivity) {
-
+    public boolean onAttachedToWindow(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onDetachedFromWindow(DelegateActivity delegateActivity) {
-
+    public boolean onDetachedFromWindow(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -831,43 +835,43 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onCreateNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
-
+    public boolean onCreateNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
+        return false;
     }
 
     @Override
-    public void onPrepareNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
-
+    public boolean onPrepareNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
+        return false;
     }
 
     @Override
-    public void onOptionsMenuClosed(DelegateActivity delegateActivity, Menu menu) {
-
+    public boolean onOptionsMenuClosed(DelegateActivity delegateActivity, Menu menu) {
+        return false;
     }
 
     @Override
-    public void onCreateContextMenu(DelegateActivity delegateActivity, ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
+    public boolean onCreateContextMenu(DelegateActivity delegateActivity, ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        return false;
     }
 
     @Override
-    public void registerForContextMenu(DelegateActivity delegateActivity, View view) {
-
+    public boolean registerForContextMenu(DelegateActivity delegateActivity, View view) {
+        return false;
     }
 
     @Override
-    public void unregisterForContextMenu(DelegateActivity delegateActivity, View view) {
-
+    public boolean unregisterForContextMenu(DelegateActivity delegateActivity, View view) {
+        return false;
     }
 
     @Override
-    public void openContextMenu(DelegateActivity delegateActivity, View view) {
-
+    public boolean openContextMenu(DelegateActivity delegateActivity, View view) {
+        return false;
     }
 
     @Override
-    public void closeContextMenu(DelegateActivity delegateActivity) {
-
+    public boolean closeContextMenu(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -876,8 +880,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onContextMenuClosed(DelegateActivity delegateActivity, Menu menu) {
-
+    public boolean onContextMenuClosed(DelegateActivity delegateActivity, Menu menu) {
+        return false;
     }
 
     @Override
@@ -891,18 +895,18 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startSearch(DelegateActivity delegateActivity, @Nullable String initialQuery, boolean selectInitialQuery, @Nullable Bundle appSearchData, boolean globalSearch) {
-
+    public boolean startSearch(DelegateActivity delegateActivity, @Nullable String initialQuery, boolean selectInitialQuery, @Nullable Bundle appSearchData, boolean globalSearch) {
+        return false;
     }
 
     @Override
-    public void triggerSearch(DelegateActivity delegateActivity, String query, @Nullable Bundle appSearchData) {
-
+    public boolean triggerSearch(DelegateActivity delegateActivity, String query, @Nullable Bundle appSearchData) {
+        return false;
     }
 
     @Override
-    public void takeKeyEvents(DelegateActivity delegateActivity, boolean get) {
-
+    public boolean takeKeyEvents(DelegateActivity delegateActivity, boolean get) {
+        return false;
     }
 
     @Override
@@ -911,8 +915,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onApplyThemeResource(DelegateActivity delegateActivity, Resources.Theme theme, int resid, boolean first) {
-
+    public boolean onApplyThemeResource(DelegateActivity delegateActivity, Resources.Theme theme, int resid, boolean first) {
+        return false;
     }
 
     @Override
@@ -926,33 +930,33 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startActivity(DelegateActivity activity, Intent intent) {
-
+    public boolean startActivity(DelegateActivity activity, Intent intent) {
+        return false;
     }
 
     @Override
-    public void startActivity(DelegateActivity activity, Intent intent, @Nullable Bundle options) {
-
+    public boolean startActivity(DelegateActivity activity, Intent intent, @Nullable Bundle options) {
+        return false;
     }
 
     @Override
-    public void startActivities(DelegateActivity activity, Intent[] intents) {
-
+    public boolean startActivities(DelegateActivity activity, Intent[] intents) {
+        return false;
     }
 
     @Override
-    public void startActivities(DelegateActivity activity, Intent[] intents, @Nullable Bundle options) {
-
+    public boolean startActivities(DelegateActivity activity, Intent[] intents, @Nullable Bundle options) {
+        return false;
     }
 
     @Override
-    public void startIntentSender(DelegateActivity activity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-
+    public boolean startIntentSender(DelegateActivity activity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) {
+        return false;
     }
 
     @Override
-    public void startIntentSender(DelegateActivity activity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
-
+    public boolean startIntentSender(DelegateActivity activity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) {
+        return false;
     }
 
     @Override
@@ -976,38 +980,38 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startActivityFromChild(DelegateActivity activity, @NonNull Activity child, Intent intent, int requestCode) {
-
+    public boolean startActivityFromChild(DelegateActivity activity, @NonNull Activity child, Intent intent, int requestCode) {
+        return false;
     }
 
     @Override
-    public void startActivityFromChild(DelegateActivity activity, @NonNull Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
-
+    public boolean startActivityFromChild(DelegateActivity activity, @NonNull Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
+        return false;
     }
 
     @Override
-    public void startActivityFromFragment(DelegateActivity activity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode) {
-
+    public boolean startActivityFromFragment(DelegateActivity activity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode) {
+        return false;
     }
 
     @Override
-    public void startActivityFromFragment(DelegateActivity activity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
-
+    public boolean startActivityFromFragment(DelegateActivity activity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+        return false;
     }
 
     @Override
-    public void startIntentSenderFromChild(DelegateActivity activity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
-
+    public boolean startIntentSenderFromChild(DelegateActivity activity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) {
+        return false;
     }
 
     @Override
-    public void startIntentSenderFromChild(DelegateActivity activity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) throws IntentSender.SendIntentException {
-
+    public boolean startIntentSenderFromChild(DelegateActivity activity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) {
+        return false;
     }
 
     @Override
-    public void overridePendingTransition(DelegateActivity delegateActivity, int enterAnim, int exitAnim) {
-
+    public boolean overridePendingTransition(DelegateActivity delegateActivity, int enterAnim, int exitAnim) {
+        return false;
     }
 
     @Nullable
@@ -1021,21 +1025,19 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
         return null;
     }
 
-    @Nullable
     @Override
     public String getCallingPackage(DelegateActivity delegateActivity) {
         return null;
     }
 
-    @Nullable
     @Override
     public ComponentName getCallingActivity(DelegateActivity delegateActivity) {
         return null;
     }
 
     @Override
-    public void setVisible(DelegateActivity delegateActivity, boolean visible) {
-
+    public boolean setVisible(DelegateActivity delegateActivity, boolean visible) {
+        return false;
     }
 
     @Override
@@ -1054,43 +1056,43 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void recreate(DelegateActivity delegateActivity) {
-
+    public boolean recreate(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void finish(DelegateActivity delegateActivity) {
-
+    public boolean finish(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void finishAffinity(DelegateActivity delegateActivity) {
-
+    public boolean finishAffinity(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void finishFromChild(DelegateActivity delegateActivity, Activity child) {
-
+    public boolean finishFromChild(DelegateActivity delegateActivity, Activity child) {
+        return false;
     }
 
     @Override
-    public void finishAfterTransition(DelegateActivity delegateActivity) {
-
+    public boolean finishAfterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void finishActivity(DelegateActivity delegateActivity, int requestCode) {
-
+    public boolean finishActivity(DelegateActivity delegateActivity, int requestCode) {
+        return false;
     }
 
     @Override
-    public void finishActivityFromChild(DelegateActivity delegateActivity, @NonNull Activity child, int requestCode) {
-
+    public boolean finishActivityFromChild(DelegateActivity delegateActivity, @NonNull Activity child, int requestCode) {
+        return false;
     }
 
     @Override
-    public void finishAndRemoveTask(DelegateActivity delegateActivity) {
-
+    public boolean finishAndRemoveTask(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -1099,8 +1101,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onActivityReenter(DelegateActivity delegateActivity, int resultCode, Intent data) {
-
+    public boolean onActivityReenter(DelegateActivity delegateActivity, int resultCode, Intent data) {
+        return false;
     }
 
     @Override
@@ -1109,8 +1111,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setRequestedOrientation(DelegateActivity delegateActivity, int requestedOrientation) {
-
+    public boolean setRequestedOrientation(DelegateActivity delegateActivity, int requestedOrientation) {
+        return false;
     }
 
     @Override
@@ -1154,28 +1156,28 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void setTitle(DelegateActivity activity, CharSequence title) {
-
+    public boolean setTitle(DelegateActivity activity, CharSequence title) {
+        return false;
     }
 
     @Override
-    public void setTitle(DelegateActivity activity, int titleId) {
-
+    public boolean setTitle(DelegateActivity activity, int titleId) {
+        return false;
     }
 
     @Override
-    public void setTitleColor(DelegateActivity delegateActivity, int textColor) {
-
+    public boolean setTitleColor(DelegateActivity delegateActivity, int textColor) {
+        return false;
     }
 
     @Override
-    public void onChildTitleChanged(DelegateActivity activity, Activity childActivity, CharSequence title) {
-
+    public boolean onChildTitleChanged(DelegateActivity activity, Activity childActivity, CharSequence title) {
+        return false;
     }
 
     @Override
-    public void setTaskDescription(DelegateActivity delegateActivity, ActivityManager.TaskDescription taskDescription) {
-
+    public boolean setTaskDescription(DelegateActivity delegateActivity, ActivityManager.TaskDescription taskDescription) {
+        return false;
     }
 
     @Override
@@ -1189,57 +1191,53 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void onVisibleBehindCanceled(DelegateActivity delegateActivity) {
-
+    public boolean onVisibleBehindCanceled(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void onEnterAnimationComplete(DelegateActivity delegateActivity) {
-
+    public boolean onEnterAnimationComplete(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void setImmersive(DelegateActivity delegateActivity, boolean i) {
-
+    public boolean setImmersive(DelegateActivity delegateActivity, boolean i) {
+        return false;
     }
 
     @Override
-    public void setVrModeEnabled(DelegateActivity delegateActivity, boolean enabled, @NonNull ComponentName requestedComponent) throws PackageManager.NameNotFoundException {
-
+    public boolean setVrModeEnabled(DelegateActivity delegateActivity, boolean enabled, @NonNull ComponentName requestedComponent)  {
+        return false;
     }
 
-    @Nullable
     @Override
     public android.view.ActionMode startActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback) {
         return null;
     }
 
-    @Nullable
     @Override
     public android.view.ActionMode startActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback, int type) {
         return null;
     }
 
-    @Nullable
     @Override
     public android.view.ActionMode onWindowStartingActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback) {
         return null;
     }
 
-    @Nullable
     @Override
     public android.view.ActionMode onWindowStartingActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback, int type) {
         return null;
     }
 
     @Override
-    public void onActionModeStarted(DelegateActivity delegateActivity, android.view.ActionMode mode) {
-
+    public boolean onActionModeStarted(DelegateActivity delegateActivity, android.view.ActionMode mode) {
+        return false;
     }
 
     @Override
-    public void onActionModeFinished(DelegateActivity delegateActivity, android.view.ActionMode mode) {
-
+    public boolean onActionModeFinished(DelegateActivity delegateActivity, android.view.ActionMode mode) {
+        return false;
     }
 
     @Override
@@ -1257,30 +1255,29 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
         return null;
     }
 
-    @Nullable
     @Override
     public Intent getParentActivityIntent(DelegateActivity delegateActivity) {
         return null;
     }
 
     @Override
-    public void setEnterSharedElementCallback(DelegateActivity activity, android.app.SharedElementCallback callback) {
-
+    public boolean setEnterSharedElementCallback(DelegateActivity activity, android.app.SharedElementCallback callback) {
+        return false;
     }
 
     @Override
-    public void setExitSharedElementCallback(DelegateActivity activity, android.app.SharedElementCallback callback) {
-
+    public boolean setExitSharedElementCallback(DelegateActivity activity, android.app.SharedElementCallback callback) {
+        return false;
     }
 
     @Override
-    public void postponeEnterTransition(DelegateActivity delegateActivity) {
-
+    public boolean postponeEnterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void startPostponedEnterTransition(DelegateActivity delegateActivity) {
-
+    public boolean startPostponedEnterTransition(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
@@ -1289,28 +1286,28 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void startLockTask(DelegateActivity delegateActivity) {
-
+    public boolean startLockTask(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void stopLockTask(DelegateActivity delegateActivity) {
-
+    public boolean stopLockTask(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void showLockTaskEscapeMessage(DelegateActivity delegateActivity) {
-
+    public boolean showLockTaskEscapeMessage(DelegateActivity delegateActivity) {
+        return false;
     }
 
     @Override
-    public void attachBaseContext(DelegateActivity activity, Context base) {
-
+    public boolean attachBaseContext(DelegateActivity activity, Context base) {
+        return false;
     }
 
     @Override
-    public void applyOverrideConfiguration(DelegateActivity delegateActivity, Configuration overrideConfiguration) {
-
+    public boolean applyOverrideConfiguration(DelegateActivity delegateActivity, Configuration overrideConfiguration) {
+        return false;
     }
 
     @Override
@@ -1389,12 +1386,12 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public FileInputStream openFileInput(DelegateActivity delegateActivity, String name) throws FileNotFoundException {
+    public FileInputStream openFileInput(DelegateActivity delegateActivity, String name)  {
         return null;
     }
 
     @Override
-    public FileOutputStream openFileOutput(DelegateActivity delegateActivity, String name, int mode) throws FileNotFoundException {
+    public FileOutputStream openFileOutput(DelegateActivity delegateActivity, String name, int mode)  {
         return null;
     }
 
@@ -1509,23 +1506,23 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void sendBroadcast(DelegateActivity activity, Intent intent) {
-
+    public boolean sendBroadcast(DelegateActivity activity, Intent intent) {
+        return false;
     }
 
     @Override
-    public void sendBroadcast(DelegateActivity activity, Intent intent, String receiverPermission) {
-
+    public boolean sendBroadcast(DelegateActivity activity, Intent intent, String receiverPermission) {
+        return false;
     }
 
     @Override
-    public void sendOrderedBroadcast(DelegateActivity activity, Intent intent, String receiverPermission) {
-
+    public boolean sendOrderedBroadcast(DelegateActivity activity, Intent intent, String receiverPermission) {
+        return false;
     }
 
     @Override
-    public void sendOrderedBroadcast(DelegateActivity activity, Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
-
+    public boolean sendOrderedBroadcast(DelegateActivity activity, Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+        return false;
     }
 
     @Override
@@ -1549,8 +1546,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void unregisterReceiver(DelegateActivity delegateActivity, BroadcastReceiver receiver) {
-
+    public boolean unregisterReceiver(DelegateActivity delegateActivity, BroadcastReceiver receiver) {
+        return false;
     }
 
     @Override
@@ -1574,8 +1571,8 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void unbindService(DelegateActivity delegateActivity, ServiceConnection conn) {
-
+    public boolean unbindService(DelegateActivity delegateActivity, ServiceConnection conn) {
+        return false;
     }
 
     @Override
@@ -1609,33 +1606,33 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void enforcePermission(DelegateActivity delegateActivity, String permission, int pid, int uid, String message) {
-
+    public boolean enforcePermission(DelegateActivity delegateActivity, String permission, int pid, int uid, String message) {
+        return false;
     }
 
     @Override
-    public void enforceCallingPermission(DelegateActivity delegateActivity, String permission, String message) {
-
+    public boolean enforceCallingPermission(DelegateActivity delegateActivity, String permission, String message) {
+        return false;
     }
 
     @Override
-    public void enforceCallingOrSelfPermission(DelegateActivity delegateActivity, String permission, String message) {
-
+    public boolean enforceCallingOrSelfPermission(DelegateActivity delegateActivity, String permission, String message) {
+        return false;
     }
 
     @Override
-    public void grantUriPermission(DelegateActivity delegateActivity, String toPackage, Uri uri, int modeFlags) {
-
+    public boolean grantUriPermission(DelegateActivity delegateActivity, String toPackage, Uri uri, int modeFlags) {
+        return false;
     }
 
     @Override
-    public void revokeUriPermission(DelegateActivity activity, Uri uri, int modeFlags) {
-
+    public boolean revokeUriPermission(DelegateActivity activity, Uri uri, int modeFlags) {
+        return false;
     }
 
     @Override
-    public void revokeUriPermission(DelegateActivity activity, String targetPackage, Uri uri, int modeFlags) {
-
+    public boolean revokeUriPermission(DelegateActivity activity, String targetPackage, Uri uri, int modeFlags) {
+        return false;
     }
 
     @Override
@@ -1659,27 +1656,27 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public void enforceUriPermission(DelegateActivity activity, Uri uri, int pid, int uid, int modeFlags, String message) {
-
+    public boolean enforceUriPermission(DelegateActivity activity, Uri uri, int pid, int uid, int modeFlags, String message) {
+        return false;
     }
 
     @Override
-    public void enforceCallingUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags, String message) {
-
+    public boolean enforceCallingUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags, String message) {
+        return false;
     }
 
     @Override
-    public void enforceCallingOrSelfUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags, String message) {
-
+    public boolean enforceCallingOrSelfUriPermission(DelegateActivity delegateActivity, Uri uri, int modeFlags, String message) {
+        return false;
     }
 
     @Override
-    public void enforceUriPermission(DelegateActivity activity, Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
-
+    public boolean enforceUriPermission(DelegateActivity activity, Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
+        return false;
     }
 
     @Override
-    public Context createPackageContext(DelegateActivity delegateActivity, String packageName, int flags) throws PackageManager.NameNotFoundException {
+    public Context createPackageContext(DelegateActivity delegateActivity, String packageName, int flags)  {
         return null;
     }
 
@@ -1709,23 +1706,23 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     }
 
     @Override
-    public Context createContextForSplit(DelegateActivity delegateActivity, String splitName) throws PackageManager.NameNotFoundException {
+    public Context createContextForSplit(DelegateActivity delegateActivity, String splitName) {
         return null;
     }
 
     @Override
-    public void registerComponentCallbacks(DelegateActivity delegateActivity, ComponentCallbacks callback) {
-
+    public boolean registerComponentCallbacks(DelegateActivity delegateActivity, ComponentCallbacks callback) {
+        return false;
     }
 
     @Override
-    public void unregisterComponentCallbacks(DelegateActivity delegateActivity, ComponentCallbacks callback) {
-
+    public boolean unregisterComponentCallbacks(DelegateActivity delegateActivity, ComponentCallbacks callback) {
+        return false;
     }
 
     @Override
-    public void onPointerCaptureChanged(DelegateActivity delegateActivity, boolean hasCapture) {
-
+    public boolean onPointerCaptureChanged(DelegateActivity delegateActivity, boolean hasCapture) {
+        return false;
     }
 
     @Override

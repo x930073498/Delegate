@@ -51,6 +51,7 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Scene;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Display;
 import android.view.DragAndDropPermissions;
@@ -77,13 +78,18 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
- interface ActivityAnchorDelegate {
-    default DelegateActivity getActivity() {
-        return null;
+interface ActivityAnchorDelegate {
+    String TAG="ActivityAnchorDelegate";
+    DelegateActivity getActivity();
+
+
+    default void setComponentDelegate(ActivityDelegate delegate) {
+        if (getActivity() == null) return;
+        getActivity().setComponentDelegate(delegate);
     }
 
-    default Boolean onMenuItemSelected(int featureId, android.view.MenuItem item){
-        return getActivity()==null?null:getActivity().onMenuItemSelected(featureId, item);
+    default Boolean onMenuItemSelected(int featureId, android.view.MenuItem item) {
+        return getActivity() == null ? null : getActivity().onMenuItemSelected(featureId, item);
     }
 
     default void onCreate(@Nullable Bundle savedInstanceState) {
@@ -1077,6 +1083,7 @@ import java.util.List;
 
 
     default void recreate() {
+        if (getActivity()==null) Log.d(TAG, "recreate: ");
         if (getActivity() != null) getActivity().recreate();
     }
 
@@ -1321,11 +1328,13 @@ import java.util.List;
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O_MR1)
     default void setShowWhenLocked(boolean showWhenLocked) {
         if (getActivity() != null) getActivity().setShowWhenLocked(showWhenLocked);
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O_MR1)
     default void setTurnScreenOn(boolean turnScreenOn) {
         if (getActivity() != null) getActivity().setTurnScreenOn(turnScreenOn);
     }
