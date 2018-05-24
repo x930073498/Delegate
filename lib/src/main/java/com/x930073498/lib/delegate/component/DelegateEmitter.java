@@ -27,7 +27,6 @@ public final class DelegateEmitter implements DelegateComponent {
 
   private final Map<Event<?>, List<Listener>> listenerMap;
 
-  // Only used for fast removal of listeners
   private final Map<Listener, Event<?>> eventMap;
 
   public DelegateEmitter() {
@@ -40,8 +39,6 @@ public final class DelegateEmitter implements DelegateComponent {
   @Override
   public final <T> void addListener(@NonNull Event<T> event, @NonNull Listener<T> listener) {
 
-    // Check that we're not adding the same listener in multiple places
-    // For the same event, it's idempotent; for different events, it's an error
     if (eventMap.containsKey(listener)) {
       final Event otherEvent = eventMap.get(listener);
       if (!event.equals(otherEvent)) {
@@ -71,8 +68,6 @@ public final class DelegateEmitter implements DelegateComponent {
 
 
   public  <T> void emitEvent( Event<T> event,  T data) {
-    // We gather listener iterators  all at once so adding/removing listeners during emission
-    // doesn't change the listener list.
     final List<Listener> listeners = listenerMap.get(event);
     final Iterator<Listener> listenersIterator =
         listeners != null ? listeners.listIterator() : null;
