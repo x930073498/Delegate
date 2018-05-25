@@ -1,12 +1,15 @@
 package com.x930073498.lib.delegate.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.PictureInPictureParams;
 import android.app.VoiceInteractor;
 import android.app.assist.AssistContent;
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.ViewModelStore;
 import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks;
 import android.content.ComponentName;
@@ -22,17 +25,22 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+//import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PersistableBundle;
+import android.os.UserHandle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
@@ -47,7 +55,7 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Scene;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
-import android.util.Log;
+//import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Display;
 import android.view.DragAndDropPermissions;
@@ -66,7 +74,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.x930073498.lib.delegate.Delegate;
+//import com.x930073498.lib.delegate.Delegate;
 import com.x930073498.lib.delegate.DelegateProvider;
 
 import java.io.File;
@@ -74,9 +82,12 @@ import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+//import java.io.IOException;
+//import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class DelegateActivity extends AppCompatActivity implements DelegateProvider<ActivityDelegate> {
     private static final String TAG = "DelegateActivity";
 
@@ -2271,5 +2282,1916 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
         }
     }
 
+
+
+    public final void callSuperCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
+    public final void callSuperSetTheme(int resid) {
+        super.setTheme(resid);
+    }
+
+
+    public final void callSuperPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
+    @Nullable
+
+    public final ActionBar callSuperGetSupportActionBar() {
+        return super.getSupportActionBar();
+    }
+
+
+    public final void callSuperSetSupportActionBar(@Nullable Toolbar toolbar) {
+        super.setSupportActionBar(toolbar);
+    }
+
+
+    public final MenuInflater callSuperGetMenuInflater() {
+        return super.getMenuInflater();
+    }
+
+
+    public final void callSuperSetContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+    }
+
+
+    public final void callSuperSetContentView(View view) {
+        super.setContentView(view);
+    }
+
+
+    public final void callSuperSetContentView(View view, ViewGroup.LayoutParams params) {
+        super.setContentView(view, params);
+    }
+
+
+    public final void callSuperAddContentView(View view, ViewGroup.LayoutParams params) {
+        super.addContentView(view, params);
+    }
+
+
+    public final void callSuperConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
+
+    public final void callSuperPostResume() {
+        super.onPostResume();
+    }
+
+
+    public final void callSuperStart() {
+        super.onStart();
+    }
+
+
+    public final void callSuperStop() {
+        super.onStop();
+    }
+
+
+    public final <T extends View> T callSuperFindViewById(int id) {
+        return super.findViewById(id);
+    }
+
+
+    public final void callSuperDestroy() {
+        super.onDestroy();
+    }
+
+
+    public final void callSuperTitleChanged(CharSequence title, int color) {
+        super.onTitleChanged(title, color);
+    }
+
+
+    public final boolean callSuperSupportRequestWindowFeature(int featureId) {
+        return super.supportRequestWindowFeature(featureId);
+    }
+
+
+    public final void callSuperSupportInvalidateOptionsMenu() {
+        super.supportInvalidateOptionsMenu();
+    }
+
+
+    public final void callSuperInvalidateOptionsMenu() {
+        super.invalidateOptionsMenu();
+    }
+
+
+    public final void callSuperSupportActionModeStarted( ActionMode mode) {
+        super.onSupportActionModeStarted(mode);
+    }
+
+
+    public final void callSuperSupportActionModeFinished( ActionMode mode) {
+        super.onSupportActionModeFinished(mode);
+    }
+
+    @Nullable
+
+    public final ActionMode callSuperWindowStartingSupportActionMode( ActionMode.Callback callback) {
+        return super.onWindowStartingSupportActionMode(callback);
+    }
+
+
+
+    public final ActionMode callSuperStartSupportActionMode( ActionMode.Callback callback) {
+        return super.startSupportActionMode(callback);
+    }
+
+
+//    public final void callSuperSetSupportProgressBarVisibility(boolean visible) {
+//        super.setSupportProgressBarVisibility(visible);
+//    }
+
+
+//    public final void callSuperSetSupportProgressBarIndeterminateVisibility(boolean visible) {
+//        super.setSupportProgressBarIndeterminateVisibility(visible);
+//    }
+
+
+//    public final void callSuperSetSupportProgressBarIndeterminate(boolean indeterminate) {
+//        super.setSupportProgressBarIndeterminate(indeterminate);
+//    }
+
+
+//    public final void callSuperSetSupportProgress(int progress) {
+//        super.setSupportProgress(progress);
+//    }
+
+
+    public final void callSuperCreateSupportNavigateUpTaskStack( TaskStackBuilder builder) {
+        super.onCreateSupportNavigateUpTaskStack(builder);
+    }
+
+
+    public final void callSuperPrepareSupportNavigateUpTaskStack( TaskStackBuilder builder) {
+        super.onPrepareSupportNavigateUpTaskStack(builder);
+    }
+
+
+    public final boolean callSuperSupportNavigateUp() {
+        return super.onSupportNavigateUp();
+    }
+
+    @Nullable
+
+    public final Intent callSuperGetSupportParentActivityIntent() {
+        return super.getSupportParentActivityIntent();
+    }
+
+
+    public final boolean callSuperSupportShouldUpRecreateTask( Intent targetIntent) {
+        return super.supportShouldUpRecreateTask(targetIntent);
+    }
+
+
+    public final void callSuperSupportNavigateUpTo( Intent upIntent) {
+        super.supportNavigateUpTo(upIntent);
+    }
+
+
+    public final void callSuperContentChanged() {
+        super.onContentChanged();
+    }
+
+
+//    public final void callSuperSupportContentChanged() {
+//        super.onSupportContentChanged();
+//    }
+
+    @Nullable
+
+    public final ActionBarDrawerToggle.Delegate callSuperGetDrawerToggleDelegate() {
+        return super.getDrawerToggleDelegate();
+    }
+
+
+    public final boolean callSuperMenuOpened(int featureId, Menu menu) {
+        return super.onMenuOpened(featureId, menu);
+    }
+
+
+    public final void callSuperPanelClosed(int featureId, Menu menu) {
+        super.onPanelClosed(featureId, menu);
+    }
+
+
+    public final void callSuperSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+
+
+    public final AppCompatDelegate callSuperGetDelegate() {
+        return super.getDelegate();
+    }
+
+
+    public final boolean callSuperDispatchKeyEvent(KeyEvent event) {
+        return super.dispatchKeyEvent(event);
+    }
+
+
+    public final Resources callSuperGetResources() {
+        return super.getResources();
+    }
+
+
+    public final boolean callSuperKeyDown(int keyCode, KeyEvent event) {
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    public final void callSuperOpenOptionsMenu() {
+        super.openOptionsMenu();
+    }
+
+
+    public final void callSuperCloseOptionsMenu() {
+        super.closeOptionsMenu();
+    }
+
+
+    public final void callSuperActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    public final void callSuperBackPressed() {
+        super.onBackPressed();
+    }
+
+
+    public final void callSuperSupportFinishAfterTransition() {
+        super.supportFinishAfterTransition();
+    }
+
+
+    public final void callSuperSetEnterSharedElementCallback(SharedElementCallback callback) {
+        super.setEnterSharedElementCallback(callback);
+    }
+
+
+    public final void callSuperSetExitSharedElementCallback(SharedElementCallback listener) {
+        super.setExitSharedElementCallback(listener);
+    }
+
+
+    public final void callSuperSupportPostponeEnterTransition() {
+        super.supportPostponeEnterTransition();
+    }
+
+
+    public final void callSuperSupportStartPostponedEnterTransition() {
+        super.supportStartPostponedEnterTransition();
+    }
+
+
+    public final void callSuperMultiWindowModeChanged(boolean isInMultiWindowMode) {
+        super.onMultiWindowModeChanged(isInMultiWindowMode);
+    }
+
+
+    public final void callSuperPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
+    }
+
+
+
+    public final ViewModelStore callSuperGetViewModelStore() {
+        return super.getViewModelStore();
+    }
+
+
+    public final Lifecycle callSuperGetLifecycle() {
+        return super.getLifecycle();
+    }
+
+
+    public final boolean callSuperCreatePanelMenu(int featureId, Menu menu) {
+        return super.onCreatePanelMenu(featureId, menu);
+    }
+
+
+    public final void callSuperLowMemory() {
+        super.onLowMemory();
+    }
+
+
+    public final void callSuperPause() {
+        super.onPause();
+    }
+
+
+    public final void callSuperNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
+
+
+    public final void callSuperStateNotSaved() {
+        super.onStateNotSaved();
+    }
+
+
+    public final void callSuperResume() {
+        super.onResume();
+    }
+
+
+    public final void callSuperResumeFragments() {
+        super.onResumeFragments();
+    }
+
+
+    public final boolean callSuperPreparePanel(int featureId, View view, Menu menu) {
+        return super.onPreparePanel(featureId, view, menu);
+    }
+
+
+    @SuppressLint("RestrictedApi")
+    public final boolean callSuperPrepareOptionsPanel(View view, Menu menu) {
+        return super.onPrepareOptionsPanel(view, menu);
+    }
+
+
+    public final Object callSuperRetainCustomNonConfigurationInstance() {
+        return super.onRetainCustomNonConfigurationInstance();
+    }
+
+
+    public final Object callSuperGetLastCustomNonConfigurationInstance() {
+        return super.getLastCustomNonConfigurationInstance();
+    }
+
+
+    public final void callSuperDump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+        super.dump(prefix, fd, writer, args);
+    }
+
+
+    public final void callSuperAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+    }
+
+
+    public final FragmentManager callSuperGetSupportFragmentManager() {
+        return super.getSupportFragmentManager();
+    }
+
+
+    public final LoaderManager callSuperGetSupportLoaderManager() {
+        return super.getSupportLoaderManager();
+    }
+
+
+    public final void callSuperStartActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+    }
+
+
+    public final void callSuperRequestPermissionsResult(int requestCode,  String[] permissions,  int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
+    public final void callSuperStartActivityFromFragment(Fragment fragment, Intent intent, int requestCode) {
+        super.startActivityFromFragment(fragment, intent, requestCode);
+    }
+
+
+    public final void callSuperStartActivityFromFragment(Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+        super.startActivityFromFragment(fragment, intent, requestCode, options);
+    }
+
+
+    public final void callSuperStartIntentSenderFromFragment(Fragment fragment, IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+        super.startIntentSenderFromFragment(fragment, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+    }
+
+//
+//    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+//    public final void callSuperStartActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+//        super.startActivityForResult(intent, requestCode, options);
+//    }
+//
+//
+//    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+//    public final void callSuperStartIntentSenderForResult(IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+//        super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+//    }
+
+
+    public final View callSuperCreateView(View parent, String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(parent, name, context, attrs);
+    }
+
+
+    public final View ocallSuperCreateView(String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+    }
+
+
+    public final void callSuperStartIntentSenderForResult(IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+        super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
+    }
+
+
+    @SuppressLint("RestrictedApi")
+    public final void callSuperPutExtraData(ExtraData extraData) {
+        super.putExtraData(extraData);
+    }
+
+
+    @SuppressLint("RestrictedApi")
+    public final <T extends ExtraData> T callSuperGetExtraData(Class<T> extraDataClass) {
+        return super.getExtraData(extraDataClass);
+    }
+
+
+    public final Intent callSuperGetIntent() {
+        return super.getIntent();
+    }
+
+
+    public final void callSuperSetIntent(Intent newIntent) {
+        super.setIntent(newIntent);
+    }
+
+
+    public final WindowManager callSuperGetWindowManager() {
+        return super.getWindowManager();
+    }
+
+
+    public final Window callSuperGetWindow() {
+        return super.getWindow();
+    }
+
+
+    public final android.app.LoaderManager callSuperGetLoaderManager() {
+        return super.getLoaderManager();
+    }
+
+    @Nullable
+
+    public final View callSuperGetCurrentFocus() {
+        return super.getCurrentFocus();
+    }
+
+
+    public final void callSuperAttachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+    }
+
+
+    public final void callSuperRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+    }
+
+
+    public final void callSuperRestart() {
+        super.onRestart();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final boolean callSuperIsVoiceInteraction() {
+        return super.isVoiceInteraction();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final boolean callSuperIsVoiceInteractionRoot() {
+        return super.isVoiceInteractionRoot();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final VoiceInteractor callSuperGetVoiceInteractor() {
+        return super.getVoiceInteractor();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final boolean callSuperIsLocalVoiceInteractionSupported() {
+        return super.isLocalVoiceInteractionSupported();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final void callSuperStartLocalVoiceInteraction(Bundle privateOptions) {
+        super.startLocalVoiceInteraction(privateOptions);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final void callSuperLocalVoiceInteractionStarted() {
+        super.onLocalVoiceInteractionStarted();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final void callSuperLocalVoiceInteractionStopped() {
+        super.onLocalVoiceInteractionStopped();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final void callSuperStopLocalVoiceInteraction() {
+        super.stopLocalVoiceInteraction();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+
+    public final void callSuperUserLeaveHint() {
+        super.onUserLeaveHint();
+    }
+
+
+    public final boolean callSuperCreateThumbnail(Bitmap outBitmap, Canvas canvas) {
+        return super.onCreateThumbnail(outBitmap, canvas);
+    }
+
+    @Nullable
+
+    public final CharSequence callSuperCreateDescription() {
+        return super.onCreateDescription();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public final void callSuperProvideAssistData(Bundle data) {
+        super.onProvideAssistData(data);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final void callSuperProvideAssistContent(AssistContent outContent) {
+        super.onProvideAssistContent(outContent);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final void callSuperProvideKeyboardShortcuts(List<KeyboardShortcutGroup> data, Menu menu, int deviceId) {
+        super.onProvideKeyboardShortcuts(data, menu, deviceId);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final boolean callSuperShowAssist(Bundle args) {
+        return super.showAssist(args);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public final void callSuperReportFullyDrawn() {
+        super.reportFullyDrawn();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final void callSuperMultiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig) {
+        super.onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final boolean callSuperIsInMultiWindowMode() {
+        return super.isInMultiWindowMode();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final void callSuperPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final boolean callSuperIsInPictureInPictureMode() {
+        return super.isInPictureInPictureMode();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final void callSuperEnterPictureInPictureMode() {
+        super.enterPictureInPictureMode();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final boolean callSuperEnterPictureInPictureMode( PictureInPictureParams params) {
+        return super.enterPictureInPictureMode(params);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final void callSuperSetPictureInPictureParams( PictureInPictureParams params) {
+        super.setPictureInPictureParams(params);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final int callSuperGetMaxNumPictureInPictureActions() {
+        return super.getMaxNumPictureInPictureActions();
+    }
+
+
+    public final int callSuperGetChangingConfigurations() {
+        return super.getChangingConfigurations();
+    }
+
+    @Nullable
+
+    public final Object callSuperGetLastNonConfigurationInstance() {
+        return super.getLastNonConfigurationInstance();
+    }
+
+
+    public final void callSuperTrimMemory(int level) {
+        super.onTrimMemory(level);
+    }
+
+
+    public final android.app.FragmentManager callSuperGetFragmentManager() {
+        return super.getFragmentManager();
+    }
+
+
+    public final void callSuperAttachFragment(android.app.Fragment fragment) {
+        super.onAttachFragment(fragment);
+    }
+
+
+    public final void callSuperStartManagingCursor(Cursor c) {
+        super.startManagingCursor(c);
+    }
+
+
+    public final void callSuperStopManagingCursor(Cursor c) {
+        super.stopManagingCursor(c);
+    }
+
+    @Nullable
+
+    public final android.app.ActionBar callSuperGetActionBar() {
+        return super.getActionBar();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperSetActionBar(@Nullable android.widget.Toolbar toolbar) {
+        super.setActionBar(toolbar);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final TransitionManager callSuperGetContentTransitionManager() {
+        return super.getContentTransitionManager();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperSetContentTransitionManager(TransitionManager tm) {
+        super.setContentTransitionManager(tm);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final Scene callSuperGetContentScene() {
+        return super.getContentScene();
+    }
+
+
+    public final void callSuperSetFinishOnTouchOutside(boolean finish) {
+        super.setFinishOnTouchOutside(finish);
+    }
+
+
+    public final boolean callSuperKeyLongPress(int keyCode, KeyEvent event) {
+        return super.onKeyLongPress(keyCode, event);
+    }
+
+
+    public final boolean callSuperKeyUp(int keyCode, KeyEvent event) {
+        return super.onKeyUp(keyCode, event);
+    }
+
+
+    public final boolean callSuperKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
+        return super.onKeyMultiple(keyCode, repeatCount, event);
+    }
+
+
+    public final boolean callSuperKeyShortcut(int keyCode, KeyEvent event) {
+        return super.onKeyShortcut(keyCode, event);
+    }
+
+
+    public final boolean callSuperTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+
+
+    public final boolean callSuperTrackballEvent(MotionEvent event) {
+        return super.onTrackballEvent(event);
+    }
+
+
+    public final boolean callSuperGenericMotionEvent(MotionEvent event) {
+        return super.onGenericMotionEvent(event);
+    }
+
+
+    public final void callSuperUserInteraction() {
+        super.onUserInteraction();
+    }
+
+
+    public final void callSuperWindowAttributesChanged(WindowManager.LayoutParams params) {
+        super.onWindowAttributesChanged(params);
+    }
+
+
+    public final void callSuperWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+    }
+
+
+    public final void callSuperAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+
+
+    public final void callSuperDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
+
+
+    public final boolean callSuperHasWindowFocus() {
+        return super.hasWindowFocus();
+    }
+
+
+    public final boolean callSuperDispatchKeyShortcutEvent(KeyEvent event) {
+        return super.dispatchKeyShortcutEvent(event);
+    }
+
+
+    public final boolean callSuperDispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+    public final boolean callSuperDispatchTrackballEvent(MotionEvent ev) {
+        return super.dispatchTrackballEvent(ev);
+    }
+
+
+    public final boolean callSuperDispatchGenericMotionEvent(MotionEvent ev) {
+        return super.dispatchGenericMotionEvent(ev);
+    }
+
+
+    public final boolean callSuperDispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
+        return super.dispatchPopulateAccessibilityEvent(event);
+    }
+
+    @Nullable
+
+    public final View callSuperCreatePanelView(int featureId) {
+        return super.onCreatePanelView(featureId);
+    }
+
+
+    public final boolean callSuperCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    public final boolean callSuperPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
+    public final boolean callSuperOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final boolean callSuperNavigateUp() {
+        return super.onNavigateUp();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final boolean callSuperNavigateUpFromChild(Activity child) {
+        return super.onNavigateUpFromChild(child);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperCreateNavigateUpTaskStack(android.app.TaskStackBuilder builder) {
+        super.onCreateNavigateUpTaskStack(builder);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperPrepareNavigateUpTaskStack(android.app.TaskStackBuilder builder) {
+        super.onPrepareNavigateUpTaskStack(builder);
+    }
+
+
+    public final void callSuperOptionsMenuClosed(Menu menu) {
+        super.onOptionsMenuClosed(menu);
+    }
+
+
+    public final void callSuperCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+
+    public final void callSuperRegisterForContextMenu(View view) {
+        super.registerForContextMenu(view);
+    }
+
+
+    public final void callSuperUnregisterForContextMenu(View view) {
+        super.unregisterForContextMenu(view);
+    }
+
+
+    public final void callSuperOpenContextMenu(View view) {
+        super.openContextMenu(view);
+    }
+
+
+    public final void callSuperCloseContextMenu() {
+        super.closeContextMenu();
+    }
+
+
+    public final boolean callSuperContextItemSelected(MenuItem item) {
+        return super.onContextItemSelected(item);
+    }
+
+
+    public final void callSuperContextMenuClosed(Menu menu) {
+        super.onContextMenuClosed(menu);
+    }
+
+
+    public final Dialog callSuperCreateDialog(int id) {
+        return super.onCreateDialog(id);
+    }
+
+    @Nullable
+
+    public final Dialog callSuperCreateDialog(int id, Bundle args) {
+        return super.onCreateDialog(id, args);
+    }
+
+
+    public final void callSuperPrepareDialog(int id, Dialog dialog) {
+        super.onPrepareDialog(id, dialog);
+    }
+
+
+    public final void callSuperPrepareDialog(int id, Dialog dialog, Bundle args) {
+        super.onPrepareDialog(id, dialog, args);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final boolean callSuperSearchRequested(@Nullable SearchEvent searchEvent) {
+        return super.onSearchRequested(searchEvent);
+    }
+
+
+    public final boolean callSuperSearchRequested() {
+        return super.onSearchRequested();
+    }
+
+
+    public final void callSuperStartSearch(@Nullable String initialQuery, boolean selectInitialQuery, @Nullable Bundle appSearchData, boolean globalSearch) {
+        super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+    }
+
+
+    public final void callSuperTriggerSearch(String query, @Nullable Bundle appSearchData) {
+        super.triggerSearch(query, appSearchData);
+    }
+
+
+    public final void callSuperTakeKeyEvents(boolean get) {
+        super.takeKeyEvents(get);
+    }
+
+
+
+    public final LayoutInflater callSuperGetLayoutInflater() {
+        return super.getLayoutInflater();
+    }
+
+
+    public final void callSuperApplyThemeResource(Resources.Theme theme, int resid, boolean first) {
+        super.onApplyThemeResource(theme, resid, first);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final boolean callSuperShouldShowRequestPermissionRationale( String permission) {
+        return super.shouldShowRequestPermissionRationale(permission);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final boolean callSuperIsActivityTransitionRunning() {
+        return super.isActivityTransitionRunning();
+    }
+
+
+    public final void callSuperStartActivity(Intent intent) {
+        super.startActivity(intent);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperStartActivity(Intent intent, @Nullable Bundle options) {
+        super.startActivity(intent, options);
+    }
+
+
+    public final void callSuperStartActivities(Intent[] intents) {
+        super.startActivities(intents);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperStartActivities(Intent[] intents, @Nullable Bundle options) {
+        super.startActivities(intents, options);
+    }
+
+
+    public final void callSuperStartIntentSender(IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+        super.startIntentSender(intent, fillInIntent, flagsMask, flagsValues, extraFlags);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperStartIntentSender(IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+        super.startIntentSender(intent, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+    }
+
+
+    public final boolean callSuperStartActivityIfNeeded( Intent intent, int requestCode) {
+        return super.startActivityIfNeeded(intent, requestCode);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final boolean callSuperStartActivityIfNeeded( Intent intent, int requestCode, @Nullable Bundle options) {
+        return super.startActivityIfNeeded(intent, requestCode, options);
+    }
+
+
+    public final boolean callSuperStartNextMatchingActivity( Intent intent) {
+        return super.startNextMatchingActivity(intent);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final boolean callSuperStartNextMatchingActivity( Intent intent, @Nullable Bundle options) {
+        return super.startNextMatchingActivity(intent, options);
+    }
+
+
+    public final void callSuperStartActivityFromChild( Activity child, Intent intent, int requestCode) {
+        super.startActivityFromChild(child, intent, requestCode);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperStartActivityFromChild( Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
+        super.startActivityFromChild(child, intent, requestCode, options);
+    }
+
+
+    public final void callSuperStartActivityFromFragment( android.app.Fragment fragment, Intent intent, int requestCode) {
+        super.startActivityFromFragment(fragment, intent, requestCode);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperStartActivityFromFragment( android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+        super.startActivityFromFragment(fragment, intent, requestCode, options);
+    }
+
+
+    public final void callSuperStartIntentSenderFromChild(Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) throws IntentSender.SendIntentException {
+        super.startIntentSenderFromChild(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperStartIntentSenderFromChild(Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) throws IntentSender.SendIntentException {
+        super.startIntentSenderFromChild(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+    }
+
+
+    public final void callSuperOverridePendingTransition(int enterAnim, int exitAnim) {
+        super.overridePendingTransition(enterAnim, exitAnim);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
+    public final Uri callSuperGetReferrer() {
+        return super.getReferrer();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final Uri callSuperProvideReferrer() {
+        return super.onProvideReferrer();
+    }
+
+    @Nullable
+
+    public final String callSuperGetCallingPackage() {
+        return super.getCallingPackage();
+    }
+
+    @Nullable
+
+    public final ComponentName callSuperGetCallingActivity() {
+        return super.getCallingActivity();
+    }
+
+
+    public final void callSuperSetVisible(boolean visible) {
+        super.setVisible(visible);
+    }
+
+
+    public final boolean callSuperIsFinishing() {
+        return super.isFinishing();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public final boolean callSuperIsDestroyed() {
+        return super.isDestroyed();
+    }
+
+
+    public final boolean callSuperIsChangingConfigurations() {
+        return super.isChangingConfigurations();
+    }
+
+
+    public final void callSuperRecreate() {
+        super.recreate();
+    }
+
+
+    public final void callSuperFinish() {
+        super.finish();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final void callSuperFinishAffinity() {
+        super.finishAffinity();
+    }
+
+
+    public final void callSuperFinishFromChild(Activity child) {
+        super.finishFromChild(child);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperFinishAfterTransition() {
+        super.finishAfterTransition();
+    }
+
+
+    public final void callSuperFinishActivity(int requestCode) {
+        super.finishActivity(requestCode);
+    }
+
+
+    public final void callSuperFinishActivityFromChild( Activity child, int requestCode) {
+        super.finishActivityFromChild(child, requestCode);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperFinishAndRemoveTask() {
+        super.finishAndRemoveTask();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final boolean callSuperReleaseInstance() {
+        return super.releaseInstance();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperActivityReenter(int resultCode, Intent data) {
+        super.onActivityReenter(resultCode, data);
+    }
+
+
+    public final PendingIntent callSuperCreatePendingResult(int requestCode,  Intent data, int flags) {
+        return super.createPendingResult(requestCode, data, flags);
+    }
+
+
+    public final void callSuperSetRequestedOrientation(int requestedOrientation) {
+        super.setRequestedOrientation(requestedOrientation);
+    }
+
+
+    public final int callSuperGetRequestedOrientation() {
+        return super.getRequestedOrientation();
+    }
+
+
+    public final int callSuperGetTaskId() {
+        return super.getTaskId();
+    }
+
+
+    public final boolean callSuperIsTaskRoot() {
+        return super.isTaskRoot();
+    }
+
+
+    public final boolean callSuperMoveTaskToBack(boolean nonRoot) {
+        return super.moveTaskToBack(nonRoot);
+    }
+
+
+    public final String callSuperGetLocalClassName() {
+        return super.getLocalClassName();
+    }
+
+
+    public final ComponentName callSuperGetComponentName() {
+        return super.getComponentName();
+    }
+
+
+    public final SharedPreferences callSuperGetPreferences(int mode) {
+        return super.getPreferences(mode);
+    }
+
+
+    public final Object callSuperGetSystemService( String name) {
+        return super.getSystemService(name);
+    }
+
+
+    public final void callSuperSetTitle(CharSequence title) {
+        super.setTitle(title);
+    }
+
+
+    public final void callSuperSetTitle(int titleId) {
+        super.setTitle(titleId);
+    }
+
+
+    public final void callSuperSetTitleColor(int textColor) {
+        super.setTitleColor(textColor);
+    }
+
+
+    public final void callSuperChildTitleChanged(Activity childActivity, CharSequence title) {
+        super.onChildTitleChanged(childActivity, title);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperSetTaskDescription(ActivityManager.TaskDescription taskDescription) {
+        super.setTaskDescription(taskDescription);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public final boolean callSuperIsImmersive() {
+        return super.isImmersive();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final boolean callSuperRequestVisibleBehind(boolean visible) {
+        return super.requestVisibleBehind(visible);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperVisibleBehindCanceled() {
+        super.onVisibleBehindCanceled();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperEnterAnimationComplete() {
+        super.onEnterAnimationComplete();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public final void callSuperSetImmersive(boolean i) {
+        super.setImmersive(i);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final void callSuperSetVrModeEnabled(boolean enabled,  ComponentName requestedComponent) throws PackageManager.NameNotFoundException {
+        super.setVrModeEnabled(enabled, requestedComponent);
+    }
+
+
+    public final android.view.ActionMode callSuperStartActionMode(android.view.ActionMode.Callback callback) {
+        return super.startActionMode(callback);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final android.view.ActionMode callSuperStartActionMode(android.view.ActionMode.Callback callback, int type) {
+        return super.startActionMode(callback, type);
+    }
+
+
+    public final android.view.ActionMode callSuperWindowStartingActionMode(android.view.ActionMode.Callback callback) {
+        return super.onWindowStartingActionMode(callback);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+
+    public final android.view.ActionMode callSuperWindowStartingActionMode(android.view.ActionMode.Callback callback, int type) {
+        return super.onWindowStartingActionMode(callback, type);
+    }
+
+
+    public final void callSuperActionModeStarted(android.view.ActionMode mode) {
+        super.onActionModeStarted(mode);
+    }
+
+
+    public final void callSuperActionModeFinished(android.view.ActionMode mode) {
+        super.onActionModeFinished(mode);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final boolean callSuperShouldUpRecreateTask(Intent targetIntent) {
+        return super.shouldUpRecreateTask(targetIntent);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final boolean callSuperNavigateUpTo(Intent upIntent) {
+        return super.navigateUpTo(upIntent);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public final boolean callSuperNavigateUpToFromChild(Activity child, Intent upIntent) {
+        return super.navigateUpToFromChild(child, upIntent);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @Nullable
+
+    public final Intent callSuperGetParentActivityIntent() {
+        return super.getParentActivityIntent();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperSetEnterSharedElementCallback(android.app.SharedElementCallback callback) {
+        super.setEnterSharedElementCallback(callback);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperSetExitSharedElementCallback(android.app.SharedElementCallback callback) {
+        super.setExitSharedElementCallback(callback);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperPostponeEnterTransition() {
+        super.postponeEnterTransition();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperStartPostponedEnterTransition() {
+        super.startPostponedEnterTransition();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final DragAndDropPermissions callSuperRequestDragAndDropPermissions(DragEvent event) {
+        return super.requestDragAndDropPermissions(event);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperStartLockTask() {
+        super.startLockTask();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void callSuperStopLockTask() {
+        super.stopLockTask();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final void callSuperShowLockTaskEscapeMessage() {
+        super.showLockTaskEscapeMessage();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O_MR1)
+    public final void callSuperSetShowWhenLocked(boolean showWhenLocked) {
+        super.setShowWhenLocked(showWhenLocked);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O_MR1)
+    public final void callSuperSetTurnScreenOn(boolean turnScreenOn) {
+        super.setTurnScreenOn(turnScreenOn);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public final void callSuperApplyOverrideConfiguration(Configuration overrideConfiguration) {
+        super.applyOverrideConfiguration(overrideConfiguration);
+    }
+
+
+    public final AssetManager callSuperGetAssets() {
+        return super.getAssets();
+    }
+
+
+    public final Resources.Theme callSuperGetTheme() {
+        return super.getTheme();
+    }
+
+
+    public final Context callSuperGetBaseContext() {
+        return super.getBaseContext();
+    }
+
+
+    public final PackageManager callSuperGetPackageManager() {
+        return super.getPackageManager();
+    }
+
+
+    public final ContentResolver callSuperGetContentResolver() {
+        return super.getContentResolver();
+    }
+
+
+    public final Looper callSuperGetMainLooper() {
+        return super.getMainLooper();
+    }
+
+
+    public final Context callSuperGetApplicationContext() {
+        return super.getApplicationContext();
+    }
+
+
+    public final ClassLoader callSuperGetClassLoader() {
+        return super.getClassLoader();
+    }
+
+
+    public final String gcallSuperGetPackageName() {
+        return super.getPackageName();
+    }
+
+
+    public final ApplicationInfo callSuperGetApplicationInfo() {
+        return super.getApplicationInfo();
+    }
+
+
+    public final String callSuperGetPackageResourcePath() {
+        return super.getPackageResourcePath();
+    }
+
+
+    public final String callSuperGetPackageCodePath() {
+        return super.getPackageCodePath();
+    }
+
+
+    public final SharedPreferences callSuperGetSharedPreferences(String name, int mode) {
+        return super.getSharedPreferences(name, mode);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final boolean callSuperMoveSharedPreferencesFrom(Context sourceContext, String name) {
+        return super.moveSharedPreferencesFrom(sourceContext, name);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final boolean callSuperDeleteSharedPreferences(String name) {
+        return super.deleteSharedPreferences(name);
+    }
+
+
+    public final FileInputStream callSuperOpenFileInput(String name) throws FileNotFoundException {
+        return super.openFileInput(name);
+    }
+
+
+    public final FileOutputStream callSuperOpenFileOutput(String name, int mode) throws FileNotFoundException {
+        return super.openFileOutput(name, mode);
+    }
+
+
+    public final boolean callSuperDeleteFile(String name) {
+        return super.deleteFile(name);
+    }
+
+
+    public final File callSuperGetFileStreamPath(String name) {
+        return super.getFileStreamPath(name);
+    }
+
+
+    public final String[] callSuperFileList() {
+        return super.fileList();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final File callSuperGetDataDir() {
+        return super.getDataDir();
+    }
+
+
+    public final File callSuperGetFilesDir() {
+        return super.getFilesDir();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final File callSuperGetNoBackupFilesDir() {
+        return super.getNoBackupFilesDir();
+    }
+
+
+    public final File callSuperGetExternalFilesDir(String type) {
+        return super.getExternalFilesDir(type);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public final File[] callSuperGetExternalFilesDirs(String type) {
+        return super.getExternalFilesDirs(type);
+    }
+
+
+    public final File callSuperGetObbDir() {
+        return super.getObbDir();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public final File[] callSuperGetObbDirs() {
+        return super.getObbDirs();
+    }
+
+
+    public final File callSuperGetCacheDir() {
+        return super.getCacheDir();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final File callSuperGetCodeCacheDir() {
+        return super.getCodeCacheDir();
+    }
+
+
+    public final File callSuperGetExternalCacheDir() {
+        return super.getExternalCacheDir();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public final File[] callSuperGetExternalCacheDirs() {
+        return super.getExternalCacheDirs();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final File[] callSuperGetExternalMediaDirs() {
+        return super.getExternalMediaDirs();
+    }
+
+
+    public final File callSuperGetDir(String name, int mode) {
+        return super.getDir(name, mode);
+    }
+
+
+    public final SQLiteDatabase callSuperOpenOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory) {
+        return super.openOrCreateDatabase(name, mode, factory);
+    }
+
+
+    public final SQLiteDatabase callSuperOpenOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory, DatabaseErrorHandler errorHandler) {
+        return super.openOrCreateDatabase(name, mode, factory, errorHandler);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final boolean callSuperMoveDatabaseFrom(Context sourceContext, String name) {
+        return super.moveDatabaseFrom(sourceContext, name);
+    }
+
+
+    public final boolean callSuperDeleteDatabase(String name) {
+        return super.deleteDatabase(name);
+    }
+
+
+    public final File callSuperGetDatabasePath(String name) {
+        return super.getDatabasePath(name);
+    }
+
+
+    public final String[] callSuperDatabaseList() {
+        return super.databaseList();
+    }
+
+
+//    public final Drawable callSuperGetWallpaper() {
+//        return super.getWallpaper();
+//    }
+
+
+//    public final Drawable callSuperPeekWallpaper() {
+//        return super.peekWallpaper();
+//    }
+
+
+//    public final int callSuperGetWallpaperDesiredMinimumWidth() {
+//        return super.getWallpaperDesiredMinimumWidth();
+//    }
+
+
+//    public final int callSuperGetWallpaperDesiredMinimumHeight() {
+//        return super.getWallpaperDesiredMinimumHeight();
+//    }
+
+
+//    public final void callSuperSetWallpaper(Bitmap bitmap) throws IOException {
+//        super.setWallpaper(bitmap);
+//    }
+
+
+//    public final void callSuperSetWallpaper(InputStream data) throws IOException {
+//        super.setWallpaper(data);
+//    }
+
+
+//    public final void callSuperClearWallpaper() throws IOException {
+//        super.clearWallpaper();
+//    }
+
+
+    public final void callSuperSendBroadcast(Intent intent) {
+        super.sendBroadcast(intent);
+    }
+
+
+    public final void callSuperSendBroadcast(Intent intent, String receiverPermission) {
+        super.sendBroadcast(intent, receiverPermission);
+    }
+
+
+    public final void callSuperSendOrderedBroadcast(Intent intent, String receiverPermission) {
+        super.sendOrderedBroadcast(intent, receiverPermission);
+    }
+
+
+    public final void callSuperSendOrderedBroadcast(Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+        super.sendOrderedBroadcast(intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public final void callSuperSendBroadcastAsUser(Intent intent, UserHandle user) {
+        super.sendBroadcastAsUser(intent, user);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public final void callSuperSendBroadcastAsUser(Intent intent, UserHandle user, String receiverPermission) {
+        super.sendBroadcastAsUser(intent, user, receiverPermission);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public final void callSuperSendOrderedBroadcastAsUser(Intent intent, UserHandle user, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+        super.sendOrderedBroadcastAsUser(intent, user, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras);
+    }
+
+
+//    public final void callSuperSendStickyBroadcast(Intent intent) {
+//        super.sendStickyBroadcast(intent);
+//    }
+
+
+//    public final void callSuperSendStickyOrderedBroadcast(Intent intent, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+//        super.sendStickyOrderedBroadcast(intent, resultReceiver, scheduler, initialCode, initialData, initialExtras);
+//    }
+
+
+//    public final void callSuperRemoveStickyBroadcast(Intent intent) {
+//        super.removeStickyBroadcast(intent);
+//    }
+
+
+//    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+//    public final void callSuperSendStickyBroadcastAsUser(Intent intent, UserHandle user) {
+//        super.sendStickyBroadcastAsUser(intent, user);
+//    }
+
+
+//    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+//    public final void callSuperSendStickyOrderedBroadcastAsUser(Intent intent, UserHandle user, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+//        super.sendStickyOrderedBroadcastAsUser(intent, user, resultReceiver, scheduler, initialCode, initialData, initialExtras);
+//    }
+
+
+//    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+//    public final void callSuperRemoveStickyBroadcastAsUser(Intent intent, UserHandle user) {
+//        super.removeStickyBroadcastAsUser(intent, user);
+//    }
+
+
+    public final Intent callSuperRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        return super.registerReceiver(receiver, filter);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final Intent callSuperRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, int flags) {
+        return super.registerReceiver(receiver, filter, flags);
+    }
+
+
+    public final Intent callSuperRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler) {
+        return super.registerReceiver(receiver, filter, broadcastPermission, scheduler);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final Intent callSuperRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, String broadcastPermission, Handler scheduler, int flags) {
+        return super.registerReceiver(receiver, filter, broadcastPermission, scheduler, flags);
+    }
+
+
+    public final void callSuperUnregisterReceiver(BroadcastReceiver receiver) {
+        super.unregisterReceiver(receiver);
+    }
+
+
+    public final ComponentName callSuperStartService(Intent service) {
+        return super.startService(service);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final ComponentName callSuperStartForegroundService(Intent service) {
+        return super.startForegroundService(service);
+    }
+
+
+    public final boolean callSuperStopService(Intent name) {
+        return super.stopService(name);
+    }
+
+
+    public final boolean callSuperSindService(Intent service, ServiceConnection conn, int flags) {
+        return super.bindService(service, conn, flags);
+    }
+
+
+    public final void callSuperUnbindService(ServiceConnection conn) {
+        super.unbindService(conn);
+    }
+
+
+    public final boolean scallSuperStartInstrumentation(ComponentName className, String profileFile, Bundle arguments) {
+        return super.startInstrumentation(className, profileFile, arguments);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final String callSuperGetSystemServiceName(Class<?> serviceClass) {
+        return super.getSystemServiceName(serviceClass);
+    }
+
+
+    public final int callSuperCheckPermission(String permission, int pid, int uid) {
+        return super.checkPermission(permission, pid, uid);
+    }
+
+
+    public final int callSuperCheckCallingPermission(String permission) {
+        return super.checkCallingPermission(permission);
+    }
+
+
+    public final int callSuperCheckCallingOrSelfPermission(String permission) {
+        return super.checkCallingOrSelfPermission(permission);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public final int callSuperCheckSelfPermission(String permission) {
+        return super.checkSelfPermission(permission);
+    }
+
+
+    public final void callSuperEnforcePermission(String permission, int pid, int uid, String message) {
+        super.enforcePermission(permission, pid, uid, message);
+    }
+
+
+    public final void callSuperEnforceCallingPermission(String permission, String message) {
+        super.enforceCallingPermission(permission, message);
+    }
+
+
+    public final void callSuperEnforceCallingOrSelfPermission(String permission, String message) {
+        super.enforceCallingOrSelfPermission(permission, message);
+    }
+
+
+    public final void callSuperGrantUriPermission(String toPackage, Uri uri, int modeFlags) {
+        super.grantUriPermission(toPackage, uri, modeFlags);
+    }
+
+
+    public final void callSuperRevokeUriPermission(Uri uri, int modeFlags) {
+        super.revokeUriPermission(uri, modeFlags);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final void callSuperRevokeUriPermission(String targetPackage, Uri uri, int modeFlags) {
+        super.revokeUriPermission(targetPackage, uri, modeFlags);
+    }
+
+
+    public final int callSuperCheckUriPermission(Uri uri, int pid, int uid, int modeFlags) {
+        return super.checkUriPermission(uri, pid, uid, modeFlags);
+    }
+
+
+    public final int callSuperCheckCallingUriPermission(Uri uri, int modeFlags) {
+        return super.checkCallingUriPermission(uri, modeFlags);
+    }
+
+
+    public final int callSuperCheckCallingOrSelfUriPermission(Uri uri, int modeFlags) {
+        return super.checkCallingOrSelfUriPermission(uri, modeFlags);
+    }
+
+
+    public final int callSuperCheckUriPermission(Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags) {
+        return super.checkUriPermission(uri, readPermission, writePermission, pid, uid, modeFlags);
+    }
+
+
+    public final void callSuperEnforceUriPermission(Uri uri, int pid, int uid, int modeFlags, String message) {
+        super.enforceUriPermission(uri, pid, uid, modeFlags, message);
+    }
+
+
+    public final void callSuperEnforceCallingUriPermission(Uri uri, int modeFlags, String message) {
+        super.enforceCallingUriPermission(uri, modeFlags, message);
+    }
+
+
+    public final void callSuperEnforceCallingOrSelfUriPermission(Uri uri, int modeFlags, String message) {
+        super.enforceCallingOrSelfUriPermission(uri, modeFlags, message);
+    }
+
+
+    public final void callSuperEnforceUriPermission(Uri uri, String readPermission, String writePermission, int pid, int uid, int modeFlags, String message) {
+        super.enforceUriPermission(uri, readPermission, writePermission, pid, uid, modeFlags, message);
+    }
+
+
+    public final Context callSuperCreatePackageContext(String packageName, int flags) throws PackageManager.NameNotFoundException {
+        return super.createPackageContext(packageName, flags);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public final Context callSuperCreateConfigurationContext(Configuration overrideConfiguration) {
+        return super.createConfigurationContext(overrideConfiguration);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public final Context callSuperCreateDisplayContext(Display display) {
+        return super.createDisplayContext(display);
+    }
+
+
+    public final boolean callSuperIsRestricted() {
+        return super.isRestricted();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final Context callSuperCreateDeviceProtectedStorageContext() {
+        return super.createDeviceProtectedStorageContext();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public final boolean callSuperIsDeviceProtectedStorage() {
+        return super.isDeviceProtectedStorage();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final Context callSuperCreateContextForSplit(String splitName) throws PackageManager.NameNotFoundException {
+        return super.createContextForSplit(splitName);
+    }
+
+
+    public final void callSuperRegisterComponentCallbacks(ComponentCallbacks callback) {
+        super.registerComponentCallbacks(callback);
+    }
+
+
+    public final void callSuperUnregisterComponentCallbacks(ComponentCallbacks callback) {
+        super.unregisterComponentCallbacks(callback);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public final void callSuperPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
 
 }

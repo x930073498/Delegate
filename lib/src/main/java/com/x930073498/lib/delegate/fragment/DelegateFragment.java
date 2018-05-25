@@ -2,14 +2,18 @@ package com.x930073498.lib.delegate.fragment;
 
 import android.animation.Animator;
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.ViewModelStore;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.SharedElementCallback;
 import android.util.AttributeSet;
@@ -28,6 +32,7 @@ import com.x930073498.lib.delegate.DelegateProvider;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 
+@SuppressWarnings("unused")
 public class DelegateFragment extends Fragment implements DelegateProvider<FragmentDelegate> {
 
     private DefaultFragmentDelegate delegate;
@@ -500,5 +505,526 @@ public class DelegateFragment extends Fragment implements DelegateProvider<Fragm
     @Override
     public FragmentDelegate getComponentDelegate() {
         return delegate == null ? delegate = new DefaultFragmentDelegate() : delegate;
+    }
+
+
+    public Lifecycle callSuperGetLifecycle() {
+        return super.getLifecycle();
+    }
+
+    public int callSuperGetId() {
+        return super.getId();
+    }
+
+
+    public String callSuperGetTag() {
+        return super.getTag();
+    }
+
+
+    public Bundle callSuperGetArguments() {
+        return super.getArguments();
+    }
+
+
+    public boolean callSuperIsStateSaved() {
+        return super.isStateSaved();
+    }
+
+
+    public Fragment callSuperGetTargetFragment() {
+        return super.getTargetFragment();
+    }
+
+
+    public int callSuperGetTargetRequestCode() {
+        return super.getTargetRequestCode();
+    }
+
+
+    public Context callSuperRequireContext() {
+        return super.requireContext();
+    }
+
+
+    public FragmentActivity callSuperGetActivity() {
+        return super.getActivity();
+    }
+
+
+    public FragmentActivity callSuperRequireActivity() {
+        return super.requireActivity();
+    }
+
+
+    public Object callSuperGetHost() {
+        return super.getHost();
+    }
+
+
+    public Object callSuperRequireHost() {
+        return super.requireHost();
+    }
+
+
+    public Resources callSuperGetResources() {
+        return super.getResources();
+    }
+
+
+    public CharSequence callSuperGetText(int resId) {
+        return super.getText(resId);
+    }
+
+
+    public String callSuperGetString(int resId) {
+        return super.getString(resId);
+    }
+
+
+    public String callSuperGetString(int resId, Object... formatArgs) {
+        return super.getString(resId, formatArgs);
+    }
+
+
+    public FragmentManager callSuperGetFragmentManager() {
+        return super.getFragmentManager();
+    }
+
+
+    public FragmentManager callSuperRequireFragmentManager() {
+        return super.requireFragmentManager();
+    }
+
+
+    public FragmentManager callSuperGetChildFragmentManager() {
+        return super.getChildFragmentManager();
+    }
+
+
+    public Fragment callSuperGetParentFragment() {
+        return super.getParentFragment();
+    }
+
+
+    public boolean callSuperIsAdded() {
+        return super.isAdded();
+    }
+
+
+    public boolean callSuperIsDetached() {
+        return super.isDetached();
+    }
+
+
+    public boolean callSuperIsRemoving() {
+        return super.isRemoving();
+    }
+
+
+    public boolean callSuperIsInLayout() {
+        return super.isInLayout();
+    }
+
+
+    public boolean callSuperIsResumed() {
+        return super.isResumed();
+    }
+
+
+    public boolean callSuperIsVisible() {
+        return super.isVisible();
+    }
+
+
+    public boolean callSuperIsHidden() {
+        return super.isHidden();
+    }
+
+
+    public boolean callSuperGetRetainInstance() {
+        return super.getRetainInstance();
+    }
+
+
+    public LayoutInflater callSuperGetLayoutInflater() {
+        return super.getLayoutInflater();
+    }
+
+
+    public void callSuperRequestPermissions(@NonNull String[] permissions, int requestCode) {
+        super.requestPermissions(permissions, requestCode);
+    }
+
+
+    public ViewModelStore callSuperGetViewModelStore() {
+        return super.getViewModelStore();
+    }
+
+
+    public void callSuperSetArguments(@Nullable Bundle args) {
+        super.setArguments(args);
+    }
+
+
+    public void callSuperSetInitialSavedState(@Nullable Fragment.SavedState state) {
+        super.setInitialSavedState(state);
+    }
+
+
+    public void callSuperSetTargetFragment(@Nullable Fragment fragment, int requestCode) {
+        super.setTargetFragment(fragment, requestCode);
+    }
+
+
+    public Context callSuperGetContext() {
+        return super.getContext();
+    }
+
+
+    public void callSuperHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
+
+    public void callSuperSetRetainInstance(boolean retain) {
+        super.setRetainInstance(retain);
+    }
+
+
+    public void callSuperSetHasOptionsMenu(boolean hasMenu) {
+        super.setHasOptionsMenu(hasMenu);
+    }
+
+
+    public void callSuperSetMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+    }
+
+
+    public void callSuperSetUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
+
+
+    public boolean callSuperGetUserVisibleHint() {
+        return super.getUserVisibleHint();
+    }
+
+
+    public LoaderManager callSuperGetLoaderManager() {
+        return super.getLoaderManager();
+    }
+
+
+    public void callSuperStartActivity(Intent intent) {
+        super.startActivity(intent);
+    }
+
+
+    public void callSuperStartActivity(Intent intent, @Nullable Bundle options) {
+        super.startActivity(intent, options);
+    }
+
+
+    public void callSuperStartActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+    }
+
+
+    public void callSuperStartActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+        super.startActivityForResult(intent, requestCode, options);
+    }
+
+
+    public void callSuperStartIntentSenderForResult(IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+        super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
+    }
+
+
+    public void callSuperActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    public void callSuperRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
+    public boolean callSuperShouldShowRequestPermissionRationale(@NonNull String permission) {
+        return super.shouldShowRequestPermissionRationale(permission);
+    }
+
+
+    public LayoutInflater callSuperGetLayoutInflater(@Nullable Bundle savedInstanceState) {
+        return super.onGetLayoutInflater(savedInstanceState);
+    }
+
+
+    public void callSuperInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+        super.onInflate(context, attrs, savedInstanceState);
+    }
+
+
+    public void callSuperAttachFragment(Fragment childFragment) {
+        super.onAttachFragment(childFragment);
+    }
+
+
+    public void callSuperAttach(Context context) {
+        super.onAttach(context);
+    }
+
+
+    public Animation callSuperCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return super.onCreateAnimation(transit, enter, nextAnim);
+    }
+
+
+    public Animator callSuperCreateAnimator(int transit, boolean enter, int nextAnim) {
+        return super.onCreateAnimator(transit, enter, nextAnim);
+    }
+
+
+    public void callSuperCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+
+    public View callSuperCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+
+    public void callSuperViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Nullable
+
+    public View callSuperGetView() {
+        return super.getView();
+    }
+
+
+    public void callSuperActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+
+    public void callSuperViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+    }
+
+
+    public void callSuperStart() {
+        super.onStart();
+    }
+
+
+    public void callSuperResume() {
+        super.onResume();
+    }
+
+
+    public void callSuperSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+
+    public void callSuperMultiWindowModeChanged(boolean isInMultiWindowMode) {
+        super.onMultiWindowModeChanged(isInMultiWindowMode);
+    }
+
+
+    public void callSupernPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
+    }
+
+
+    public void callSuperConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
+
+    public void callSupernPause() {
+        super.onPause();
+    }
+
+
+    public void callSuperStop() {
+        super.onStop();
+    }
+
+
+    public void callSuperLowMemory() {
+        super.onLowMemory();
+    }
+
+
+    public void callSuperDestroyView() {
+        super.onDestroyView();
+    }
+
+
+    public void callSuperDestroy() {
+        super.onDestroy();
+    }
+
+
+    public void callSuperDetach() {
+        super.onDetach();
+    }
+
+
+    public void callSuperCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    public void callSuperPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+    }
+
+
+    public void callSuperDestroyOptionsMenu() {
+        super.onDestroyOptionsMenu();
+    }
+
+
+    public boolean callSuperOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public void callSuperOptionsMenuClosed(Menu menu) {
+        super.onOptionsMenuClosed(menu);
+    }
+
+
+    public void callSuperCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+
+    public void callSuperRegisterForContextMenu(View view) {
+        super.registerForContextMenu(view);
+    }
+
+
+    public void callSuperUnregisterForContextMenu(View view) {
+        super.unregisterForContextMenu(view);
+    }
+
+
+    public boolean callSuperContextItemSelected(MenuItem item) {
+        return super.onContextItemSelected(item);
+    }
+
+
+    public void callSuperSetEnterSharedElementCallback(SharedElementCallback callback) {
+        super.setEnterSharedElementCallback(callback);
+    }
+
+
+    public void callSuperSetExitSharedElementCallback(SharedElementCallback callback) {
+        super.setExitSharedElementCallback(callback);
+    }
+
+
+    public void callSuperSetEnterTransition(@Nullable Object transition) {
+        super.setEnterTransition(transition);
+    }
+
+
+    public Object gcallSuperGetEnterTransition() {
+        return super.getEnterTransition();
+    }
+
+
+    public void callSuperSetReturnTransition(@Nullable Object transition) {
+        super.setReturnTransition(transition);
+    }
+
+
+    public Object callSuperGetReturnTransition() {
+        return super.getReturnTransition();
+    }
+
+
+    public void callSuperSetExitTransition(@Nullable Object transition) {
+        super.setExitTransition(transition);
+    }
+
+
+    public Object callSuperGetExitTransition() {
+        return super.getExitTransition();
+    }
+
+
+    public void callSuperSetReenterTransition(@Nullable Object transition) {
+        super.setReenterTransition(transition);
+    }
+
+
+    public Object callSuperGetReenterTransition() {
+        return super.getReenterTransition();
+    }
+
+
+    public void callSuperSetSharedElementEnterTransition(@Nullable Object transition) {
+        super.setSharedElementEnterTransition(transition);
+    }
+
+
+    public Object callSuperGetSharedElementEnterTransition() {
+        return super.getSharedElementEnterTransition();
+    }
+
+
+    public void callSuperSetSharedElementReturnTransition(@Nullable Object transition) {
+        super.setSharedElementReturnTransition(transition);
+    }
+
+
+    public Object callSuperGetSharedElementReturnTransition() {
+        return super.getSharedElementReturnTransition();
+    }
+
+
+    public void callSuperSetAllowEnterTransitionOverlap(boolean allow) {
+        super.setAllowEnterTransitionOverlap(allow);
+    }
+
+
+    public boolean callSuperGetAllowEnterTransitionOverlap() {
+        return super.getAllowEnterTransitionOverlap();
+    }
+
+
+    public void callSuperSetAllowReturnTransitionOverlap(boolean allow) {
+        super.setAllowReturnTransitionOverlap(allow);
+    }
+
+
+    public boolean callSuperGetAllowReturnTransitionOverlap() {
+        return super.getAllowReturnTransitionOverlap();
+    }
+
+
+    public void callSuperPostponeEnterTransition() {
+        super.postponeEnterTransition();
+    }
+
+
+    public void callSuperStartPostponedEnterTransition() {
+        super.startPostponedEnterTransition();
+    }
+
+
+    public void callSuperDump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+        super.dump(prefix, fd, writer, args);
     }
 }
