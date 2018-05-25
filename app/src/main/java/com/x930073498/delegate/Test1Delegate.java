@@ -29,7 +29,7 @@ public class Test1Delegate implements ActivityDelegate {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_test1);
+        getActivity().callSuperSetContentView(R.layout.activity_test1);
         findViewById(R.id.btn).setOnClickListener((v) -> {
 //            Intent intent = new Intent(getActivity(), DefaultDelegateActivity.class);
 //            intent.putExtra("name", Test2Delegate.class);
