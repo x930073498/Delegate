@@ -508,523 +508,521 @@ public class DelegateFragment extends Fragment implements DelegateProvider<Fragm
     }
 
 
-    public Lifecycle callSuperGetLifecycle() {
+    public final  Lifecycle callSuperGetLifecycle() {
         return super.getLifecycle();
     }
 
-    public int callSuperGetId() {
+    public final  int callSuperGetId() {
         return super.getId();
     }
 
 
-    public String callSuperGetTag() {
+    public final  String callSuperGetTag() {
         return super.getTag();
     }
 
 
-    public Bundle callSuperGetArguments() {
+    public final  Bundle callSuperGetArguments() {
         return super.getArguments();
     }
 
 
-    public boolean callSuperIsStateSaved() {
+    public final  boolean callSuperIsStateSaved() {
         return super.isStateSaved();
     }
 
 
-    public Fragment callSuperGetTargetFragment() {
+    public final  Fragment callSuperGetTargetFragment() {
         return super.getTargetFragment();
     }
 
 
-    public int callSuperGetTargetRequestCode() {
+    public final  int callSuperGetTargetRequestCode() {
         return super.getTargetRequestCode();
     }
 
 
-    public Context callSuperRequireContext() {
+    public final  Context callSuperRequireContext() {
         return super.requireContext();
     }
 
 
-    public FragmentActivity callSuperGetActivity() {
+    public final  FragmentActivity callSuperGetActivity() {
         return super.getActivity();
     }
 
 
-    public FragmentActivity callSuperRequireActivity() {
+    public final  FragmentActivity callSuperRequireActivity() {
         return super.requireActivity();
     }
 
 
-    public Object callSuperGetHost() {
+    public final  Object callSuperGetHost() {
         return super.getHost();
     }
 
 
-    public Object callSuperRequireHost() {
+    public final  Object callSuperRequireHost() {
         return super.requireHost();
     }
 
 
-    public Resources callSuperGetResources() {
+    public final  Resources callSuperGetResources() {
         return super.getResources();
     }
 
 
-    public CharSequence callSuperGetText(int resId) {
+    public final  CharSequence callSuperGetText(int resId) {
         return super.getText(resId);
     }
 
 
-    public String callSuperGetString(int resId) {
+    public final  String callSuperGetString(int resId) {
         return super.getString(resId);
     }
 
 
-    public String callSuperGetString(int resId, Object... formatArgs) {
+    public final  String callSuperGetString(int resId, Object... formatArgs) {
         return super.getString(resId, formatArgs);
     }
 
 
-    public FragmentManager callSuperGetFragmentManager() {
+    public final  FragmentManager callSuperGetFragmentManager() {
         return super.getFragmentManager();
     }
 
 
-    public FragmentManager callSuperRequireFragmentManager() {
+    public final  FragmentManager callSuperRequireFragmentManager() {
         return super.requireFragmentManager();
     }
 
 
-    public FragmentManager callSuperGetChildFragmentManager() {
+    public final  FragmentManager callSuperGetChildFragmentManager() {
         return super.getChildFragmentManager();
     }
 
 
-    public Fragment callSuperGetParentFragment() {
+    public final  Fragment callSuperGetParentFragment() {
         return super.getParentFragment();
     }
 
 
-    public boolean callSuperIsAdded() {
+    public final  boolean callSuperIsAdded() {
         return super.isAdded();
     }
 
 
-    public boolean callSuperIsDetached() {
+    public final  boolean callSuperIsDetached() {
         return super.isDetached();
     }
 
 
-    public boolean callSuperIsRemoving() {
+    public final  boolean callSuperIsRemoving() {
         return super.isRemoving();
     }
 
 
-    public boolean callSuperIsInLayout() {
+    public final  boolean callSuperIsInLayout() {
         return super.isInLayout();
     }
 
 
-    public boolean callSuperIsResumed() {
+    public final  boolean callSuperIsResumed() {
         return super.isResumed();
     }
 
 
-    public boolean callSuperIsVisible() {
+    public final  boolean callSuperIsVisible() {
         return super.isVisible();
     }
 
 
-    public boolean callSuperIsHidden() {
+    public final  boolean callSuperIsHidden() {
         return super.isHidden();
     }
 
 
-    public boolean callSuperGetRetainInstance() {
+    public final  boolean callSuperGetRetainInstance() {
         return super.getRetainInstance();
     }
 
 
-    public LayoutInflater callSuperGetLayoutInflater() {
+    public final  LayoutInflater callSuperGetLayoutInflater() {
         return super.getLayoutInflater();
     }
 
 
-    public void callSuperRequestPermissions(@NonNull String[] permissions, int requestCode) {
+    public final  void callSuperRequestPermissions(@NonNull String[] permissions, int requestCode) {
         super.requestPermissions(permissions, requestCode);
     }
 
 
-    public ViewModelStore callSuperGetViewModelStore() {
+    public final  ViewModelStore callSuperGetViewModelStore() {
         return super.getViewModelStore();
     }
 
 
-    public void callSuperSetArguments(@Nullable Bundle args) {
+    public final  void callSuperSetArguments(@Nullable Bundle args) {
         super.setArguments(args);
     }
 
 
-    public void callSuperSetInitialSavedState(@Nullable Fragment.SavedState state) {
+    public final  void callSuperSetInitialSavedState(@Nullable Fragment.SavedState state) {
         super.setInitialSavedState(state);
     }
 
 
-    public void callSuperSetTargetFragment(@Nullable Fragment fragment, int requestCode) {
+    public final  void callSuperSetTargetFragment(@Nullable Fragment fragment, int requestCode) {
         super.setTargetFragment(fragment, requestCode);
     }
 
 
-    public Context callSuperGetContext() {
+    public final  Context callSuperGetContext() {
         return super.getContext();
     }
 
 
-    public void callSuperHiddenChanged(boolean hidden) {
+    public final  void callSuperHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
     }
 
 
-    public void callSuperSetRetainInstance(boolean retain) {
+    public final  void callSuperSetRetainInstance(boolean retain) {
         super.setRetainInstance(retain);
     }
 
 
-    public void callSuperSetHasOptionsMenu(boolean hasMenu) {
+    public final  void callSuperSetHasOptionsMenu(boolean hasMenu) {
         super.setHasOptionsMenu(hasMenu);
     }
 
 
-    public void callSuperSetMenuVisibility(boolean menuVisible) {
+    public final  void callSuperSetMenuVisibility(boolean menuVisible) {
         super.setMenuVisibility(menuVisible);
     }
 
 
-    public void callSuperSetUserVisibleHint(boolean isVisibleToUser) {
+    public final  void callSuperSetUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
     }
 
 
-    public boolean callSuperGetUserVisibleHint() {
+    public final  boolean callSuperGetUserVisibleHint() {
         return super.getUserVisibleHint();
     }
 
 
-    public LoaderManager callSuperGetLoaderManager() {
+    public final  LoaderManager callSuperGetLoaderManager() {
         return super.getLoaderManager();
     }
 
 
-    public void callSuperStartActivity(Intent intent) {
+    public final  void callSuperStartActivity(Intent intent) {
         super.startActivity(intent);
     }
 
 
-    public void callSuperStartActivity(Intent intent, @Nullable Bundle options) {
+    public final  void callSuperStartActivity(Intent intent, @Nullable Bundle options) {
         super.startActivity(intent, options);
     }
 
 
-    public void callSuperStartActivityForResult(Intent intent, int requestCode) {
+    public final  void callSuperStartActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
     }
 
 
-    public void callSuperStartActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+    public final  void callSuperStartActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
         super.startActivityForResult(intent, requestCode, options);
     }
 
 
-    public void callSuperStartIntentSenderForResult(IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
+    public final  void callSuperStartIntentSenderForResult(IntentSender intent, int requestCode, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) throws IntentSender.SendIntentException {
         super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options);
     }
 
 
-    public void callSuperActivityResult(int requestCode, int resultCode, Intent data) {
+    public final  void callSuperActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
 
-    public void callSuperRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public final  void callSuperRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 
-    public boolean callSuperShouldShowRequestPermissionRationale(@NonNull String permission) {
+    public final  boolean callSuperShouldShowRequestPermissionRationale(@NonNull String permission) {
         return super.shouldShowRequestPermissionRationale(permission);
     }
 
 
-    public LayoutInflater callSuperGetLayoutInflater(@Nullable Bundle savedInstanceState) {
+    public final  LayoutInflater callSuperGetLayoutInflater(@Nullable Bundle savedInstanceState) {
         return super.onGetLayoutInflater(savedInstanceState);
     }
 
 
-    public void callSuperInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+    public final  void callSuperInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(context, attrs, savedInstanceState);
     }
 
 
-    public void callSuperAttachFragment(Fragment childFragment) {
+    public final  void callSuperAttachFragment(Fragment childFragment) {
         super.onAttachFragment(childFragment);
     }
 
 
-    public void callSuperAttach(Context context) {
+    public final  void callSuperAttach(Context context) {
         super.onAttach(context);
     }
 
 
-    public Animation callSuperCreateAnimation(int transit, boolean enter, int nextAnim) {
+    public final  Animation callSuperCreateAnimation(int transit, boolean enter, int nextAnim) {
         return super.onCreateAnimation(transit, enter, nextAnim);
     }
 
 
-    public Animator callSuperCreateAnimator(int transit, boolean enter, int nextAnim) {
+    public final  Animator callSuperCreateAnimator(int transit, boolean enter, int nextAnim) {
         return super.onCreateAnimator(transit, enter, nextAnim);
     }
 
 
-    public void callSuperCreate(@Nullable Bundle savedInstanceState) {
+    public final  void callSuperCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    @Nullable
 
-    public View callSuperCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public final  View callSuperCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
 
-    public void callSuperViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public final  void callSuperViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Nullable
 
-    public View callSuperGetView() {
+    public final  View callSuperGetView() {
         return super.getView();
     }
 
 
-    public void callSuperActivityCreated(@Nullable Bundle savedInstanceState) {
+    public final  void callSuperActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
 
 
-    public void callSuperViewStateRestored(@Nullable Bundle savedInstanceState) {
+    public final  void callSuperViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
     }
 
 
-    public void callSuperStart() {
+    public final  void callSuperStart() {
         super.onStart();
     }
 
 
-    public void callSuperResume() {
+    public final  void callSuperResume() {
         super.onResume();
     }
 
 
-    public void callSuperSaveInstanceState(@NonNull Bundle outState) {
+    public final  void callSuperSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
 
-    public void callSuperMultiWindowModeChanged(boolean isInMultiWindowMode) {
+    public final  void callSuperMultiWindowModeChanged(boolean isInMultiWindowMode) {
         super.onMultiWindowModeChanged(isInMultiWindowMode);
     }
 
 
-    public void callSupernPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+    public final  void callSupernPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode);
     }
 
 
-    public void callSuperConfigurationChanged(Configuration newConfig) {
+    public final  void callSuperConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
 
 
-    public void callSupernPause() {
+    public final  void callSupernPause() {
         super.onPause();
     }
 
 
-    public void callSuperStop() {
+    public final  void callSuperStop() {
         super.onStop();
     }
 
 
-    public void callSuperLowMemory() {
+    public final  void callSuperLowMemory() {
         super.onLowMemory();
     }
 
 
-    public void callSuperDestroyView() {
+    public final  void callSuperDestroyView() {
         super.onDestroyView();
     }
 
 
-    public void callSuperDestroy() {
+    public final  void callSuperDestroy() {
         super.onDestroy();
     }
 
 
-    public void callSuperDetach() {
+    public final  void callSuperDetach() {
         super.onDetach();
     }
 
 
-    public void callSuperCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public final  void callSuperCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
 
-    public void callSuperPrepareOptionsMenu(Menu menu) {
+    public final  void callSuperPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
     }
 
 
-    public void callSuperDestroyOptionsMenu() {
+    public final  void callSuperDestroyOptionsMenu() {
         super.onDestroyOptionsMenu();
     }
 
 
-    public boolean callSuperOptionsItemSelected(MenuItem item) {
+    public final  boolean callSuperOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
 
 
-    public void callSuperOptionsMenuClosed(Menu menu) {
+    public final  void callSuperOptionsMenuClosed(Menu menu) {
         super.onOptionsMenuClosed(menu);
     }
 
 
-    public void callSuperCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public final  void callSuperCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
 
-    public void callSuperRegisterForContextMenu(View view) {
+    public final  void callSuperRegisterForContextMenu(View view) {
         super.registerForContextMenu(view);
     }
 
 
-    public void callSuperUnregisterForContextMenu(View view) {
+    public final  void callSuperUnregisterForContextMenu(View view) {
         super.unregisterForContextMenu(view);
     }
 
 
-    public boolean callSuperContextItemSelected(MenuItem item) {
+    public final  boolean callSuperContextItemSelected(MenuItem item) {
         return super.onContextItemSelected(item);
     }
 
 
-    public void callSuperSetEnterSharedElementCallback(SharedElementCallback callback) {
+    public final  void callSuperSetEnterSharedElementCallback(SharedElementCallback callback) {
         super.setEnterSharedElementCallback(callback);
     }
 
 
-    public void callSuperSetExitSharedElementCallback(SharedElementCallback callback) {
+    public final  void callSuperSetExitSharedElementCallback(SharedElementCallback callback) {
         super.setExitSharedElementCallback(callback);
     }
 
 
-    public void callSuperSetEnterTransition(@Nullable Object transition) {
+    public final  void callSuperSetEnterTransition(@Nullable Object transition) {
         super.setEnterTransition(transition);
     }
 
 
-    public Object gcallSuperGetEnterTransition() {
+    public final  Object gcallSuperGetEnterTransition() {
         return super.getEnterTransition();
     }
 
 
-    public void callSuperSetReturnTransition(@Nullable Object transition) {
+    public final  void callSuperSetReturnTransition(@Nullable Object transition) {
         super.setReturnTransition(transition);
     }
 
 
-    public Object callSuperGetReturnTransition() {
+    public final  Object callSuperGetReturnTransition() {
         return super.getReturnTransition();
     }
 
 
-    public void callSuperSetExitTransition(@Nullable Object transition) {
+    public final  void callSuperSetExitTransition(@Nullable Object transition) {
         super.setExitTransition(transition);
     }
 
 
-    public Object callSuperGetExitTransition() {
+    public final  Object callSuperGetExitTransition() {
         return super.getExitTransition();
     }
 
 
-    public void callSuperSetReenterTransition(@Nullable Object transition) {
+    public final  void callSuperSetReenterTransition(@Nullable Object transition) {
         super.setReenterTransition(transition);
     }
 
 
-    public Object callSuperGetReenterTransition() {
+    public final  Object callSuperGetReenterTransition() {
         return super.getReenterTransition();
     }
 
 
-    public void callSuperSetSharedElementEnterTransition(@Nullable Object transition) {
+    public final  void callSuperSetSharedElementEnterTransition(@Nullable Object transition) {
         super.setSharedElementEnterTransition(transition);
     }
 
 
-    public Object callSuperGetSharedElementEnterTransition() {
+    public final  Object callSuperGetSharedElementEnterTransition() {
         return super.getSharedElementEnterTransition();
     }
 
 
-    public void callSuperSetSharedElementReturnTransition(@Nullable Object transition) {
+    public final  void callSuperSetSharedElementReturnTransition(@Nullable Object transition) {
         super.setSharedElementReturnTransition(transition);
     }
 
 
-    public Object callSuperGetSharedElementReturnTransition() {
+    public final  Object callSuperGetSharedElementReturnTransition() {
         return super.getSharedElementReturnTransition();
     }
 
 
-    public void callSuperSetAllowEnterTransitionOverlap(boolean allow) {
+    public final  void callSuperSetAllowEnterTransitionOverlap(boolean allow) {
         super.setAllowEnterTransitionOverlap(allow);
     }
 
 
-    public boolean callSuperGetAllowEnterTransitionOverlap() {
+    public final  boolean callSuperGetAllowEnterTransitionOverlap() {
         return super.getAllowEnterTransitionOverlap();
     }
 
 
-    public void callSuperSetAllowReturnTransitionOverlap(boolean allow) {
+    public final  void callSuperSetAllowReturnTransitionOverlap(boolean allow) {
         super.setAllowReturnTransitionOverlap(allow);
     }
 
 
-    public boolean callSuperGetAllowReturnTransitionOverlap() {
+    public final  boolean callSuperGetAllowReturnTransitionOverlap() {
         return super.getAllowReturnTransitionOverlap();
     }
 
 
-    public void callSuperPostponeEnterTransition() {
+    public final  void callSuperPostponeEnterTransition() {
         super.postponeEnterTransition();
     }
 
 
-    public void callSuperStartPostponedEnterTransition() {
+    public final  void callSuperStartPostponedEnterTransition() {
         super.startPostponedEnterTransition();
     }
 
 
-    public void callSuperDump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+    public final  void callSuperDump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
         super.dump(prefix, fd, writer, args);
     }
 }
