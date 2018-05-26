@@ -1394,7 +1394,7 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate ,Seri
 
 
     default String[] fileList(DelegateActivity delegateActivity) {
-        return new String[0];
+        return null;
     }
 
 
@@ -1419,7 +1419,7 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate ,Seri
 
 
     default File[] getExternalFilesDirs(DelegateActivity delegateActivity, String type) {
-        return new File[0];
+        return null;
     }
 
 
@@ -1429,7 +1429,7 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate ,Seri
 
 
     default File[] getObbDirs(DelegateActivity delegateActivity) {
-        return new File[0];
+        return null;
     }
 
 
@@ -1449,12 +1449,12 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate ,Seri
 
 
     default File[] getExternalCacheDirs(DelegateActivity delegateActivity) {
-        return new File[0];
+        return null;
     }
 
 
     default File[] getExternalMediaDirs(DelegateActivity delegateActivity) {
-        return new File[0];
+        return null;
     }
 
 
@@ -1489,7 +1489,7 @@ public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate ,Seri
 
 
     default String[] databaseList(DelegateActivity delegateActivity) {
-        return new String[0];
+        return null;
     }
 
 
