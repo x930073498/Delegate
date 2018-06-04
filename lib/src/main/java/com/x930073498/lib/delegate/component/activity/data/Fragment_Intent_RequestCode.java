@@ -1,7 +1,7 @@
 package com.x930073498.lib.delegate.component.activity.data;
 
+import android.app.Fragment;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 
 public class Fragment_Intent_RequestCode {
     public Fragment fragment;

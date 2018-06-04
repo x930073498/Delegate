@@ -70,19 +70,51 @@ import com.x930073498.lib.delegate.component.DelegateComponent;
 import com.x930073498.lib.delegate.component.DelegateEmitter;
 import com.x930073498.lib.delegate.component.Event;
 import com.x930073498.lib.delegate.component.Listener;
+import com.x930073498.lib.delegate.component.activity.data.ActionModeCallback_Integer;
+import com.x930073498.lib.delegate.component.activity.data.ActivityCharSequence;
+import com.x930073498.lib.delegate.component.activity.data.ActivityIntentSenderOption;
+import com.x930073498.lib.delegate.component.activity.data.ActivityIntentSenderOptionWithBundle;
+import com.x930073498.lib.delegate.component.activity.data.ActivityRequestCode;
 import com.x930073498.lib.delegate.component.activity.data.ActivityResult;
+import com.x930073498.lib.delegate.component.activity.data.Activity_Intent;
+import com.x930073498.lib.delegate.component.activity.data.Activity_Intent_RequestCode;
+import com.x930073498.lib.delegate.component.activity.data.Activity_Intent_RequestCode_Bundle;
+import com.x930073498.lib.delegate.component.activity.data.AnimationDef;
+import com.x930073498.lib.delegate.component.activity.data.Bitmap_Cavas;
+import com.x930073498.lib.delegate.component.activity.data.Boolean_ComponentName;
 import com.x930073498.lib.delegate.component.activity.data.Bundle_PersistableBundle;
+import com.x930073498.lib.delegate.component.activity.data.ContextMenu_View_ContextMenuInfo;
+import com.x930073498.lib.delegate.component.activity.data.Context_String;
 import com.x930073498.lib.delegate.component.activity.data.DumpData;
 import com.x930073498.lib.delegate.component.activity.data.FeatureIdMenu;
 import com.x930073498.lib.delegate.component.activity.data.Fragment_Intent_RequestCode;
 import com.x930073498.lib.delegate.component.activity.data.Fragment_Intent_RequestCode_Option;
+import com.x930073498.lib.delegate.component.activity.data.Fragment_Intent_RequestCode_Support;
+import com.x930073498.lib.delegate.component.activity.data.Fragment_Intent_RequestCode_Option_Support;
 import com.x930073498.lib.delegate.component.activity.data.IntentRequestCode;
+import com.x930073498.lib.delegate.component.activity.data.IntentRequestCodeFlags;
+import com.x930073498.lib.delegate.component.activity.data.IntentRequestCodeOptions;
+import com.x930073498.lib.delegate.component.activity.data.IntentSenderConfig;
+import com.x930073498.lib.delegate.component.activity.data.IntentSenderConfigWithOptions;
 import com.x930073498.lib.delegate.component.activity.data.IntentSenderForResultOption;
 import com.x930073498.lib.delegate.component.activity.data.IntentSenderOption;
+import com.x930073498.lib.delegate.component.activity.data.BooleanMode_NewConfig;
+import com.x930073498.lib.delegate.component.activity.data.Intent_Bundle;
+import com.x930073498.lib.delegate.component.activity.data.Intent_String;
+import com.x930073498.lib.delegate.component.activity.data.Intents_Bundle;
 import com.x930073498.lib.delegate.component.activity.data.KeyCode_KeyEvent;
+import com.x930073498.lib.delegate.component.activity.data.KeyCode_RepeatCount_KeyEvent;
+import com.x930073498.lib.delegate.component.activity.data.KeyboardshortcutList_Menu_DeviceId;
 import com.x930073498.lib.delegate.component.activity.data.OnCreateView_Name_Context_Attr;
 import com.x930073498.lib.delegate.component.activity.data.OnCreateView_Name_Context_Attr_Parent;
+import com.x930073498.lib.delegate.component.activity.data.OrderedBroadcastOption;
 import com.x930073498.lib.delegate.component.activity.data.PermissionsResult;
+import com.x930073498.lib.delegate.component.activity.data.Query_Bundle;
+import com.x930073498.lib.delegate.component.activity.data.Search_Condition;
+import com.x930073498.lib.delegate.component.activity.data.String_Integer;
+import com.x930073498.lib.delegate.component.activity.data.String_Integer_CursorFactory;
+import com.x930073498.lib.delegate.component.activity.data.String_Integer_CursorFactory_DatabaseErrorHandler;
+import com.x930073498.lib.delegate.component.activity.data.Theme_Config;
 import com.x930073498.lib.delegate.component.activity.data.TitleColor;
 import com.x930073498.lib.delegate.component.activity.data.ViewParams;
 
@@ -115,7 +147,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
     @Override
     public boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
         if (activity == null) activity = delegateActivity;
-        emitter.emitEvent(Event.ON_CREATE, savedInstanceState);
+        emitter.emitEvent(Event.ON_CREATE_PERSISTABLE, new Bundle_PersistableBundle(savedInstanceState, persistentState));
         return false;
     }
 
@@ -127,7 +159,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
 
     @Override
     public boolean onPostCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState, PersistableBundle persistentState) {
-        emitter.emitEvent(Event.ON_POST_CREATE, savedInstanceState);
+        emitter.emitEvent(Event.ON_POST_CREATE_PERSISTABLE, new Bundle_PersistableBundle(savedInstanceState, persistentState));
         return false;
     }
 
@@ -320,7 +352,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
 
     @Override
     public boolean onSaveInstanceState(DelegateActivity delegateActivity, Bundle outState, PersistableBundle outPersistentState) {
-        emitter.emitEvent(Event.ON_SAVE_INSTANCE_STATE, new Bundle_PersistableBundle(outState, outPersistentState));
+        emitter.emitEvent(Event.ON_SAVE_INSTANCE_STATE_PERSISTABLE, new Bundle_PersistableBundle(outState, outPersistentState));
         return false;
     }
 
@@ -374,13 +406,13 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
 
     @Override
     public boolean setEnterSharedElementCallback(DelegateActivity activity, SharedElementCallback callback) {
-        emitter.emitEvent(Event.SET_ENTER_SHARED_ELEMENT_CALLBACK, callback);
+        emitter.emitEvent(Event.SET_ENTER_SHARED_ELEMENT_CALLBACK_SUPPORT, callback);
         return false;
     }
 
     @Override
     public boolean setExitSharedElementCallback(DelegateActivity activity, SharedElementCallback listener) {
-        emitter.emitEvent(Event.SET_EXIT_SHARED_ELEMENT_CALLBACK, listener);
+        emitter.emitEvent(Event.SET_EXIT_SHARED_ELEMENT_CALLBACK_SUPPORT, listener);
         return false;
     }
 
@@ -482,7 +514,7 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
 
     @Override
     public boolean onAttachFragment(DelegateActivity activity, Fragment fragment) {
-        emitter.emitEvent(Event.ON_ATTACH_FRAGMENT, fragment);
+        emitter.emitEvent(Event.ON_ATTACH_FRAGMENT_SUPPORT, fragment);
         return false;
     }
 
@@ -512,13 +544,13 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
 
     @Override
     public boolean startActivityFromFragment(DelegateActivity activity, Fragment fragment, Intent intent, int requestCode) {
-        emitter.emitEvent(Event.START_ACTIVITY_FROM_FRAGMENT, new Fragment_Intent_RequestCode(fragment, intent, requestCode));
+        emitter.emitEvent(Event.START_ACTIVITY_FROM_FRAGMENT_SUPPORT, new Fragment_Intent_RequestCode_Support(fragment, intent, requestCode));
         return false;
     }
 
     @Override
     public boolean startActivityFromFragment(DelegateActivity activity, Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
-        emitter.emitEvent(Event.START_ACTIVITY_FROM_FRAGMENT_OPTION, new Fragment_Intent_RequestCode_Option(fragment, intent, requestCode, options));
+        emitter.emitEvent(Event.START_ACTIVITY_FROM_FRAGMENT_OPTION_SUPPORT, new Fragment_Intent_RequestCode_Option_Support(fragment, intent, requestCode, options));
         return false;
     }
 
@@ -584,1027 +616,1220 @@ public class ActivityComponentDelegate implements ActivityDelegate, DelegateComp
 
     @Override
     public boolean onCreate(@Nullable DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
+        emitter.emitEvent(Event.ON_CREATE, savedInstanceState);
         return false;
     }
 
     @Override
     public boolean onRestoreInstanceState(DelegateActivity delegateActivity, Bundle savedInstanceState, PersistableBundle persistentState) {
+        emitter.emitEvent(Event.ON_RESTORE_INSTANCE_STATE_PERSISTABLE, new Bundle_PersistableBundle(savedInstanceState, persistentState));
         return false;
     }
 
     @Override
-    public boolean onRestoreInstanceState(DelegateActivity savedInstanceState, Bundle persistentState) {
+    public boolean onRestoreInstanceState(DelegateActivity delegateActivity, Bundle savedInstanceState) {
+        emitter.emitEvent(Event.ON_RESTORE_INSTANCE_STATE, savedInstanceState);
         return false;
     }
 
     @Override
-    public boolean onPostCreate(@Nullable DelegateActivity savedInstanceState, @Nullable Bundle persistentState) {
+    public boolean onPostCreate(@Nullable DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
+        emitter.emitEvent(Event.ON_POST_CREATE, savedInstanceState);
         return false;
     }
 
     @Override
     public boolean onRestart(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_RESTART, null);
         return false;
     }
 
     @Override
     public Boolean isVoiceInteraction(DelegateActivity delegateActivity) {
-
+        emitter.emitEvent(Event.IS_VOICE_INTERACTION, null);
         return null;
     }
 
     @Override
     public Boolean isVoiceInteractionRoot(DelegateActivity delegateActivity) {
-
+        emitter.emitEvent(Event.IS_VOICE_INTERACTION_ROOT, null);
         return null;
     }
 
     @Override
     public VoiceInteractor getVoiceInteractor(DelegateActivity delegateActivity) {
-
+        emitter.emitEvent(Event.GET_VOICE_INTERACTOR, null);
         return null;
     }
 
     @Override
     public Boolean isLocalVoiceInteractionSupported(DelegateActivity delegateActivity) {
-
+        emitter.emitEvent(Event.IS_LOCAL_VOICE_INTERACTION_SUPPORTED, null);
         return null;
     }
 
     @Override
     public boolean startLocalVoiceInteraction(DelegateActivity delegateActivity, Bundle privateOptions) {
+        emitter.emitEvent(Event.START_LOCAL_VOICE_INTERACTION, privateOptions);
         return false;
     }
 
     @Override
     public boolean onLocalVoiceInteractionStarted(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_LOCAL_VOICE_INTERACTION_STARTED, null);
         return false;
     }
 
     @Override
     public boolean onLocalVoiceInteractionStopped(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_LOCAL_VOICE_INTERACTION_STOPPED, null);
         return false;
     }
 
     @Override
     public boolean stopLocalVoiceInteraction(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.STOP_LOCAL_VOICE_INTERACTION, null);
         return false;
     }
 
     @Override
-    public boolean onSaveInstanceState(DelegateActivity outState, Bundle outPersistentState) {
+    public boolean onSaveInstanceState(DelegateActivity delegateActivity, Bundle outState) {
+        emitter.emitEvent(Event.ON_SAVE_INSTANCE_STATE, outState);
         return false;
     }
 
     @Override
     public boolean onUserLeaveHint(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_USER_LEAVE_HINT, null);
         return false;
     }
 
     @Override
     public Boolean onCreateThumbnail(DelegateActivity delegateActivity, Bitmap outBitmap, Canvas canvas) {
-
+        emitter.emitEvent(Event.ON_CREATE_THUMBNAIL, new Bitmap_Cavas(outBitmap, canvas));
         return null;
     }
 
     @Override
     public CharSequence onCreateDescription(DelegateActivity delegateActivity) {
-
+        emitter.emitEvent(Event.ON_CREATE_DESCRIPTION, null);
         return null;
     }
 
     @Override
     public boolean onProvideAssistData(DelegateActivity delegateActivity, Bundle data) {
+        emitter.emitEvent(Event.ON_PROVIDE_ASSIST_DATA, data);
         return false;
     }
 
     @Override
     public boolean onProvideAssistContent(DelegateActivity delegateActivity, AssistContent outContent) {
+        emitter.emitEvent(Event.ON_PROVIDE_ASSIST_CONTENT, outContent);
         return false;
     }
 
     @Override
     public boolean onProvideKeyboardShortcuts(DelegateActivity delegateActivity, List<KeyboardShortcutGroup> data, Menu menu, int deviceId) {
+        emitter.emitEvent(Event.ON_PROVIDE_KEYBOARD_SHORTCUTS, new KeyboardshortcutList_Menu_DeviceId(data, menu, deviceId));
         return false;
     }
 
     @Override
     public Boolean showAssist(DelegateActivity delegateActivity, Bundle args) {
-
+        emitter.emitEvent(Event.SHOW_ASSIST, args);
         return null;
     }
 
     @Override
     public boolean reportFullyDrawn(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.REPORT_FULLY_DRAWN, null);
         return false;
     }
 
     @Override
     public boolean onMultiWindowModeChanged(DelegateActivity activity, boolean isInMultiWindowMode, Configuration newConfig) {
+        emitter.emitEvent(Event.ON_MULTI_WINDOW_MODE_CHANGED_CONFIG, new BooleanMode_NewConfig(isInMultiWindowMode, newConfig));
         return false;
     }
 
     @Override
     public Boolean isInMultiWindowMode(DelegateActivity delegateActivity) {
-
+        emitter.emitEvent(Event.IS_IN_MULTI_WINDOW_MODE, null);
         return null;
     }
 
     @Override
     public boolean onPictureInPictureModeChanged(DelegateActivity activity, boolean isInPictureInPictureMode, Configuration newConfig) {
+        emitter.emitEvent(Event.ON_PICTURE_IN_PICTURE_MODE_CHANGED_CONFIG, new BooleanMode_NewConfig(isInPictureInPictureMode, newConfig));
         return false;
     }
 
     @Override
     public Boolean isInPictureInPictureMode(DelegateActivity delegateActivity) {
-
+        emitter.emitEvent(Event.IS_IN_PICTURE_IN_PICTURE_MODE, null);
         return null;
     }
 
     @Override
     public boolean enterPictureInPictureMode(DelegateActivity activity) {
+        emitter.emitEvent(Event.ENTER_PICTURE_IN_PICTURE_MODE, null);
         return false;
     }
 
     @Override
     public Boolean enterPictureInPictureMode(DelegateActivity activity, @NonNull PictureInPictureParams params) {
-
+        emitter.emitEvent(Event.ENTER_PICTURE_IN_PICTURE_MODE_PARAMS, params);
         return null;
     }
 
     @Override
     public boolean setPictureInPictureParams(DelegateActivity delegateActivity, @NonNull PictureInPictureParams params) {
+        emitter.emitEvent(Event.SET_PICTURE_IN_PICTURE_PARAMS, params);
         return false;
     }
 
     @Override
     public Integer getMaxNumPictureInPictureActions(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_MAX_NUM_PICTURE_IN_PICTURE_ACTIONS, null);
         return null;
     }
 
     @Override
     public Integer getChangingConfigurations(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CHANGING_CONFIGURATIONS, null);
         return null;
     }
 
     @Override
     public Object getLastNonConfigurationInstance(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_LAST_NON_CONFIGURATION_INSTANCE, null);
         return null;
     }
 
     @Override
     public boolean onTrimMemory(DelegateActivity delegateActivity, int level) {
+        emitter.emitEvent(Event.ON_TRIM_MEMORY, level);
         return false;
     }
 
     @Override
     public android.app.FragmentManager getFragmentManager(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_FRAGMENT_MANAGER, null);
         return null;
     }
 
     @Override
     public boolean onAttachFragment(DelegateActivity activity, android.app.Fragment fragment) {
+        emitter.emitEvent(Event.ON_ATTACH_FRAGMENT, fragment);
         return false;
     }
 
     @Override
     public android.app.ActionBar getActionBar(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_ACTION_BAR, null);
         return null;
     }
 
     @Override
     public boolean setActionBar(DelegateActivity delegateActivity, @Nullable android.widget.Toolbar toolbar) {
+        emitter.emitEvent(Event.SET_ACTION_BAR, toolbar);
         return false;
     }
 
     @Override
     public TransitionManager getContentTransitionManager(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CONTENT_TRANSITION_MANAGER, null);
         return null;
     }
 
     @Override
     public boolean setContentTransitionManager(DelegateActivity delegateActivity, TransitionManager tm) {
+        emitter.emitEvent(Event.SET_CONTENT_TRANSITION_MANAGER, tm);
         return false;
     }
 
     @Override
     public Scene getContentScene(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CONTENT_SCENE, null);
         return null;
     }
 
     @Override
     public boolean setFinishOnTouchOutside(DelegateActivity delegateActivity, boolean finish) {
+        emitter.emitEvent(Event.SET_FINISH_ON_TOUCH_OUTSIDE, finish);
         return false;
     }
 
     @Override
     public Boolean onKeyLongPress(DelegateActivity delegateActivity, int keyCode, KeyEvent event) {
+        emitter.emitEvent(Event.ON_KEY_LONG_PRESS, new KeyCode_KeyEvent(keyCode, event));
         return null;
     }
 
     @Override
     public Boolean onKeyUp(DelegateActivity delegateActivity, int keyCode, KeyEvent event) {
+        emitter.emitEvent(Event.ON_KEY_UP, new KeyCode_KeyEvent(keyCode, event));
         return null;
     }
 
     @Override
     public Boolean onKeyMultiple(DelegateActivity delegateActivity, int keyCode, int repeatCount, KeyEvent event) {
+        emitter.emitEvent(Event.ON_KEY_MULTIPLE, new KeyCode_RepeatCount_KeyEvent(keyCode, repeatCount, event));
         return null;
     }
 
     @Override
     public Boolean onKeyShortcut(DelegateActivity delegateActivity, int keyCode, KeyEvent event) {
+        emitter.emitEvent(Event.ON_KEY_SHORTCUT, new KeyCode_KeyEvent(keyCode, event));
         return null;
     }
 
     @Override
     public Boolean onTouchEvent(DelegateActivity delegateActivity, MotionEvent event) {
+        emitter.emitEvent(Event.ON_TOUCH_EVENT, event);
         return null;
     }
 
     @Override
     public Boolean onTrackballEvent(DelegateActivity delegateActivity, MotionEvent event) {
+        emitter.emitEvent(Event.ON_TRACKBALL_EVENT, event);
         return null;
     }
 
     @Override
     public Boolean onGenericMotionEvent(DelegateActivity delegateActivity, MotionEvent event) {
+        emitter.emitEvent(Event.ON_GENERIC_MOTION_EVENT, event);
         return null;
     }
 
     @Override
     public boolean onUserInteraction(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_USER_INTERACTION, null);
         return false;
     }
 
     @Override
     public boolean onWindowAttributesChanged(DelegateActivity delegateActivity, WindowManager.LayoutParams params) {
+        emitter.emitEvent(Event.ON_WINDOW_ATTRIBUTES_CHANGED, params);
         return false;
     }
 
     @Override
     public boolean onWindowFocusChanged(DelegateActivity delegateActivity, boolean hasFocus) {
+        emitter.emitEvent(Event.ON_WINDOW_FOCUS_CHANGED, hasFocus);
         return false;
     }
 
     @Override
     public boolean onAttachedToWindow(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_ATTACHED_TO_WINDOW, null);
         return false;
     }
 
     @Override
     public boolean onDetachedFromWindow(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_DETACHED_FROM_WINDOW, null);
         return false;
     }
 
     @Override
     public Boolean hasWindowFocus(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.HAS_WINDOW_FOCUS, null);
         return null;
     }
 
     @Override
     public Boolean dispatchKeyShortcutEvent(DelegateActivity delegateActivity, KeyEvent event) {
+        emitter.emitEvent(Event.DISPATCH_KEY_SHORTCUT_EVENT, event);
         return null;
     }
 
     @Override
     public Boolean dispatchTouchEvent(DelegateActivity delegateActivity, MotionEvent ev) {
+        emitter.emitEvent(Event.DISPATCH_TOUCH_EVENT, ev);
         return null;
     }
 
     @Override
     public Boolean dispatchTrackballEvent(DelegateActivity delegateActivity, MotionEvent ev) {
+        emitter.emitEvent(Event.DISPATCH_TRACKBALL_EVENT, ev);
         return null;
     }
 
     @Override
     public Boolean dispatchGenericMotionEvent(DelegateActivity delegateActivity, MotionEvent ev) {
+        emitter.emitEvent(Event.DISPATCH_GENERIC_MOTION_EVENT, ev);
         return null;
     }
 
     @Override
     public Boolean dispatchPopulateAccessibilityEvent(DelegateActivity delegateActivity, AccessibilityEvent event) {
+        emitter.emitEvent(Event.DISPATCH_POPULATE_ACCESSIBILITY_EVENT, event);
         return null;
     }
 
     @Override
     public View onCreatePanelView(DelegateActivity delegateActivity, int featureId) {
+        emitter.emitEvent(Event.ON_CREATE_PANEL_VIEW, featureId);
         return null;
     }
 
     @Override
     public Boolean onCreateOptionsMenu(DelegateActivity delegateActivity, Menu menu) {
+        emitter.emitEvent(Event.ON_CREATE_OPTIONS_MENU, menu);
         return null;
     }
 
     @Override
     public Boolean onPrepareOptionsMenu(DelegateActivity delegateActivity, Menu menu) {
+        emitter.emitEvent(Event.ON_PREPARE_OPTIONS_MENU, menu);
         return null;
     }
 
     @Override
     public Boolean onOptionsItemSelected(DelegateActivity delegateActivity, MenuItem item) {
+        emitter.emitEvent(Event.ON_OPTIONS_ITEM_SELECTED, item);
         return null;
     }
 
     @Override
     public Boolean onNavigateUp(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_NAVIGATE_UP, null);
         return null;
     }
 
     @Override
     public Boolean onNavigateUpFromChild(DelegateActivity delegateActivity, Activity child) {
+        emitter.emitEvent(Event.ON_NAVIGATE_UP_FROM_CHILD, activity);
         return null;
     }
 
     @Override
     public boolean onCreateNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
+        emitter.emitEvent(Event.ON_CREATE_NAVIGATE_UP_TASK_STACK, builder);
         return false;
     }
 
     @Override
     public boolean onPrepareNavigateUpTaskStack(DelegateActivity delegateActivity, android.app.TaskStackBuilder builder) {
+        emitter.emitEvent(Event.ON_PREPARE_NAVIGATE_UP_TASK_STACK, builder);
         return false;
     }
 
     @Override
     public boolean onOptionsMenuClosed(DelegateActivity delegateActivity, Menu menu) {
+        emitter.emitEvent(Event.ON_OPTIONS_MENU_CLOSED, menu);
         return false;
     }
 
     @Override
     public boolean onCreateContextMenu(DelegateActivity delegateActivity, ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        emitter.emitEvent(Event.ON_CREATE_CONTEXT_MENU, new ContextMenu_View_ContextMenuInfo(menu, v, menuInfo));
         return false;
     }
 
     @Override
     public boolean registerForContextMenu(DelegateActivity delegateActivity, View view) {
+        emitter.emitEvent(Event.REGISTER_FOR_CONTEXT_MENU, view);
         return false;
     }
 
     @Override
     public boolean unregisterForContextMenu(DelegateActivity delegateActivity, View view) {
+        emitter.emitEvent(Event.UNREGISTER_FOR_CONTEXT_MENU, view);
         return false;
     }
 
     @Override
     public boolean openContextMenu(DelegateActivity delegateActivity, View view) {
+        emitter.emitEvent(Event.OPEN_CONTEXT_MENU, view);
         return false;
     }
 
     @Override
     public boolean closeContextMenu(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.CLOSE_CONTEXT_MENU, null);
         return false;
     }
 
     @Override
     public Boolean onContextItemSelected(DelegateActivity delegateActivity, MenuItem item) {
+        emitter.emitEvent(Event.ON_CONTEXT_ITEM_SELECTED, item);
         return null;
     }
 
     @Override
     public boolean onContextMenuClosed(DelegateActivity delegateActivity, Menu menu) {
+        emitter.emitEvent(Event.ON_CONTEXT_MENU_CLOSED, menu);
         return false;
     }
 
     @Override
-    public Boolean onSearchRequested(@Nullable DelegateActivity searchEvent) {
+    public Boolean onSearchRequested(@Nullable DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_SEARCH_REQUESTED, null);
         return null;
     }
 
     @Override
     public Boolean onSearchRequested(DelegateActivity delegateActivity, SearchEvent searchEvent) {
+        emitter.emitEvent(Event.ON_SEARCH_REQUESTED_EVENT, searchEvent);
         return null;
     }
 
     @Override
     public boolean startSearch(DelegateActivity delegateActivity, @Nullable String initialQuery, boolean selectInitialQuery, @Nullable Bundle appSearchData, boolean globalSearch) {
+        emitter.emitEvent(Event.START_SEARCH, new Search_Condition(initialQuery, selectInitialQuery, appSearchData, globalSearch));
         return false;
     }
 
     @Override
     public boolean triggerSearch(DelegateActivity delegateActivity, String query, @Nullable Bundle appSearchData) {
+        emitter.emitEvent(Event.TRIGGER_SEARCH, new Query_Bundle(query, appSearchData));
         return false;
     }
 
     @Override
     public boolean takeKeyEvents(DelegateActivity delegateActivity, boolean get) {
+        emitter.emitEvent(Event.TAKE_KEY_EVENTS, get);
         return false;
     }
 
     @Override
     public LayoutInflater getLayoutInflater(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_LAYOUT_INFLATER, null);
         return null;
     }
 
     @Override
     public boolean onApplyThemeResource(DelegateActivity delegateActivity, Resources.Theme theme, int resid, boolean first) {
+        emitter.emitEvent(Event.ON_APPLY_THEME_RESOURCE, new Theme_Config(theme, resid, first));
         return false;
     }
 
     @Override
     public Boolean shouldShowRequestPermissionRationale(DelegateActivity delegateActivity, @NonNull String permission) {
+        emitter.emitEvent(Event.SHOULD_SHOW_REQUEST_PERMISSION_RATIONALE, permission);
         return null;
     }
 
     @Override
     public Boolean isActivityTransitionRunning(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.IS_ACTIVITY_TRANSITION_RUNNING, null);
         return null;
     }
 
     @Override
     public boolean startActivity(DelegateActivity activity, Intent intent) {
+        emitter.emitEvent(Event.START_ACTIVITY, intent);
         return false;
     }
 
     @Override
     public boolean startActivity(DelegateActivity activity, Intent intent, @Nullable Bundle options) {
+        emitter.emitEvent(Event.START_ACTIVITY_OPTIONS, new Intent_Bundle(intent, options));
         return false;
     }
 
     @Override
     public boolean startActivities(DelegateActivity activity, Intent[] intents) {
+        emitter.emitEvent(Event.START_ACTIVITIES, intents);
         return false;
     }
 
     @Override
     public boolean startActivities(DelegateActivity activity, Intent[] intents, @Nullable Bundle options) {
+        emitter.emitEvent(Event.START_ACTIVITIES_OPTIONS, new Intents_Bundle(intents, options));
         return false;
     }
 
     @Override
     public boolean startIntentSender(DelegateActivity activity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) {
+        emitter.emitEvent(Event.START_INTENT_SENDER, new IntentSenderConfig(intent, fillInIntent, flagsMask, flagsValues, extraFlags));
         return false;
     }
 
     @Override
     public boolean startIntentSender(DelegateActivity activity, IntentSender intent, @Nullable Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) {
+        emitter.emitEvent(Event.START_INTENT_SENDER_OPTIONS, new IntentSenderConfigWithOptions(intent, fillInIntent, flagsMask, flagsValues, extraFlags, options));
         return false;
     }
 
     @Override
     public Boolean startActivityIfNeeded(DelegateActivity activity, @NonNull Intent intent, int requestCode) {
+        emitter.emitEvent(Event.START_ACTIVITY_IF_NEEDED, new IntentRequestCode(intent, requestCode));
         return null;
     }
 
     @Override
     public Boolean startActivityIfNeeded(DelegateActivity activity, @NonNull Intent intent, int requestCode, @Nullable Bundle options) {
+        emitter.emitEvent(Event.START_ACTIVITY_IF_NEEDED_OPTIONS, new IntentRequestCodeOptions(intent, requestCode, options));
         return null;
     }
 
     @Override
     public Boolean startNextMatchingActivity(DelegateActivity activity, @NonNull Intent intent) {
+        emitter.emitEvent(Event.START_NEXT_MATCHING_ACTIVITY, intent);
         return null;
     }
 
     @Override
     public Boolean startNextMatchingActivity(DelegateActivity activity, @NonNull Intent intent, @Nullable Bundle options) {
+        emitter.emitEvent(Event.START_NEXT_MATCHING_ACTIVITY_OPTIONS, new Intent_Bundle(intent, options));
         return null;
     }
 
     @Override
     public boolean startActivityFromChild(DelegateActivity activity, @NonNull Activity child, Intent intent, int requestCode) {
+        emitter.emitEvent(Event.START_ACTIVITY_FROM_CHILD, new Activity_Intent_RequestCode(child, intent, requestCode));
         return false;
     }
 
     @Override
     public boolean startActivityFromChild(DelegateActivity activity, @NonNull Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
+        emitter.emitEvent(Event.START_ACTIVITY_FROM_CHILD_OPTIONS, new Activity_Intent_RequestCode_Bundle(child, intent, requestCode, options));
         return false;
     }
 
     @Override
     public boolean startActivityFromFragment(DelegateActivity activity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode) {
+        emitter.emitEvent(Event.START_ACTIVITY_FROM_FRAGMENT, new Fragment_Intent_RequestCode(fragment, intent, requestCode));
         return false;
     }
 
     @Override
     public boolean startActivityFromFragment(DelegateActivity activity, @NonNull android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+        emitter.emitEvent(Event.START_ACTIVITY_FROM_FRAGMENT_OPTIONS, new Fragment_Intent_RequestCode_Option(fragment, intent, requestCode, options));
         return false;
     }
 
     @Override
     public boolean startIntentSenderFromChild(DelegateActivity activity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags) {
+        emitter.emitEvent(Event.START_INTENT_SENDER_FROM_CHILD, new ActivityIntentSenderOption(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags));
         return false;
     }
 
     @Override
     public boolean startIntentSenderFromChild(DelegateActivity activity, Activity child, IntentSender intent, int requestCode, Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, @Nullable Bundle options) {
+        emitter.emitEvent(Event.START_INTENT_SENDER_FROM_CHILD_OPTIONS, new ActivityIntentSenderOptionWithBundle(child, intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options));
         return false;
     }
 
     @Override
     public boolean overridePendingTransition(DelegateActivity delegateActivity, int enterAnim, int exitAnim) {
+        emitter.emitEvent(Event.OVERRIDE_PENDING_TRANSITION, new AnimationDef(enterAnim, exitAnim));
         return false;
     }
 
     @Nullable
     @Override
     public Uri getReferrer(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_REFERRER, null);
         return null;
     }
 
     @Override
     public Uri onProvideReferrer(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_PROVIDE_REFERRER, null);
         return null;
     }
 
     @Override
     public String getCallingPackage(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CALLING_PACKAGE, null);
         return null;
     }
 
     @Override
     public ComponentName getCallingActivity(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CALLING_ACTIVITY, null);
         return null;
     }
 
     @Override
     public boolean setVisible(DelegateActivity delegateActivity, boolean visible) {
+        emitter.emitEvent(Event.SET_VISIBLE, visible);
         return false;
     }
 
     @Override
     public Boolean isFinishing(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.IS_FINISHING, null);
         return null;
     }
 
     @Override
     public Boolean isDestroyed(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.IS_DESTROYED, null);
         return null;
     }
 
     @Override
     public Boolean isChangingConfigurations(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.IS_CHANGING_CONFIGURATIONS, null);
         return null;
     }
 
     @Override
     public boolean recreate(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.RECREATE, null);
         return false;
     }
 
     @Override
     public boolean finish(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.FINISH, null);
         return false;
     }
 
     @Override
     public boolean finishAffinity(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.FINISH_AFFINITY, null);
         return false;
     }
 
     @Override
     public boolean finishFromChild(DelegateActivity delegateActivity, Activity child) {
+        emitter.emitEvent(Event.FINISH_FROM_CHILD, child);
         return false;
     }
 
     @Override
     public boolean finishAfterTransition(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.FINISH_AFTER_TRANSITION, null);
         return false;
     }
 
     @Override
     public boolean finishActivity(DelegateActivity delegateActivity, int requestCode) {
+        emitter.emitEvent(Event.FINISH_ACTIVITY, requestCode);
         return false;
     }
 
     @Override
     public boolean finishActivityFromChild(DelegateActivity delegateActivity, @NonNull Activity child, int requestCode) {
+        emitter.emitEvent(Event.FINISH_ACTIVITY_FROM_CHILD, new ActivityRequestCode(child, requestCode));
         return false;
     }
 
     @Override
     public boolean finishAndRemoveTask(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.FINISH_AND_REMOVE_TASK, null);
         return false;
     }
 
     @Override
     public Boolean releaseInstance(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.RELEASE_INSTANCE, null);
         return null;
     }
 
     @Override
     public boolean onActivityReenter(DelegateActivity delegateActivity, int resultCode, Intent data) {
+        emitter.emitEvent(Event.ON_ACTIVITY_REENTER, new IntentRequestCode(data, resultCode));
         return false;
     }
 
     @Override
     public PendingIntent createPendingResult(DelegateActivity delegateActivity, int requestCode, @NonNull Intent data, int flags) {
+        emitter.emitEvent(Event.CREATE_PENDING_RESULT, new IntentRequestCodeFlags(requestCode, data, flags));
         return null;
     }
 
     @Override
     public boolean setRequestedOrientation(DelegateActivity delegateActivity, int requestedOrientation) {
+        emitter.emitEvent(Event.SET_REQUESTED_ORIENTATION, requestedOrientation);
         return false;
     }
 
     @Override
     public Integer getRequestedOrientation(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_REQUESTED_ORIENTATION, null);
         return null;
     }
 
     @Override
     public Integer getTaskId(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_TASK_ID, null);
         return null;
     }
 
     @Override
     public Boolean isTaskRoot(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.IS_TASK_ROOT, null);
         return null;
     }
 
     @Override
     public Boolean moveTaskToBack(DelegateActivity delegateActivity, boolean nonRoot) {
+        emitter.emitEvent(Event.MOVE_TASK_TO_BACK, nonRoot);
         return null;
     }
 
     @Override
     public String getLocalClassName(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_LOCAL_CLASS_NAME, null);
         return null;
     }
 
     @Override
     public ComponentName getComponentName(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_COMPONENT_NAME, null);
         return null;
     }
 
     @Override
     public SharedPreferences getPreferences(DelegateActivity delegateActivity, int mode) {
+        emitter.emitEvent(Event.GET_PREFERENCES, mode);
         return null;
     }
 
     @Override
     public Object getSystemService(DelegateActivity delegateActivity, @NonNull String name) {
+        emitter.emitEvent(Event.GET_SYSTEM_SERVICE, name);
         return null;
     }
 
     @Override
     public boolean setTitle(DelegateActivity activity, CharSequence title) {
+        emitter.emitEvent(Event.SET_TITLE, title);
         return false;
     }
 
     @Override
     public boolean setTitle(DelegateActivity activity, int titleId) {
+        emitter.emitEvent(Event.SET_TITLE_ID, titleId);
         return false;
     }
 
     @Override
     public boolean setTitleColor(DelegateActivity delegateActivity, int textColor) {
+        emitter.emitEvent(Event.SET_TITLE_COLOR, textColor);
         return false;
     }
 
     @Override
     public boolean onChildTitleChanged(DelegateActivity activity, Activity childActivity, CharSequence title) {
+        emitter.emitEvent(Event.ON_CHILD_TITLE_CHANGED, new ActivityCharSequence(childActivity, title));
         return false;
     }
 
     @Override
     public boolean setTaskDescription(DelegateActivity delegateActivity, ActivityManager.TaskDescription taskDescription) {
+        emitter.emitEvent(Event.SET_TASK_DESCRIPTION, taskDescription);
         return false;
     }
 
     @Override
     public Boolean isImmersive(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.IS_IMMERSIVE, null);
         return null;
     }
 
     @Override
     public Boolean requestVisibleBehind(DelegateActivity delegateActivity, boolean visible) {
+        emitter.emitEvent(Event.REQUEST_VISIBLE_BEHIND, visible);
         return null;
     }
 
     @Override
     public boolean onVisibleBehindCanceled(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_VISIBLE_BEHIND_CANCELED, null);
         return false;
     }
 
     @Override
     public boolean onEnterAnimationComplete(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.ON_ENTER_ANIMATION_COMPLETE, null);
         return false;
     }
 
     @Override
     public boolean setImmersive(DelegateActivity delegateActivity, boolean i) {
+        emitter.emitEvent(Event.SET_IMMERSIVE, i);
         return false;
     }
 
     @Override
     public boolean setVrModeEnabled(DelegateActivity delegateActivity, boolean enabled, @NonNull ComponentName requestedComponent) {
+        emitter.emitEvent(Event.SET_VR_MODE_ENABLED, new Boolean_ComponentName(enabled, requestedComponent));
         return false;
     }
 
     @Override
     public android.view.ActionMode startActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback) {
+        emitter.emitEvent(Event.START_ACTION_MODE, callback);
         return null;
     }
 
     @Override
     public android.view.ActionMode startActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback, int type) {
+        emitter.emitEvent(Event.START_ACTION_MODE_TYPE, new ActionModeCallback_Integer(callback, type));
         return null;
     }
 
     @Override
     public android.view.ActionMode onWindowStartingActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback) {
+        emitter.emitEvent(Event.ON_WINDOW_STARTING_ACTION_MODE, callback);
         return null;
     }
 
     @Override
     public android.view.ActionMode onWindowStartingActionMode(DelegateActivity activity, android.view.ActionMode.Callback callback, int type) {
+        emitter.emitEvent(Event.ON_WINDOW_STARTING_ACTION_MODE_TYPE, new ActionModeCallback_Integer(callback, type));
         return null;
     }
 
     @Override
     public boolean onActionModeStarted(DelegateActivity delegateActivity, android.view.ActionMode mode) {
+        emitter.emitEvent(Event.ON_ACTION_MODE_STARTED, mode);
         return false;
     }
 
     @Override
     public boolean onActionModeFinished(DelegateActivity delegateActivity, android.view.ActionMode mode) {
+        emitter.emitEvent(Event.ON_ACTION_MODE_FINISHED, mode);
         return false;
     }
 
     @Override
     public Boolean shouldUpRecreateTask(DelegateActivity delegateActivity, Intent targetIntent) {
+        emitter.emitEvent(Event.SHOULD_UP_RECREATE_TASK, targetIntent);
         return null;
     }
 
     @Override
     public Boolean navigateUpTo(DelegateActivity delegateActivity, Intent upIntent) {
+        emitter.emitEvent(Event.NAVIGATE_UP_TO, upIntent);
         return null;
     }
 
     @Override
     public Boolean navigateUpToFromChild(DelegateActivity activity, Activity child, Intent upIntent) {
+        emitter.emitEvent(Event.NAVIGATE_UP_TO_FROM_CHILD, new Activity_Intent(child, upIntent));
         return null;
     }
 
     @Override
     public Intent getParentActivityIntent(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_PARENT_ACTIVITY_INTENT, null);
         return null;
     }
 
     @Override
     public boolean setEnterSharedElementCallback(DelegateActivity activity, android.app.SharedElementCallback callback) {
+        emitter.emitEvent(Event.SET_ENTER_SHARED_ELEMENT_CALLBACK, callback);
         return false;
     }
 
     @Override
     public boolean setExitSharedElementCallback(DelegateActivity activity, android.app.SharedElementCallback callback) {
+        emitter.emitEvent(Event.SET_EXIT_SHARED_ELEMENT_CALLBACK, callback);
         return false;
     }
 
     @Override
     public boolean postponeEnterTransition(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.POSTPONE_ENTER_TRANSITION, null);
         return false;
     }
 
     @Override
     public boolean startPostponedEnterTransition(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.START_POSTPONED_ENTER_TRANSITION, null);
         return false;
     }
 
     @Override
     public DragAndDropPermissions requestDragAndDropPermissions(DelegateActivity delegateActivity, DragEvent event) {
+        emitter.emitEvent(Event.REQUEST_DRAG_AND_DROP_PERMISSIONS, event);
         return null;
     }
 
     @Override
     public boolean startLockTask(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.START_LOCK_TASK, null);
         return false;
     }
 
     @Override
     public boolean stopLockTask(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.STOP_LOCK_TASK, null);
         return false;
     }
 
     @Override
     public boolean showLockTaskEscapeMessage(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.SHOW_LOCK_TASK_ESCAPE_MESSAGE, null);
         return false;
     }
 
     @Override
     public boolean attachBaseContext(DelegateActivity activity, Context base) {
+        emitter.emitEvent(Event.ATTACH_BASE_CONTEXT, base);
         return false;
     }
 
     @Override
     public boolean applyOverrideConfiguration(DelegateActivity delegateActivity, Configuration overrideConfiguration) {
+        emitter.emitEvent(Event.APPLY_OVERRIDE_CONFIGURATION, overrideConfiguration);
         return false;
     }
 
     @Override
     public AssetManager getAssets(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_ASSETS, null);
         return null;
     }
 
     @Override
     public Resources.Theme getTheme(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_THEME, null);
         return null;
     }
 
     @Override
     public Context getBaseContext(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_BASE_CONTEXT, null);
         return null;
     }
 
     @Override
     public PackageManager getPackageManager(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_PACKAGE_MANAGER, null);
         return null;
     }
 
     @Override
     public ContentResolver getContentResolver(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CONTENT_RESOLVER, null);
         return null;
     }
 
     @Override
     public Looper getMainLooper(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_MAIN_LOOPER, null);
         return null;
     }
 
     @Override
     public Context getApplicationContext(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_APPLICATION_CONTEXT, null);
         return null;
     }
 
     @Override
     public ClassLoader getClassLoader(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CLASS_LOADER, null);
         return null;
     }
 
     @Override
     public String getPackageName(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_PACKAGE_NAME, null);
         return null;
     }
 
     @Override
     public ApplicationInfo getApplicationInfo(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_APPLICATION_INFO, null);
         return null;
     }
 
     @Override
     public String getPackageResourcePath(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_PACKAGE_RESOURCE_PATH, null);
         return null;
     }
 
     @Override
     public String getPackageCodePath(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_PACKAGE_CODE_PATH, null);
         return null;
     }
 
     @Override
     public SharedPreferences getSharedPreferences(DelegateActivity delegateActivity, String name, int mode) {
+        emitter.emitEvent(Event.GET_SHARED_PREFERENCES, new String_Integer(name, mode));
         return null;
     }
 
     @Override
     public Boolean moveSharedPreferencesFrom(DelegateActivity activity, Context context, String name) {
+        emitter.emitEvent(Event.MOVE_SHARED_PREFERENCES_FROM, new Context_String(context, name));
         return null;
     }
 
     @Override
     public Boolean deleteSharedPreferences(DelegateActivity delegateActivity, String name) {
+        emitter.emitEvent(Event.DELETE_SHARED_PREFERENCES, name);
         return null;
     }
 
     @Override
     public FileInputStream openFileInput(DelegateActivity delegateActivity, String name) {
+        emitter.emitEvent(Event.OPEN_FILE_INPUT, name);
         return null;
     }
 
     @Override
     public FileOutputStream openFileOutput(DelegateActivity delegateActivity, String name, int mode) {
+        emitter.emitEvent(Event.OPEN_FILE_OUTPUT, new String_Integer(name, mode));
         return null;
     }
 
     @Override
     public Boolean deleteFile(DelegateActivity delegateActivity, String name) {
+        emitter.emitEvent(Event.DELETE_FILE, name);
         return null;
     }
 
     @Override
     public File getFileStreamPath(DelegateActivity delegateActivity, String name) {
+        emitter.emitEvent(Event.GET_FILE_STREAM_PATH, name);
         return null;
     }
 
     @Override
     public String[] fileList(DelegateActivity delegateActivity) {
-        return new String[0];
+        emitter.emitEvent(Event.FILE_LIST, null);
+        return null;
     }
 
     @Override
     public File getDataDir(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_DATA_DIR, null);
         return null;
     }
 
     @Override
     public File getFilesDir(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_FILES_DIR, null);
         return null;
     }
 
     @Override
     public File getNoBackupFilesDir(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_NO_BACKUP_FILES_DIR, null);
         return null;
     }
 
     @Override
     public File getExternalFilesDir(DelegateActivity delegateActivity, String type) {
+        emitter.emitEvent(Event.GET_EXTERNAL_FILES_DIR, type);
         return null;
     }
 
     @Override
     public File[] getExternalFilesDirs(DelegateActivity delegateActivity, String type) {
-        return new File[0];
+        emitter.emitEvent(Event.GET_EXTERNAL_FILES_DIRS, type);
+        return null;
     }
 
     @Override
     public File getObbDir(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_OBB_DIR, null);
         return null;
     }
 
     @Override
     public File[] getObbDirs(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_OBB_DIRS, null);
         return new File[0];
     }
 
     @Override
     public File getCacheDir(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CACHE_DIR, null);
         return null;
     }
 
     @Override
     public File getCodeCacheDir(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_CODE_CACHE_DIR, null);
         return null;
     }
 
     @Override
     public File getExternalCacheDir(DelegateActivity delegateActivity) {
+        emitter.emitEvent(Event.GET_EXTERNAL_CACHE_DIR, null);
         return null;
     }
 
     @Override
     public File[] getExternalCacheDirs(DelegateActivity delegateActivity) {
-        return new File[0];
+        emitter.emitEvent(Event.GET_EXTERNAL_CACHE_DIRS, null);
+        return null;
     }
 
     @Override
     public File[] getExternalMediaDirs(DelegateActivity delegateActivity) {
-        return new File[0];
+        emitter.emitEvent(Event.GET_EXTERNAL_MEDIA_DIRS, null);
+        return null;
     }
 
     @Override
     public File getDir(DelegateActivity delegateActivity, String name, int mode) {
+        emitter.emitEvent(Event.GET_DIR, new String_Integer(name, mode));
         return null;
     }
 
     @Override
     public SQLiteDatabase openOrCreateDatabase(DelegateActivity activity, String name, int mode, SQLiteDatabase.CursorFactory factory) {
+        emitter.emitEvent(Event.OPEN_OR_CREATE_DATABASE,new String_Integer_CursorFactory(name, mode, factory));
         return null;
     }
 
     @Override
     public SQLiteDatabase openOrCreateDatabase(DelegateActivity activity, String name, int mode, SQLiteDatabase.CursorFactory factory, DatabaseErrorHandler errorHandler) {
+        emitter.emitEvent(Event.OPEN_OR_CREATE_DATABASE_HANDLER,new String_Integer_CursorFactory_DatabaseErrorHandler(name, mode, factory, errorHandler));
         return null;
     }
 
     @Override
     public Boolean moveDatabaseFrom(DelegateActivity context, Context sourceContext, String name) {
+        emitter.emitEvent(Event.MOVE_DATABASE_FROM,new Context_String(sourceContext,name));
         return null;
     }
 
     @Override
     public Boolean deleteDatabase(DelegateActivity delegateActivity, String name) {
+        emitter.emitEvent(Event.DELETE_DATABASE,name);
         return null;
     }
 
     @Override
     public File getDatabasePath(DelegateActivity delegateActivity, String name) {
+        emitter.emitEvent(Event.GET_DATABASE_PATH,name);
         return null;
     }
 
     @Override
     public String[] databaseList(DelegateActivity delegateActivity) {
-        return new String[0];
+        emitter.emitEvent(Event.DATABASE_LIST,null);
+        return null;
     }
 
     @Override
     public boolean sendBroadcast(DelegateActivity activity, Intent intent) {
+        emitter.emitEvent(Event.SEND_BROADCAST,intent);
         return false;
     }
 
     @Override
     public boolean sendBroadcast(DelegateActivity activity, Intent intent, String receiverPermission) {
+        emitter.emitEvent(Event.SEND_BROADCAST_PERMISSION,new Intent_String(intent,receiverPermission));
         return false;
     }
 
     @Override
     public boolean sendOrderedBroadcast(DelegateActivity activity, Intent intent, String receiverPermission) {
+        emitter.emitEvent(Event.SEND_ORDERED_BROADCAST,new Intent_String(intent, receiverPermission));
         return false;
     }
 
     @Override
     public boolean sendOrderedBroadcast(DelegateActivity activity, Intent intent, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
+        emitter.emitEvent(Event.SEND_ORDERED_BROADCAST_OPTIONS,new OrderedBroadcastOption(intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras));
         return false;
     }
 
