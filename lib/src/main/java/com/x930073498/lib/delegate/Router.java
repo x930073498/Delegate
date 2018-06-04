@@ -5,10 +5,9 @@ import android.content.Intent;
 
 import com.x930073498.lib.delegate.activity.ActivityDelegate;
 import com.x930073498.lib.delegate.activity.DelegateActivity;
+import com.x930073498.lib.delegate.util.DataUtils;
 
 public class Router {
-
-    private static final String KEY_DELEGATE = "ACTIVITY_DELEGATE_BUNDLE";
 
     public static void start(Class<? extends ActivityDelegate> delegate) {
 
@@ -23,17 +22,14 @@ public class Router {
     }
 
     public static void swap(ActivityDelegate src, ActivityDelegate target) {
-        src.getActivity().setComponentDelegate(target);
-        src.getActivity().recreate();
+        if (src == null || target == null) return;
+        if (src.getActivity() == null) return;
+        DelegateActivity activity = src.getActivity();
+        Intent intent = new Intent(activity, activity.getClass());
+        src.startActivity(DataUtils.wrapIntent(target, intent));
+        src.finish();
     }
 
-    public static void push(ActivityDelegate target) {
-
-    }
-
-    public static void pop() {
-
-    }
 
 
 }

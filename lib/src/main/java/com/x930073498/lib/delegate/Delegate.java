@@ -1,4 +1,6 @@
 package com.x930073498.lib.delegate;
 
-public interface Delegate {
+import java.io.Serializable;
+
+public interface Delegate extends Serializable {
 }

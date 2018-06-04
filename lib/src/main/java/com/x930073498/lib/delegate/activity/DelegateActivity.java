@@ -3,6 +3,7 @@ package com.x930073498.lib.delegate.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Application;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.PictureInPictureParams;
@@ -31,6 +32,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 //import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable;
+import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +41,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.PersistableBundle;
 import android.os.UserHandle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -56,6 +60,7 @@ import android.transition.Scene;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
 //import android.util.Log;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Display;
 import android.view.DragAndDropPermissions;
@@ -76,6 +81,8 @@ import android.view.accessibility.AccessibilityEvent;
 
 //import com.x930073498.lib.delegate.Delegate;
 import com.x930073498.lib.delegate.DelegateProvider;
+import com.x930073498.lib.delegate.component.activity.ActivityComponentDelegate;
+import com.x930073498.lib.delegate.util.DataUtils;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -95,7 +102,25 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     private ActivityDelegate delegate;
 
     {
-        getComponentDelegate().initialized(this);
+        intoDelegate(forDelegate());
+        getComponentDelegate();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onCreate(this, savedInstanceState, persistentState))
+            return;
+        super.onCreate(savedInstanceState, persistentState);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        parseDelegate(savedInstanceState);
+        if (getComponentDelegate() != null &&
+                getComponentDelegate().onCreate(this, savedInstanceState)) return;
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -550,13 +575,6 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
         return view == null ? super.getCurrentFocus() : view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        if (getComponentDelegate() != null &&
-                getComponentDelegate().onCreate(this, savedInstanceState, persistentState))
-            return;
-        super.onCreate(savedInstanceState, persistentState);
-    }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -2120,18 +2138,6 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        if (savedInstanceState != null && savedInstanceState.containsKey(INSTANCE)) {
-            delegate = (ActivityDelegate) savedInstanceState.getSerializable(INSTANCE);
-            savedInstanceState.remove(INSTANCE);
-        }
-        if (getComponentDelegate() != null &&
-                getComponentDelegate().onCreate(this, savedInstanceState)) return;
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
     public void onPostCreate(@Nullable Bundle savedInstanceState) {
         if (getComponentDelegate() != null &&
                 getComponentDelegate().onPostCreate(this, savedInstanceState)) return;
@@ -2255,33 +2261,16 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     }
 
-    public ActivityDelegate getComponentDelegate() {
-        if (delegate != null) return delegate;
-        delegate = intoDelegate(forDelegate());
-        return delegate == null ? new DefaultActivityDelegate() : delegate;
 
-    }
-
-    @Override
-    public void setComponentDelegate(ActivityDelegate delegate) {
-        this.delegate = delegate;
-    }
-
-
-    public Class<? extends ActivityDelegate> forDelegate() {
-        return DefaultActivityDelegate.class;
-    }
-
-    private ActivityDelegate intoDelegate(Class<? extends ActivityDelegate> delegateClazz) {
-        if (delegateClazz == null) return null;
+    private void intoDelegate(Class<? extends ActivityDelegate> delegateClazz) {
+        if (delegateClazz == null) return;
         try {
-            return delegateClazz.newInstance();
+            delegate = delegateClazz.newInstance();
+            delegate.initialized(this);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
     }
-
 
 
     public final void callSuperCreate(@Nullable Bundle savedInstanceState) {
@@ -2385,24 +2374,23 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
 
-    public final void callSuperSupportActionModeStarted( ActionMode mode) {
+    public final void callSuperSupportActionModeStarted(ActionMode mode) {
         super.onSupportActionModeStarted(mode);
     }
 
 
-    public final void callSuperSupportActionModeFinished( ActionMode mode) {
+    public final void callSuperSupportActionModeFinished(ActionMode mode) {
         super.onSupportActionModeFinished(mode);
     }
 
     @Nullable
 
-    public final ActionMode callSuperWindowStartingSupportActionMode( ActionMode.Callback callback) {
+    public final ActionMode callSuperWindowStartingSupportActionMode(ActionMode.Callback callback) {
         return super.onWindowStartingSupportActionMode(callback);
     }
 
 
-
-    public final ActionMode callSuperStartSupportActionMode( ActionMode.Callback callback) {
+    public final ActionMode callSuperStartSupportActionMode(ActionMode.Callback callback) {
         return super.startSupportActionMode(callback);
     }
 
@@ -2427,12 +2415,12 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 //    }
 
 
-    public final void callSuperCreateSupportNavigateUpTaskStack( TaskStackBuilder builder) {
+    public final void callSuperCreateSupportNavigateUpTaskStack(TaskStackBuilder builder) {
         super.onCreateSupportNavigateUpTaskStack(builder);
     }
 
 
-    public final void callSuperPrepareSupportNavigateUpTaskStack( TaskStackBuilder builder) {
+    public final void callSuperPrepareSupportNavigateUpTaskStack(TaskStackBuilder builder) {
         super.onPrepareSupportNavigateUpTaskStack(builder);
     }
 
@@ -2448,12 +2436,12 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
 
-    public final boolean callSuperSupportShouldUpRecreateTask( Intent targetIntent) {
+    public final boolean callSuperSupportShouldUpRecreateTask(Intent targetIntent) {
         return super.supportShouldUpRecreateTask(targetIntent);
     }
 
 
-    public final void callSuperSupportNavigateUpTo( Intent upIntent) {
+    public final void callSuperSupportNavigateUpTo(Intent upIntent) {
         super.supportNavigateUpTo(upIntent);
     }
 
@@ -2487,7 +2475,6 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     public final void callSuperSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
-
 
 
     public final AppCompatDelegate callSuperGetDelegate() {
@@ -2563,7 +2550,6 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     public final void callSuperPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode);
     }
-
 
 
     public final ViewModelStore callSuperGetViewModelStore() {
@@ -2657,7 +2643,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
 
-    public final void callSuperRequestPermissionsResult(int requestCode,  String[] permissions,  int[] grantResults) {
+    public final void callSuperRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
@@ -2911,13 +2897,13 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public final boolean callSuperEnterPictureInPictureMode( PictureInPictureParams params) {
+    public final boolean callSuperEnterPictureInPictureMode(PictureInPictureParams params) {
         return super.enterPictureInPictureMode(params);
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public final void callSuperSetPictureInPictureParams( PictureInPictureParams params) {
+    public final void callSuperSetPictureInPictureParams(PictureInPictureParams params) {
         super.setPictureInPictureParams(params);
     }
 
@@ -3221,7 +3207,6 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
 
-
     public final LayoutInflater callSuperGetLayoutInflater() {
         return super.getLayoutInflater();
     }
@@ -3233,7 +3218,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public final boolean callSuperShouldShowRequestPermissionRationale( String permission) {
+    public final boolean callSuperShouldShowRequestPermissionRationale(String permission) {
         return super.shouldShowRequestPermissionRationale(permission);
     }
 
@@ -3277,46 +3262,46 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
 
-    public final boolean callSuperStartActivityIfNeeded( Intent intent, int requestCode) {
+    public final boolean callSuperStartActivityIfNeeded(Intent intent, int requestCode) {
         return super.startActivityIfNeeded(intent, requestCode);
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public final boolean callSuperStartActivityIfNeeded( Intent intent, int requestCode, @Nullable Bundle options) {
+    public final boolean callSuperStartActivityIfNeeded(Intent intent, int requestCode, @Nullable Bundle options) {
         return super.startActivityIfNeeded(intent, requestCode, options);
     }
 
 
-    public final boolean callSuperStartNextMatchingActivity( Intent intent) {
+    public final boolean callSuperStartNextMatchingActivity(Intent intent) {
         return super.startNextMatchingActivity(intent);
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public final boolean callSuperStartNextMatchingActivity( Intent intent, @Nullable Bundle options) {
+    public final boolean callSuperStartNextMatchingActivity(Intent intent, @Nullable Bundle options) {
         return super.startNextMatchingActivity(intent, options);
     }
 
 
-    public final void callSuperStartActivityFromChild( Activity child, Intent intent, int requestCode) {
+    public final void callSuperStartActivityFromChild(Activity child, Intent intent, int requestCode) {
         super.startActivityFromChild(child, intent, requestCode);
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public final void callSuperStartActivityFromChild( Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
+    public final void callSuperStartActivityFromChild(Activity child, Intent intent, int requestCode, @Nullable Bundle options) {
         super.startActivityFromChild(child, intent, requestCode, options);
     }
 
 
-    public final void callSuperStartActivityFromFragment( android.app.Fragment fragment, Intent intent, int requestCode) {
+    public final void callSuperStartActivityFromFragment(android.app.Fragment fragment, Intent intent, int requestCode) {
         super.startActivityFromFragment(fragment, intent, requestCode);
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public final void callSuperStartActivityFromFragment( android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
+    public final void callSuperStartActivityFromFragment(android.app.Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
         super.startActivityFromFragment(fragment, intent, requestCode, options);
     }
 
@@ -3414,7 +3399,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
 
-    public final void callSuperFinishActivityFromChild( Activity child, int requestCode) {
+    public final void callSuperFinishActivityFromChild(Activity child, int requestCode) {
         super.finishActivityFromChild(child, requestCode);
     }
 
@@ -3437,7 +3422,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
 
-    public final PendingIntent callSuperCreatePendingResult(int requestCode,  Intent data, int flags) {
+    public final PendingIntent callSuperCreatePendingResult(int requestCode, Intent data, int flags) {
         return super.createPendingResult(requestCode, data, flags);
     }
 
@@ -3482,7 +3467,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
 
-    public final Object callSuperGetSystemService( String name) {
+    public final Object callSuperGetSystemService(String name) {
         return super.getSystemService(name);
     }
 
@@ -3544,7 +3529,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public final void callSuperSetVrModeEnabled(boolean enabled,  ComponentName requestedComponent) throws PackageManager.NameNotFoundException {
+    public final void callSuperSetVrModeEnabled(boolean enabled, ComponentName requestedComponent) throws PackageManager.NameNotFoundException {
         super.setVrModeEnabled(enabled, requestedComponent);
     }
 
@@ -4194,4 +4179,195 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
         super.onPointerCaptureChanged(hasCapture);
     }
 
+
+    public Object callSuperRetainNonConfigurationInstance() {
+        return super.onRetainNonConfigurationInstance();
+    }
+
+    public void callSuperValidateRequestPermissionsRequestCode(int requestCode) {
+        super.validateRequestPermissionsRequestCode(requestCode);
+    }
+
+    public Application callSuperGetApplication() {
+        return super.getApplication();
+    }
+
+    public boolean callSuperIsChild() {
+        return super.isChild();
+    }
+
+    public Activity callSuperGetParent() {
+        return super.getParent();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void callSuperRequestShowKeyboardShortcuts() {
+        super.requestShowKeyboardShortcuts();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void callSuperDismissKeyboardShortcutsHelper() {
+        super.dismissKeyboardShortcutsHelper();
+    }
+
+    public Cursor callSuperManagedQuery(Uri uri, String[] projection, String selection,
+                                        String[] selectionArgs, String sortOrder) {
+        return super.managedQuery(uri, projection, selection, selectionArgs, sortOrder);
+    }
+
+    public void callSuperSetDefaultKeyMode(int mode) {
+        super.setDefaultKeyMode(mode);
+    }
+
+    public void callSuperShowDialog(int id) {
+        super.showDialog(id);
+    }
+
+    public boolean callSuperShowDialog(int id, Bundle args) {
+        return super.showDialog(id, args);
+    }
+
+    public void callSuperDismissDialog(int id) {
+        super.dismissDialog(id);
+    }
+
+    public void callSuperRemoveDialog(int id) {
+        super.removeDialog(id);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public SearchEvent callSuperGetSearchEvent() {
+        return super.getSearchEvent();
+    }
+
+    public boolean callSuperRequestWindowFeature(int featureId) {
+        return super.requestWindowFeature(featureId);
+    }
+
+    public void callSuperSetFeatureDrawableResource(int featureId, @DrawableRes int resId) {
+        super.setFeatureDrawableResource(featureId, resId);
+    }
+
+    public void callSuperSetFeatureDrawableUri(int featureId, Uri uri) {
+        super.setFeatureDrawableUri(featureId, uri);
+    }
+
+    public void callSuperSetFeatureDrawable(int featureId, Drawable drawable) {
+        super.setFeatureDrawable(featureId, drawable);
+    }
+
+    public void callSuperSetFeatureDrawableAlpha(int featureId, int alpha) {
+        super.setFeatureDrawableAlpha(featureId, alpha);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void callSuperRequestPermissions(@NonNull String[] permissions, int requestCode) {
+        super.requestPermissions(permissions, requestCode);
+    }
+
+    public void callSuperSetResult(int resultCode) {
+        super.setResult(resultCode);
+    }
+
+    public void callSuperSetResult(int resultCode, Intent data) {
+        super.setResult(resultCode, data);
+    }
+
+    public CharSequence callSuperGetTitle() {
+        return super.getTitle();
+    }
+
+    public int callSuperGetTitleColor() {
+        return super.getTitleColor();
+    }
+
+    public void callSuperSetProgressBarVisibility(boolean visible) {
+        super.setProgressBarVisibility(visible);
+    }
+
+    public void callSuperSetProgressBarIndeterminateVisibility(boolean visible) {
+        super.setProgressBarIndeterminateVisibility(visible);
+    }
+
+    public void callSuperSetProgressBarIndeterminate(boolean indeterminate) {
+        super.setProgressBarIndeterminateVisibility(indeterminate);
+    }
+
+    public void callSuperSetProgress(int progress) {
+        super.setProgress(progress);
+    }
+
+    public void callSuperSetSecondaryProgress(int secondaryProgress) {
+        super.setSecondaryProgress(secondaryProgress);
+    }
+
+    public void callSuperSetVolumeControlStream(int streamType) {
+        super.setVolumeControlStream(streamType);
+    }
+
+    public int callSuperGetVolumeControlStream() {
+        return super.getVolumeControlStream();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void callSuperSetMediaController(MediaController controller) {
+        super.setMediaController(controller);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public MediaController callSuperGetMediaController() {
+        return super.getMediaController();
+    }
+
+    public void callSuperRunOnUiThread(Runnable action) {
+        super.runOnUiThread(action);
+    }
+
+    /**
+     * @return
+     */
+    public final ActivityDelegate getComponentDelegate() {
+        if (delegate == null) {
+            delegate = createDelegate();
+            delegate.initialized(this);
+        }
+        return delegate;
+    }
+
+    @NonNull
+    public ActivityDelegate createDelegate() {
+        return new DefaultActivityDelegate();
+    }
+
+    private void parseDelegate(Bundle savedInstanceState) {
+        if (savedInstanceState != null && savedInstanceState.containsKey(INSTANCE)) {
+            delegate = (ActivityDelegate) savedInstanceState.getSerializable(INSTANCE);
+            savedInstanceState.remove(INSTANCE);
+        }
+        if (DataUtils.isResetFlag(getIntent())) {
+            reset();
+            DataUtils.clearResetFlag(getIntent());
+            if (savedInstanceState != null)
+                savedInstanceState.clear();
+        }
+        ActivityDelegate delegate = DataUtils.getDelegateFromIntent(getIntent());
+        if (delegate == null) return;
+        delegate.initialized(this);
+        setComponentDelegate(delegate);
+        delegate.onCreate(this, savedInstanceState);
+    }
+
+    @Override
+    public void setComponentDelegate(ActivityDelegate delegate) {
+        this.delegate = delegate;
+    }
+
+
+    public Class<? extends ActivityDelegate> forDelegate() {
+        return DefaultActivityDelegate.class;
+    }
+
+    public void reset() {
+        setComponentDelegate(null);
+    }
 }

@@ -76,7 +76,7 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.List;
 
-public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate ,Serializable{
+public interface ActivityDelegate extends Delegate, ActivityAnchorDelegate {
 
 
     default void initialized(DelegateActivity delegateActivity) {

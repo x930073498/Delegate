@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.x930073498.lib.delegate.util.DataUtils;
+
 final class DefaultActivityDelegate implements ActivityDelegate {
     private static final String TAG = "DefaultActivityDelegate";
     private DelegateActivity activity;
@@ -16,14 +18,7 @@ final class DefaultActivityDelegate implements ActivityDelegate {
 
     @Override
     public final boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
-        try {
-            ActivityDelegate delegate = getDelegateClass(getIntent()).newInstance();
-            delegate.initialized(delegateActivity);
-            delegateActivity.setComponentDelegate(delegate);
-            delegate.onCreate(delegateActivity, savedInstanceState);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         return false;
     }
 
@@ -32,12 +27,5 @@ final class DefaultActivityDelegate implements ActivityDelegate {
         return activity;
     }
 
-    private Class<? extends ActivityDelegate> getDelegateClass(Intent intent) {
-        if (intent != null) {
-            Log.d(TAG, "getDelegateClass: enter this line");
-            return (Class<? extends ActivityDelegate>) intent.getSerializableExtra("name");
-        }
-        return null;
-    }
 
 }

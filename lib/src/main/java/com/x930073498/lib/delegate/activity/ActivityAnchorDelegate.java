@@ -2,6 +2,7 @@ package com.x930073498.lib.delegate.activity;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Application;
 import android.app.PendingIntent;
 import android.app.PictureInPictureParams;
 import android.app.VoiceInteractor;
@@ -28,6 +29,8 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +38,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.PersistableBundle;
 import android.os.UserHandle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -48,10 +52,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.transition.Scene;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
-import android.util.Log;
+//import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Display;
 import android.view.DragAndDropPermissions;
@@ -69,6 +74,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.ProgressBar;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -78,8 +84,8 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
+@SuppressWarnings("unused")
 interface ActivityAnchorDelegate {
-    String TAG="ActivityAnchorDelegate";
     DelegateActivity getActivity();
 
 
@@ -249,9 +255,9 @@ interface ActivityAnchorDelegate {
     }
 
 
-    default void onSupportContentChanged() {
-        if (getActivity() != null) getActivity().onSupportContentChanged();
-    }
+//    default void onSupportContentChanged() {
+//        if (getActivity() != null) getActivity().onSupportContentChanged();
+//    }
 
     @Nullable
 
@@ -274,7 +280,6 @@ interface ActivityAnchorDelegate {
         if (getActivity() != null) getActivity().onSaveInstanceState(outState);
     }
 
-    @NonNull
 
     default AppCompatDelegate getDelegate() {
         return getActivity() == null ? null : getActivity().getDelegate();
@@ -350,8 +355,6 @@ interface ActivityAnchorDelegate {
         if (getActivity() != null)
             getActivity().onPictureInPictureModeChanged(isInPictureInPictureMode);
     }
-
-    @NonNull
 
     default ViewModelStore getViewModelStore() {
         return getActivity() == null ? null : getActivity().getViewModelStore();
@@ -1083,7 +1086,6 @@ interface ActivityAnchorDelegate {
 
 
     default void recreate() {
-        if (getActivity()==null) Log.d(TAG, "recreate: ");
         if (getActivity() != null) getActivity().recreate();
     }
 
@@ -1773,5 +1775,148 @@ interface ActivityAnchorDelegate {
         if (getActivity() != null) getActivity().unregisterComponentCallbacks(callback);
     }
 
+    //
+    default Object onRetainNonConfigurationInstance() {
+        return getActivity() == null ? null : getActivity().onRetainNonConfigurationInstance();
+    }
+
+    default void validateRequestPermissionsRequestCode(int requestCode) {
+        if (getActivity() != null) getActivity().validateRequestPermissionsRequestCode(requestCode);
+    }
+
+    default Application getApplication() {
+        return getActivity() == null ? null : getActivity().getApplication();
+    }
+
+    default Boolean isChild() {
+        return getActivity() == null ? null : getActivity().isChild();
+    }
+
+    default Activity getParent() {
+        return getActivity() == null ? null : getActivity().getParent();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    default void requestShowKeyboardShortcuts() {
+        if (getActivity() != null) getActivity().requestShowKeyboardShortcuts();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    default void dismissKeyboardShortcutsHelper() {
+        if (getActivity() != null) getActivity().dismissKeyboardShortcutsHelper();
+    }
+
+    default Cursor managedQuery(Uri uri, String[] projection, String selection,
+                                String[] selectionArgs, String sortOrder) {
+        return getActivity() == null ? null : getActivity().managedQuery(uri, projection, selection, selectionArgs, sortOrder);
+    }
+
+    default void setDefaultKeyMode(int mode) {
+        if (getActivity() != null) getActivity().setDefaultKeyMode(mode);
+    }
+
+    default void showDialog(int id) {
+        if (getActivity() != null) getActivity().showDialog(id);
+    }
+
+    default Boolean showDialog(int id, Bundle args) {
+        return getActivity() == null ? null : getActivity().showDialog(id, args);
+    }
+
+    default void dismissDialog(int id) {
+        if (getActivity() != null) getActivity().dismissDialog(id);
+    }
+
+    default void removeDialog(int id) {
+        if (getActivity() != null) getActivity().removeDialog(id);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    default SearchEvent getSearchEvent() {
+        return getActivity() == null ? null : getActivity().getSearchEvent();
+    }
+
+    default Boolean requestWindowFeature(int featureId) {
+        return getActivity() == null ? null : getActivity().requestWindowFeature(featureId);
+    }
+
+    default void setFeatureDrawableResource(int featureId, @DrawableRes int resId) {
+        if (getActivity() != null) getActivity().setFeatureDrawableResource(featureId, resId);
+    }
+
+    default void setFeatureDrawableUri(int featureId, Uri uri) {
+        if (getActivity() != null) getActivity().setFeatureDrawableUri(featureId, uri);
+    }
+
+    default void setFeatureDrawable(int featureId, Drawable drawable) {
+        if (getActivity() != null) getActivity().setFeatureDrawable(featureId, drawable);
+    }
+
+    default void setFeatureDrawableAlpha(int featureId, int alpha) {
+        if (getActivity() != null) getActivity().setFeatureDrawableAlpha(featureId, alpha);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    default void requestPermissions(@NonNull String[] permissions, int requestCode) {
+        if (getActivity() != null) getActivity().requestPermissions(permissions, requestCode);
+    }
+
+    default void setResult(int resultCode) {
+        if (getActivity() != null) getActivity().setResult(resultCode);
+    }
+
+    default void setResult(int resultCode, Intent data) {
+        if (getActivity() != null) getActivity().setResult(resultCode, data);
+    }
+
+    default CharSequence getTitle() {
+        return getActivity() == null ? null : getActivity().getTitle();
+    }
+
+    default Integer getTitleColor() {
+        return getActivity() == null ? null : getActivity().getTitleColor();
+    }
+
+    default void setProgressBarVisibility(boolean visible) {
+        if (getActivity() != null) getActivity().setProgressBarVisibility(visible);
+    }
+
+    default void setProgressBarIndeterminateVisibility(boolean visible) {
+        if (getActivity() != null) getActivity().setProgressBarIndeterminateVisibility(visible);
+    }
+
+    default void setProgressBarIndeterminate(boolean indeterminate) {
+        if (getActivity() != null) getActivity().setProgressBarIndeterminate(indeterminate);
+    }
+
+    default void setProgress(int progress) {
+        if (getActivity() != null) getActivity().setProgress(progress);
+    }
+
+    default void setSecondaryProgress(int secondaryProgress) {
+        if (getActivity() != null) getActivity().setSecondaryProgress(secondaryProgress);
+    }
+
+    default void setVolumeControlStream(int streamType) {
+        if (getActivity() != null) getActivity().setVolumeControlStream(streamType);
+    }
+
+    default Integer getVolumeControlStream() {
+        return getActivity() == null ? null : getActivity().getVolumeControlStream();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    default void setMediaController(MediaController controller) {
+        if (getActivity() != null) getActivity().setMediaController(controller);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    default MediaController getMediaController() {
+        return getActivity() == null ? null : getActivity().getMediaController();
+    }
+
+    default void runOnUiThread(Runnable action) {
+        if (getActivity() != null) getActivity().runOnUiThread(action);
+    }
 
 }
