@@ -31,7 +31,6 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-//import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable;
 import android.media.session.MediaController;
 import android.net.Uri;
@@ -59,8 +58,6 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Scene;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
-//import android.util.Log;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Display;
 import android.view.DragAndDropPermissions;
@@ -79,9 +76,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
-//import com.x930073498.lib.delegate.Delegate;
 import com.x930073498.lib.delegate.DelegateProvider;
-import com.x930073498.lib.delegate.component.activity.ActivityComponentDelegate;
 import com.x930073498.lib.delegate.util.DataUtils;
 
 import java.io.File;
@@ -89,10 +84,10 @@ import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-//import java.io.IOException;
-//import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @SuppressWarnings("unused")
 public class DelegateActivity extends AppCompatActivity implements DelegateProvider<ActivityDelegate> {
@@ -100,6 +95,21 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     private static final String INSTANCE = "DELEGATE_INSTANCE";
     private ActivityDelegate delegate;
+
+    private List<ActivityCallback> callbacks=new ArrayList<>();
+
+    public void addCallback(ActivityCallback callback){
+        if (callbacks.contains(callback))return;
+        callbacks.add(callback);
+    }
+
+    public void removeCallback(ActivityCallback callback){
+        callbacks.remove(callback);
+    }
+
+    public void clearCallback(){
+        callbacks.clear();
+    }
 
     {
         intoDelegate(forDelegate());
