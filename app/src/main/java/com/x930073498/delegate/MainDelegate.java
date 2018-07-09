@@ -16,6 +16,7 @@ public class MainDelegate implements ActivityDelegate {
     public void initialized(DelegateActivity delegateActivity) {
         Log.d(TAG, "initialized: ");
         activity = delegateActivity;
+        addCallback(new MainCallback());
     }
 
     @Override
@@ -26,11 +27,7 @@ public class MainDelegate implements ActivityDelegate {
 
     @Override
     public boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
-        if (activity == null) activity = delegateActivity;
-        setContentView(R.layout.activity_main);
-        findViewById(R.id.btn).setOnClickListener((view) -> {
-            Router.swap(this, new Test1Delegate());
-        });
+
         return false;
     }
 

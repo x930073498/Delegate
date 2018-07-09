@@ -32,6 +32,7 @@ import com.x930073498.lib.delegate.DelegateProvider;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -41,14 +42,31 @@ public class DelegateFragment extends Fragment implements DelegateProvider<Fragm
 
     private List<FragmentCallback> callbacks = new ArrayList<>();
 
-    public void addCallback(FragmentCallback callback) {
-        if (callbacks.contains(callback)) return;
-        callbacks.add(callback);
+    public void addCallbacks(List<FragmentCallback> callbacks) {
+        if (callbacks == null) return;
+        for (FragmentCallback callback : callbacks
+                ) {
+            if (this.callbacks.contains(callback)) continue;
+            this.callbacks.add(callback);
+            callback.initialized(this);
+        }
+    }
+
+    public void addCallback(FragmentCallback... callbacks) {
+        addCallbacks(Arrays.asList(callbacks));
     }
 
 
-    public void removeCallback(FragmentCallback callback) {
-        callbacks.remove(callback);
+    public void removeCallbacks(List<FragmentCallback> callbacks) {
+        if (callbacks == null) return;
+        for (FragmentCallback callback : callbacks
+                ) {
+            this.callbacks.remove(callback);
+        }
+    }
+
+    public void removeCallback(FragmentCallback... callbacks) {
+        removeCallbacks(Arrays.asList(callbacks));
     }
 
     public void clearCallback() {

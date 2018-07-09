@@ -55,7 +55,6 @@ import java.util.List;
 
 public interface ActivityCallback extends Delegate, ActivityAnchorDelegate {
 
-
     default void initialized(DelegateActivity delegateActivity) {
     }
 
@@ -64,6 +63,7 @@ public interface ActivityCallback extends Delegate, ActivityAnchorDelegate {
     }
 
     default void setTheme(DelegateActivity delegateActivity, int resid) {
+
     }
 
 

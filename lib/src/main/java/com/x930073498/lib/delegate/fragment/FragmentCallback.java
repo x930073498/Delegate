@@ -1,7 +1,5 @@
 package com.x930073498.lib.delegate.fragment;
 
-import android.animation.Animator;
-import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -10,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.app.SharedElementCallback;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
@@ -20,13 +17,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
 import com.x930073498.lib.delegate.Delegate;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 
+@SuppressWarnings("ALL")
 public interface FragmentCallback extends Delegate, FragmentAnchorDelegate {
 
     default void initialized(DelegateFragment delegateFragment) {

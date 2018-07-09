@@ -86,6 +86,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -98,13 +99,30 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     private List<ActivityCallback> callbacks = new ArrayList<>();
 
-    public void addCallback(ActivityCallback callback) {
-        if (callbacks.contains(callback)) return;
-        callbacks.add(callback);
+    public void addCallback(ActivityCallback... callbacks) {
+        addCallbacks(Arrays.asList(callbacks));
     }
 
-    public void removeCallback(ActivityCallback callback) {
-        callbacks.remove(callback);
+    public void addCallbacks(List<ActivityCallback> callbacks) {
+        if (callbacks==null)return;
+        for (ActivityCallback callback : callbacks
+                ) {
+            if (this.callbacks.contains(callback)) continue;
+            this.callbacks.add(callback);
+            callback.initialized(this);
+        }
+    }
+
+    public void removeCallbacks(List<ActivityCallback> callbacks) {
+        if (callbacks==null)return;
+        for (ActivityCallback callback : callbacks
+                ) {
+            this.callbacks.remove(callback);
+        }
+    }
+
+    public void removeCallback(ActivityCallback... callbacks) {
+        removeCallbacks(Arrays.asList(callbacks));
     }
 
     public void clearCallback() {
@@ -1918,7 +1936,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     public Uri onProvideReferrer() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.onProvideReferrer(this);
+            callback.onProvideReferrer(this);
 
         }
         Uri uri = getComponentDelegate() == null ? null : getComponentDelegate().onProvideReferrer(this);
@@ -1930,7 +1948,7 @@ callback.onProvideReferrer(this);
     public String getCallingPackage() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getCallingPackage(this);
+            callback.getCallingPackage(this);
 
         }
         String s = getComponentDelegate() == null ? null : getComponentDelegate().getCallingPackage(this);
@@ -1942,7 +1960,7 @@ callback.getCallingPackage(this);
     public ComponentName getCallingActivity() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getCallingActivity(this);
+            callback.getCallingActivity(this);
 
         }
         ComponentName name = getComponentDelegate() == null ? null : getComponentDelegate().getCallingActivity(this);
@@ -1951,8 +1969,8 @@ callback.getCallingActivity(this);
 
     @Override
     public void setVisible(boolean visible) {
-        for (ActivityCallback callback:callbacks
-             ) {
+        for (ActivityCallback callback : callbacks
+                ) {
             callback.setVisible(this, visible);
         }
         if (getComponentDelegate() != null && getComponentDelegate().setVisible(this, visible))
@@ -1964,7 +1982,7 @@ callback.getCallingActivity(this);
     public boolean isFinishing() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.isFinishing(this);
+            callback.isFinishing(this);
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().isFinishing(this);
         return aBoolean == null ? super.isFinishing() : aBoolean;
@@ -1974,7 +1992,7 @@ callback.isFinishing(this);
     public boolean isDestroyed() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.isDestroyed(this);
+            callback.isDestroyed(this);
 
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().isDestroyed(this);
@@ -1985,7 +2003,7 @@ callback.isDestroyed(this);
     public boolean isChangingConfigurations() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.isChangingConfigurations(this);
+            callback.isChangingConfigurations(this);
 
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().isChangingConfigurations(this);
@@ -1996,7 +2014,7 @@ callback.isChangingConfigurations(this);
     public void recreate() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.recreate(this);
+            callback.recreate(this);
         }
         if (getComponentDelegate() != null && getComponentDelegate().recreate(this)) return;
         super.recreate();
@@ -2006,7 +2024,7 @@ callback.recreate(this);
     public void finish() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.finish(this);
+            callback.finish(this);
         }
         if (getComponentDelegate() != null && getComponentDelegate().finish(this)) return;
         super.finish();
@@ -2016,7 +2034,7 @@ callback.finish(this);
     public void finishAffinity() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.finishAffinity(this);
+            callback.finishAffinity(this);
         }
         if (getComponentDelegate() != null && getComponentDelegate().finishAffinity(this)) return;
         super.finishAffinity();
@@ -2026,7 +2044,7 @@ callback.finishAffinity(this);
     public void finishFromChild(Activity child) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.finishFromChild(this, child);
+            callback.finishFromChild(this, child);
         }
         if (getComponentDelegate() != null && getComponentDelegate().finishFromChild(this, child))
             return;
@@ -2037,7 +2055,7 @@ callback.finishFromChild(this, child);
     public void finishAfterTransition() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.finishAfterTransition(this);
+            callback.finishAfterTransition(this);
         }
         if (getComponentDelegate() != null && getComponentDelegate().finishAfterTransition(this))
             return;
@@ -2048,7 +2066,7 @@ callback.finishAfterTransition(this);
     public void finishActivity(int requestCode) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.finishActivity(this, requestCode);
+            callback.finishActivity(this, requestCode);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().finishActivity(this, requestCode)) return;
@@ -2059,7 +2077,7 @@ callback.finishActivity(this, requestCode);
     public void finishActivityFromChild(@NonNull Activity child, int requestCode) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.finishActivityFromChild(this, child, requestCode);
+            callback.finishActivityFromChild(this, child, requestCode);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().finishActivityFromChild(this, child, requestCode)) return;
@@ -2070,7 +2088,7 @@ callback.finishActivityFromChild(this, child, requestCode);
     public void finishAndRemoveTask() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.finishAndRemoveTask(this);
+            callback.finishAndRemoveTask(this);
         }
         if (getComponentDelegate() != null && getComponentDelegate().finishAndRemoveTask(this))
             return;
@@ -2081,7 +2099,7 @@ callback.finishAndRemoveTask(this);
     public boolean releaseInstance() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.releaseInstance(this);
+            callback.releaseInstance(this);
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().releaseInstance(this);
         return aBoolean == null ? super.releaseInstance() : aBoolean;
@@ -2091,7 +2109,7 @@ callback.releaseInstance(this);
     public void onActivityReenter(int resultCode, Intent data) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.onActivityReenter(this, resultCode, data);
+            callback.onActivityReenter(this, resultCode, data);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().onActivityReenter(this, resultCode, data)) return;
@@ -2102,7 +2120,7 @@ callback.onActivityReenter(this, resultCode, data);
     public PendingIntent createPendingResult(int requestCode, @NonNull Intent data, int flags) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.createPendingResult(this, requestCode, data, flags);
+            callback.createPendingResult(this, requestCode, data, flags);
 
         }
         PendingIntent pendingIntent = getComponentDelegate() == null ? null : getComponentDelegate().createPendingResult(this, requestCode, data, flags);
@@ -2113,7 +2131,7 @@ callback.createPendingResult(this, requestCode, data, flags);
     public void setRequestedOrientation(int requestedOrientation) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.setRequestedOrientation(this, requestedOrientation);
+            callback.setRequestedOrientation(this, requestedOrientation);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().setRequestedOrientation(this, requestedOrientation)) return;
@@ -2124,7 +2142,7 @@ callback.setRequestedOrientation(this, requestedOrientation);
     public int getRequestedOrientation() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getRequestedOrientation(this);
+            callback.getRequestedOrientation(this);
 
         }
         Integer integer = getComponentDelegate() == null ? null : getComponentDelegate().getRequestedOrientation(this);
@@ -2135,7 +2153,7 @@ callback.getRequestedOrientation(this);
     public int getTaskId() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getTaskId(this);
+            callback.getTaskId(this);
         }
         Integer integer = getComponentDelegate() == null ? null : getComponentDelegate().getTaskId(this);
         return integer == null ? super.getTaskId() : integer;
@@ -2145,7 +2163,7 @@ callback.getTaskId(this);
     public boolean isTaskRoot() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.isTaskRoot(this);
+            callback.isTaskRoot(this);
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().isTaskRoot(this);
         return aBoolean == null ? super.isTaskRoot() : aBoolean;
@@ -2155,7 +2173,7 @@ callback.isTaskRoot(this);
     public boolean moveTaskToBack(boolean nonRoot) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.moveTaskToBack(this, nonRoot);
+            callback.moveTaskToBack(this, nonRoot);
 
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().moveTaskToBack(this, nonRoot);
@@ -2167,7 +2185,7 @@ callback.moveTaskToBack(this, nonRoot);
     public String getLocalClassName() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getLocalClassName(this);
+            callback.getLocalClassName(this);
         }
         String s = getComponentDelegate() == null ? null : getComponentDelegate().getLocalClassName(this);
         return s == null ? super.getLocalClassName() : s;
@@ -2177,7 +2195,7 @@ callback.getLocalClassName(this);
     public ComponentName getComponentName() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getComponentName(this);
+            callback.getComponentName(this);
 
         }
         ComponentName name = getComponentDelegate() == null ? null : getComponentDelegate().getComponentName(this);
@@ -2188,7 +2206,7 @@ callback.getComponentName(this);
     public SharedPreferences getPreferences(int mode) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getPreferences(this, mode);
+            callback.getPreferences(this, mode);
 
         }
         SharedPreferences preferences = getComponentDelegate() == null ? null : getComponentDelegate().getPreferences(this, mode);
@@ -2199,7 +2217,7 @@ callback.getPreferences(this, mode);
     public Object getSystemService(@NonNull String name) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getSystemService(this, name);
+            callback.getSystemService(this, name);
         }
         Object o = getComponentDelegate() == null ? null : getComponentDelegate().getSystemService(this, name);
         return o == null ? super.getSystemService(name) : o;
@@ -2209,7 +2227,7 @@ callback.getSystemService(this, name);
     public void setTitle(CharSequence title) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.setTitle(this, title);
+            callback.setTitle(this, title);
         }
         if (getComponentDelegate() != null && getComponentDelegate().setTitle(this, title)) return;
         super.setTitle(title);
@@ -2219,7 +2237,7 @@ callback.setTitle(this, title);
     public void setTitle(int titleId) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.setTitle(this, titleId);
+            callback.setTitle(this, titleId);
         }
         if (getComponentDelegate() != null && getComponentDelegate().setTitle(this, titleId))
             return;
@@ -2230,7 +2248,7 @@ callback.setTitle(this, titleId);
     public void setTitleColor(int textColor) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.setTitleColor(this, textColor);
+            callback.setTitleColor(this, textColor);
         }
         if (
                 getComponentDelegate() != null && getComponentDelegate().setTitleColor(this, textColor))
@@ -2242,7 +2260,7 @@ callback.setTitleColor(this, textColor);
     public void setTaskDescription(ActivityManager.TaskDescription taskDescription) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.setTaskDescription(this, taskDescription);
+            callback.setTaskDescription(this, taskDescription);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().setTaskDescription(this, taskDescription)) return;
@@ -2253,7 +2271,7 @@ callback.setTaskDescription(this, taskDescription);
     public boolean isImmersive() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.isImmersive(this);
+            callback.isImmersive(this);
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().isImmersive(this);
         return aBoolean == null ? super.isImmersive() : aBoolean;
@@ -2263,7 +2281,7 @@ callback.isImmersive(this);
     public boolean requestVisibleBehind(boolean visible) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.requestVisibleBehind(this, visible);
+            callback.requestVisibleBehind(this, visible);
 
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().requestVisibleBehind(this, visible);
@@ -2274,7 +2292,7 @@ callback.requestVisibleBehind(this, visible);
     public void onVisibleBehindCanceled() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.onVisibleBehindCanceled(this);
+            callback.onVisibleBehindCanceled(this);
         }
         if (getComponentDelegate() != null && getComponentDelegate().onVisibleBehindCanceled(this))
             return;
@@ -2285,7 +2303,7 @@ callback.onVisibleBehindCanceled(this);
     public void onEnterAnimationComplete() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.onEnterAnimationComplete(this);
+            callback.onEnterAnimationComplete(this);
         }
         if (
                 getComponentDelegate() != null && getComponentDelegate().onEnterAnimationComplete(this))
@@ -2297,7 +2315,7 @@ callback.onEnterAnimationComplete(this);
     public void setImmersive(boolean i) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.setImmersive(this, i);
+            callback.setImmersive(this, i);
         }
         if (getComponentDelegate() != null && getComponentDelegate().setImmersive(this, i)) return;
         super.setImmersive(i);
@@ -2307,7 +2325,7 @@ callback.setImmersive(this, i);
     public void setVrModeEnabled(boolean enabled, @NonNull ComponentName requestedComponent) throws PackageManager.NameNotFoundException {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.setVrModeEnabled(this, enabled, requestedComponent);
+            callback.setVrModeEnabled(this, enabled, requestedComponent);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().setVrModeEnabled(this, enabled, requestedComponent)) return;
@@ -2319,7 +2337,7 @@ callback.setVrModeEnabled(this, enabled, requestedComponent);
     public android.view.ActionMode startActionMode(android.view.ActionMode.Callback callback) {
         for (ActivityCallback callback1 : callbacks
                 ) {
-callback1.startActionMode(this, callback);
+            callback1.startActionMode(this, callback);
 
         }
         android.view.ActionMode actionMode = getComponentDelegate() == null ? null : getComponentDelegate().startActionMode(this, callback);
@@ -2343,7 +2361,7 @@ callback1.startActionMode(this, callback);
     public android.view.ActionMode onWindowStartingActionMode(android.view.ActionMode.Callback callback) {
         for (ActivityCallback callback1 : callbacks
                 ) {
-callback1.onWindowStartingActionMode(this, callback);
+            callback1.onWindowStartingActionMode(this, callback);
 
         }
         android.view.ActionMode actionMode = getComponentDelegate() == null ? null : getComponentDelegate().onWindowStartingActionMode(this, callback);
@@ -2355,7 +2373,7 @@ callback1.onWindowStartingActionMode(this, callback);
     public android.view.ActionMode onWindowStartingActionMode(android.view.ActionMode.Callback callback, int type) {
         for (ActivityCallback callback1 : callbacks
                 ) {
-callback1.onWindowStartingActionMode(this, callback, type);
+            callback1.onWindowStartingActionMode(this, callback, type);
 
         }
         android.view.ActionMode actionMode = getComponentDelegate() == null ? null : getComponentDelegate().onWindowStartingActionMode(this, callback, type);
@@ -2366,7 +2384,7 @@ callback1.onWindowStartingActionMode(this, callback, type);
     public void onActionModeStarted(android.view.ActionMode mode) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.onActionModeStarted(this, mode);
+            callback.onActionModeStarted(this, mode);
         }
         if (
                 getComponentDelegate() != null && getComponentDelegate().onActionModeStarted(this, mode))
@@ -2378,7 +2396,7 @@ callback.onActionModeStarted(this, mode);
     public void onActionModeFinished(android.view.ActionMode mode) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.onActionModeFinished(this, mode);
+            callback.onActionModeFinished(this, mode);
         }
         if (
                 getComponentDelegate() != null && getComponentDelegate().onActionModeFinished(this, mode))
@@ -2390,7 +2408,7 @@ callback.onActionModeFinished(this, mode);
     public boolean shouldUpRecreateTask(Intent targetIntent) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.shouldUpRecreateTask(this, targetIntent);
+            callback.shouldUpRecreateTask(this, targetIntent);
 
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().shouldUpRecreateTask(this, targetIntent);
@@ -2401,7 +2419,7 @@ callback.shouldUpRecreateTask(this, targetIntent);
     public boolean navigateUpTo(Intent upIntent) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.navigateUpTo(this, upIntent);
+            callback.navigateUpTo(this, upIntent);
 
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().navigateUpTo(this, upIntent);
@@ -2412,7 +2430,7 @@ callback.navigateUpTo(this, upIntent);
     public boolean navigateUpToFromChild(Activity child, Intent upIntent) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.navigateUpToFromChild(this, child, upIntent);
+            callback.navigateUpToFromChild(this, child, upIntent);
 
         }
         Boolean aBoolean = getComponentDelegate() == null ? null : getComponentDelegate().navigateUpToFromChild(this, child, upIntent);
@@ -2424,7 +2442,7 @@ callback.navigateUpToFromChild(this, child, upIntent);
     public Intent getParentActivityIntent() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.getParentActivityIntent(this);
+            callback.getParentActivityIntent(this);
 
         }
         Intent intent = getComponentDelegate() == null ? null : getComponentDelegate().getParentActivityIntent(this);
@@ -2435,7 +2453,7 @@ callback.getParentActivityIntent(this);
     public void setEnterSharedElementCallback(android.app.SharedElementCallback callback) {
         for (ActivityCallback callback1 : callbacks
                 ) {
-callback1.setEnterSharedElementCallback(this, callback);
+            callback1.setEnterSharedElementCallback(this, callback);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().setEnterSharedElementCallback(this, callback)) return;
@@ -2446,7 +2464,7 @@ callback1.setEnterSharedElementCallback(this, callback);
     public void setExitSharedElementCallback(android.app.SharedElementCallback callback) {
         for (ActivityCallback callback1 : callbacks
                 ) {
-callback1.setExitSharedElementCallback(this, callback);
+            callback1.setExitSharedElementCallback(this, callback);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().setExitSharedElementCallback(this, callback)) return;
@@ -2457,7 +2475,7 @@ callback1.setExitSharedElementCallback(this, callback);
     public void postponeEnterTransition() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.postponeEnterTransition(this);
+            callback.postponeEnterTransition(this);
         }
         if (getComponentDelegate() != null && getComponentDelegate().postponeEnterTransition(this))
             return;
@@ -2468,7 +2486,7 @@ callback.postponeEnterTransition(this);
     public void startPostponedEnterTransition() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.startPostponedEnterTransition(this);
+            callback.startPostponedEnterTransition(this);
         }
         if (getComponentDelegate() != null &&
                 getComponentDelegate().startPostponedEnterTransition(this)) return;
@@ -2479,7 +2497,7 @@ callback.startPostponedEnterTransition(this);
     public DragAndDropPermissions requestDragAndDropPermissions(DragEvent event) {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.requestDragAndDropPermissions(this, event);
+            callback.requestDragAndDropPermissions(this, event);
 
         }
         DragAndDropPermissions dragAndDropPermission = getComponentDelegate() == null ? null : getComponentDelegate().requestDragAndDropPermissions(this, event);
@@ -2490,7 +2508,7 @@ callback.requestDragAndDropPermissions(this, event);
     public void startLockTask() {
         for (ActivityCallback callback : callbacks
                 ) {
-callback.startLockTask(this);
+            callback.startLockTask(this);
         }
         if (getComponentDelegate() != null && getComponentDelegate().startLockTask(this)) return;
         super.startLockTask();
