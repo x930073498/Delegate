@@ -88,7 +88,30 @@ import java.util.List;
 interface ActivityAnchorDelegate {
     DelegateActivity getActivity();
 
+    default void addCallback(ActivityCallback... callbacks) {
+        if (getActivity() == null) return;
+        getActivity().addCallback(callbacks);
+    }
 
+    default void addCallbacks(List<ActivityCallback> callbacks) {
+        if (getActivity() == null) return;
+        getActivity().addCallbacks(callbacks);
+    }
+
+    default void removeCallbacks(List<ActivityCallback> callbacks) {
+        if (getActivity() == null) return;
+        getActivity().removeCallbacks(callbacks);
+    }
+
+    default void removeCallback(ActivityCallback... callbacks) {
+        if (getActivity() == null) return;
+        getActivity().removeCallback(callbacks);
+    }
+
+    default void clearCallback() {
+        if (getActivity() == null) return;
+        getActivity().clearCallback();
+    }
     default void setComponentDelegate(ActivityDelegate delegate) {
         if (getActivity() == null) return;
         getActivity().setComponentDelegate(delegate);

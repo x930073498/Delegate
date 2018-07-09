@@ -53,6 +53,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public interface ActivityCallback extends Delegate, ActivityAnchorDelegate {
 
     default void initialized(DelegateActivity delegateActivity) {

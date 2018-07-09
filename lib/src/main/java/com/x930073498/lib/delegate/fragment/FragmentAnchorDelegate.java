@@ -28,12 +28,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 
+import com.x930073498.lib.delegate.activity.ActivityCallback;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
+import java.util.List;
 
 interface FragmentAnchorDelegate {
-    default DelegateFragment getFragment() {
-        return null;
+    DelegateFragment getFragment();
+
+    default void addCallback(FragmentCallback... callbacks) {
+        if (getFragment() == null) return;
+        getFragment().addCallback(callbacks);
+    }
+
+    default void addCallbacks(List<FragmentCallback> callbacks) {
+        if (getFragment() == null) return;
+        getFragment().addCallbacks(callbacks);
+    }
+
+    default void removeCallbacks(List<FragmentCallback> callbacks) {
+        if (getFragment() == null) return;
+        getFragment().removeCallbacks(callbacks);
+    }
+
+    default void removeCallback(FragmentCallback... callbacks) {
+        if (getFragment() == null) return;
+        getFragment().removeCallback(callbacks);
+    }
+
+    default void clearCallback() {
+        if (getFragment() == null) return;
+        getFragment().clearCallback();
     }
 
     default Lifecycle getLifecycle() {
