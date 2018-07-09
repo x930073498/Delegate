@@ -22,14 +22,17 @@ public class Router {
     }
 
     public static void swap(ActivityDelegate src, ActivityDelegate target) {
+        start(src, target);
+        src.finish();
+    }
+
+    public static void start(ActivityDelegate src, ActivityDelegate target) {
         if (src == null || target == null) return;
         if (src.getActivity() == null) return;
         DelegateActivity activity = src.getActivity();
         Intent intent = new Intent(activity, activity.getClass());
         src.startActivity(DataUtils.wrapIntent(target, intent));
-        src.finish();
     }
-
 
 
 }

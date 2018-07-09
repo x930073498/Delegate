@@ -2,6 +2,7 @@ package com.x930073498.delegate;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.x930073498.lib.delegate.Router;
 import com.x930073498.lib.delegate.activity.ActivityDelegate;
@@ -9,10 +10,11 @@ import com.x930073498.lib.delegate.activity.DelegateActivity;
 
 public class MainDelegate implements ActivityDelegate {
     private static final String TAG = "MainDelegate";
-    private DelegateActivity activity;
+    private transient DelegateActivity activity;
 
     @Override
     public void initialized(DelegateActivity delegateActivity) {
+        Log.d(TAG, "initialized: ");
         activity = delegateActivity;
     }
 
@@ -27,12 +29,14 @@ public class MainDelegate implements ActivityDelegate {
         if (activity == null) activity = delegateActivity;
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn).setOnClickListener((view) -> {
-//            Intent intent = new Intent(getActivity(), DefaultDelegateActivity.class);
-//            intent.putExtra("name", Test1Delegate.class);
-//            startActivity(intent);
-
             Router.swap(this, new Test1Delegate());
         });
+        return false;
+    }
+
+    @Override
+    public boolean onResume(DelegateActivity delegateActivity) {
+        Log.d(TAG, "onResume: ");
         return false;
     }
 }

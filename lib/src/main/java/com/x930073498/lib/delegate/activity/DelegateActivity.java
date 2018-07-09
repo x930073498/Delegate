@@ -4354,7 +4354,6 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
         if (delegate == null) return;
         delegate.initialized(this);
         setComponentDelegate(delegate);
-        delegate.onCreate(this, savedInstanceState);
     }
 
     @Override

@@ -12,7 +12,7 @@ import com.x930073498.lib.delegate.activity.DelegateActivity;
 
 public class Test1Delegate implements ActivityDelegate {
     private static final String TAG = "Test1Delegate";
-    private DelegateActivity activity;
+    private transient DelegateActivity activity;
 
     @Override
     public void initialized(DelegateActivity delegateActivity) {
@@ -38,10 +38,16 @@ public class Test1Delegate implements ActivityDelegate {
         });
     }
 
+    @Override
+    public boolean onResume(DelegateActivity delegateActivity) {
+        Log.d(TAG, "onResume: ");
+        return false;
+    }
 
     @Override
     public Boolean onBackPressed(DelegateActivity delegateActivity) {
         Router.swap(this, new MainDelegate());
+
         return false;
     }
 
