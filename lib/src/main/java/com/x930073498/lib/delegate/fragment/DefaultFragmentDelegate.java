@@ -5,6 +5,11 @@ import android.support.annotation.Nullable;
 
 final class DefaultFragmentDelegate implements FragmentDelegate {
     private static final String TAG = "DefaultActivityDelegate";
+private DelegateFragment fragment;
+    @Override
+    public void initialized(DelegateFragment delegateFragment) {
+        fragment=delegateFragment;
+    }
 
     @Override
     public boolean onCreate(DelegateFragment delegateFragment, @Nullable Bundle savedInstanceState) {
@@ -28,4 +33,8 @@ final class DefaultFragmentDelegate implements FragmentDelegate {
         return null;
     }
 
+    @Override
+    public DelegateFragment getFragment() {
+        return fragment;
+    }
 }

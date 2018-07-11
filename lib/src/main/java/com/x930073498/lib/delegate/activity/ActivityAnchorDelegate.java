@@ -108,10 +108,21 @@ interface ActivityAnchorDelegate {
         getActivity().removeCallback(callbacks);
     }
 
+    default void swap(ActivityDelegate delegate) {
+        if (getActivity() == null) return;
+        getActivity().swap(delegate);
+    }
+
+    default void start(ActivityDelegate delegate) {
+        if (getActivity() == null) return;
+        getActivity().start(delegate);
+    }
+
     default void clearCallback() {
         if (getActivity() == null) return;
         getActivity().clearCallback();
     }
+
     default void setComponentDelegate(ActivityDelegate delegate) {
         if (getActivity() == null) return;
         getActivity().setComponentDelegate(delegate);

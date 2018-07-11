@@ -27,7 +27,11 @@ public class MainDelegate implements ActivityDelegate {
 
     @Override
     public boolean onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
-
+        if (activity == null) activity = delegateActivity;
+        setContentView(R.layout.activity_main);
+        findViewById(R.id.btn).setOnClickListener((view) -> {
+            swap(new Test1Delegate());
+        });
         return false;
     }
 

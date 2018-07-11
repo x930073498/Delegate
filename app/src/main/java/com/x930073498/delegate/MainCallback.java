@@ -31,7 +31,5 @@ public class MainCallback implements ActivityCallback {
     @Override
     public void onCreate(DelegateActivity delegateActivity, @Nullable Bundle savedInstanceState) {
         if (activity == null) activity = delegateActivity;
-        setContentView(R.layout.activity_main);
-        findViewById(R.id.btn).setOnClickListener((view) -> Router.swap(delegateActivity.getComponentDelegate(), new Test1Delegate()));
     }
 }

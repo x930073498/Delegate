@@ -77,7 +77,8 @@ import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.x930073498.lib.delegate.DelegateProvider;
-import com.x930073498.lib.delegate.util.DataUtils;
+import com.x930073498.lib.delegate.Router;
+import com.x930073498.lib.delegate.util.IntentDelegateWrapper;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -99,12 +100,24 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
 
     private List<ActivityCallback> callbacks = new ArrayList<>();
 
+    public void swap(ActivityDelegate delegate) {
+        if (delegate == null) return;
+        if (delegate == this.delegate) return;
+        Router.swap(this.delegate, delegate);
+    }
+
+    public void start(ActivityDelegate delegate) {
+        if (delegate == null) return;
+        if (delegate == this.delegate) return;
+        Router.start(this.delegate, delegate);
+    }
+
     public void addCallback(ActivityCallback... callbacks) {
         addCallbacks(Arrays.asList(callbacks));
     }
 
     public void addCallbacks(List<ActivityCallback> callbacks) {
-        if (callbacks==null)return;
+        if (callbacks == null) return;
         for (ActivityCallback callback : callbacks
                 ) {
             if (this.callbacks.contains(callback)) continue;
@@ -114,7 +127,7 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
     public void removeCallbacks(List<ActivityCallback> callbacks) {
-        if (callbacks==null)return;
+        if (callbacks == null) return;
         for (ActivityCallback callback : callbacks
                 ) {
             this.callbacks.remove(callback);
@@ -3489,8 +3502,6 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
             callback.onSaveInstanceState(this, outState);
         }
 
-        if (getComponentDelegate() != null)
-            outState.putSerializable(INSTANCE, getComponentDelegate());
         if (getComponentDelegate() != null &&
                 getComponentDelegate().onSaveInstanceState(this, outState)) return;
         super.onSaveInstanceState(outState);
@@ -5693,17 +5704,10 @@ public class DelegateActivity extends AppCompatActivity implements DelegateProvi
     }
 
     private void parseDelegate(Bundle savedInstanceState) {
-        if (savedInstanceState != null && savedInstanceState.containsKey(INSTANCE)) {
-            delegate = (ActivityDelegate) savedInstanceState.getSerializable(INSTANCE);
-            savedInstanceState.remove(INSTANCE);
+        IntentDelegateWrapper wrapper = Router.getDelegateWrapper(getIntent());
+        if (wrapper != null) {
+            delegate = wrapper.getDelegate(getIntent(), getClass());
         }
-        if (DataUtils.isResetFlag(getIntent())) {
-            reset();
-            DataUtils.clearResetFlag(getIntent());
-            if (savedInstanceState != null)
-                savedInstanceState.clear();
-        }
-        ActivityDelegate delegate = DataUtils.getDelegateFromIntent(getIntent());
         if (delegate == null) return;
         delegate.initialized(this);
         setComponentDelegate(delegate);
